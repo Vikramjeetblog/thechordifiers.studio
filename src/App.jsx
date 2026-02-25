@@ -20,8 +20,18 @@ export default function App() {
       { threshold: 0.16 },
     );
 
+    const handleScroll = () => {
+      document.documentElement.style.setProperty('--scrollY', `${window.scrollY}px`);
+    };
+
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -54,15 +64,20 @@ export default function App() {
           id="vision"
           subtitle="Our Vision"
           title="More Than a Studio. A Home for Serious Creative Work."
+          className="vision-editorial"
         >
           <div className="vision-grid fade-in">
-            <div>
-              <p>
-                Built for emotional storytelling and disciplined artistry, this space is crafted so
-                ideas move from silence to timeless records with intention, privacy, and momentum.
+            <div className="vision-statement-wrap">
+              <p className="vision-statement">
+                This is where artists return to create their most honest work.
               </p>
             </div>
-            <img src={media.visionImage} alt="Sample cinematic studio interior" loading="lazy" />
+            <div className="vision-asymmetry">
+              <p className="vision-minimal-copy">
+                Designed for emotional precision, private flow, and timeless output.
+              </p>
+              <img src={media.visionImage} alt="Sample cinematic studio interior" loading="lazy" />
+            </div>
           </div>
         </Section>
 

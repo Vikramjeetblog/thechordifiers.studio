@@ -185,39 +185,55 @@ a {
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
 }
 
-.experience-layout {
+.experience-modern {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 
-.experience-stack {
+.experience-row {
   display: grid;
-  gap: 1.2rem;
-}
-
-.experience-card,
-.diploma-card,
-.pricing-card,
-.lead-card,
-.lead-form {
-  border-radius: 16px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
+  border-radius: 18px;
   border: 1px solid var(--border);
   background: var(--surface);
   backdrop-filter: blur(6px);
-  padding: 1.6rem;
-}
-
-.experience-card {
+  overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.experience-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--gold-border);
+
+.experience-row.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
 }
 
-.experience-eyebrow {
+.experience-row.reverse .experience-media-wrap {
+  order: 2;
+}
+
+.experience-row.reverse .experience-copy {
+  order: 1;
+}
+
+.experience-media-wrap {
+  min-height: 300px;
+}
+
+.experience-media-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.experience-copy {
+  padding: 2.1rem;
+  display: grid;
+  align-content: center;
+  gap: 0.8rem;
+}
+
+.experience-label {
   margin: 0;
   color: var(--gold);
   text-transform: uppercase;
@@ -225,44 +241,75 @@ a {
   font-size: 0.74rem;
 }
 
-.experience-card h3 {
-  margin: 0.65rem 0;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.65rem;
-}
-
-.experience-card p,
-.experience-card li,
-.students-layout p,
-.diploma-card li,
-.pricing-card li,
-.muted {
-  color: var(--muted);
-}
-
-.experience-card.wide {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.experience-card ul,
-.diploma-card ul,
-.pricing-card ul {
+.experience-copy h3 {
   margin: 0;
-  padding-left: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+  line-height: 1.15;
+}
+
+.experience-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 440px;
+}
+
+.experience-row:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-border);
+}
+
+.students-premium .section-title {
+  max-width: 920px;
 }
 
 .students-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.2rem;
+  align-items: start;
 }
 
-.students-layout p {
-  line-height: 1.8;
+.students-main h3 {
+  margin: 0 0 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  line-height: 1.15;
+}
+
+.students-main p {
+  margin: 0 0 1.2rem;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.students-highlight {
+  display: inline-flex;
+  padding: 0.46rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-border);
+  color: #ecd9b2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  margin-bottom: 1.8rem !important;
+}
+
+.students-elegant-list {
+  border-left: 1px solid rgba(201, 168, 105, 0.35);
+  padding-left: 1.4rem;
+}
+
+.students-elegant-list ul {
+  margin: 0 0 1.4rem;
+  padding-left: 1rem;
+}
+
+.students-elegant-list li {
+  color: var(--muted);
+  margin-bottom: 0.52rem;
 }
 
 .pricing-grid {
@@ -463,7 +510,7 @@ a {
 
   .fade-in,
   .lux-btn,
-  .experience-card,
+  .experience-row,
   .lead-form input,
   .lead-form button {
     transition: none;
@@ -476,8 +523,7 @@ a {
   }
 
   .vision-asymmetry,
-  .experience-layout,
-  .experience-card.wide,
+  .experience-row,
   .students-layout,
   .pricing-grid,
   .lead-columns {
@@ -486,6 +532,11 @@ a {
 
   .lead-divider {
     display: none;
+  }
+
+  .students-elegant-list {
+    border-left: none;
+    padding-left: 0;
   }
 
   .pricing-card.featured {

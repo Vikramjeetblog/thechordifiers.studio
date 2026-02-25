@@ -17,11 +17,10 @@ export default function App() {
           }
         });
       },
-      { threshold: 0.2 },
+      { threshold: 0.16 },
     );
 
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
@@ -30,23 +29,21 @@ export default function App() {
       <header className="hero" id="top">
         <video className="hero-video" src={media.heroVideo} autoPlay muted loop playsInline />
         <div className="hero-overlay" />
-        <div className="hero-grain" />
+        <div className="hero-ambient" />
+
         <div className="hero-content fade-in">
           <p className="hero-kicker">The Chordifiers Studio</p>
           <h1>
             A new era of <span>sound</span> is being built.
           </h1>
           <p>
-            We are currently under renovations, crafting a next-generation creative environment
-            for artists, producers, and visionaries.
+            Under renovation to unveil an international-grade creative sanctuary for artists,
+            producers, and students.
           </p>
           <div className="hero-actions">
-            <LuxuryButton href="#artist-priority">Join Priority Artist Waitlist</LuxuryButton>
+            <LuxuryButton href="#artist-priority">Join Artist Priority Access</LuxuryButton>
             <LuxuryButton href="#students" variant="outline">
               Explore Courses
-            </LuxuryButton>
-            <LuxuryButton href="#vision" variant="ghost">
-              Watch Studio Preview
             </LuxuryButton>
           </div>
         </div>
@@ -56,34 +53,27 @@ export default function App() {
         <Section
           id="vision"
           subtitle="Our Vision"
-          title="This Is More Than a Studio. This is your 2nd Home."
+          title="More Than a Studio. A Home for Serious Creative Work."
         >
           <div className="vision-grid fade-in">
-            <div className="vision-copy">
+            <div>
               <p>
-                Every element is being rebuilt to honor emotion, craft, and creative identity. This
-                is a sanctuary where artists push boundaries, students find mentorship, and stories
-                become timeless records.
+                Built for emotional storytelling and disciplined artistry, this space is crafted so
+                ideas move from silence to timeless records with intention, privacy, and momentum.
               </p>
             </div>
             <img src={media.visionImage} alt="Sample cinematic studio interior" loading="lazy" />
           </div>
         </Section>
 
-        <Section
-          id="experience"
-          subtitle="The Experience"
-          title="Built & Designed for Serious Artistic Work"
-        >
+        <Section id="experience" subtitle="The Experience" title="Built for Artistic Excellence">
           <ExperienceGrid />
         </Section>
 
-        <Section id="students" subtitle="Learning Path" title="For Students" className="alt-bg">
+        <Section id="students" subtitle="For Students" title="Learn Inside a Real Studio" className="alt-bg">
           <div className="students-layout fade-in">
             <div>
-              <p>
-                Learn music production inside a real award-winning studio environment.
-              </p>
+              <p>Learn music production in a premium real-world environment.</p>
               <LuxuryButton href="#student-priority">Join Student Priority List</LuxuryButton>
             </div>
             <div className="diploma-card">
@@ -100,29 +90,24 @@ export default function App() {
           </div>
         </Section>
 
-        <Section
-          id="pricing"
-          subtitle="Access Tiers"
-          title="Choose Your Launch Access"
-          className="pricing-section"
-        >
+        <Section id="pricing" subtitle="Priority Access" title="Choose Your Launch Position">
           <PricingCards />
         </Section>
 
-        <Section id="lead-capture" subtitle="Priority Funnel" title="Secure Your Launch Position">
+        <Section id="lead-capture" subtitle="Waitlist" title="Secure Your Spot">
           <div className="lead-columns">
             <div className="lead-column fade-in">
-              <h3>For Artists</h3>
+              <h3>Artists</h3>
               <LeadCaptureCard
                 title="Artist Priority Waitlist"
-                description="For independent artists, bands, and producers wanting first launch notifications."
+                description="For artists and producers wanting launch-first access."
                 audience="artist"
                 tier="free"
                 formId="artist-priority"
               />
               <LeadCaptureCard
                 title="Founding Artist Priority Access — ₹99"
-                description="Premium fast-track queue for founding artists before public launch opens."
+                description="Fast-track priority for founding members before public release."
                 audience="artist"
                 tier="founding"
                 formId="founding-access"
@@ -133,17 +118,17 @@ export default function App() {
             <div className="lead-divider" />
 
             <div className="lead-column fade-in">
-              <h3>For Students</h3>
+              <h3>Students</h3>
               <LeadCaptureCard
                 title="Student Priority List"
-                description="For students seeking early seat access before course batches go public."
+                description="For early seats in upcoming professional batch openings."
                 audience="student"
                 tier="free"
                 formId="student-priority"
               />
               <LeadCaptureCard
                 title="Wildcard Collaboration Interest"
-                description="For mentors, labels, and collaborators exploring strategic launch partnerships."
+                description="For mentors and creative partners interested in collaborations."
                 audience="artist"
                 tier="wildcard"
                 formId="wildcard-access"
@@ -152,21 +137,10 @@ export default function App() {
           </div>
         </Section>
 
-        <section className="closing">
+        <section className="closing fade-in">
           <h2>Under Renovations. Launching Soon.</h2>
-          <p>For collaborations, early access, and announcements.</p>
+          <p>For collaborations, early access, and launch announcements.</p>
           <a href="mailto:hello@samplechordifiers.com">hello@samplechordifiers.com</a>
-          <div className="socials">
-            <a href="#" aria-label="Instagram placeholder link">
-              Instagram
-            </a>
-            <a href="#" aria-label="YouTube placeholder link">
-              YouTube
-            </a>
-            <a href="#" aria-label="LinkedIn placeholder link">
-              LinkedIn
-            </a>
-          </div>
         </section>
       </main>
     </div>

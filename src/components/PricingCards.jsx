@@ -6,19 +6,19 @@ export default function PricingCards() {
 
   return (
     <div className="pricing-grid">
-      <article className="pricing-card fade-in">
+      <article className="pricing-card secondary fade-in">
         <p className="plan">Free Waitlist</p>
-        <h3>Get launch notified first</h3>
-        <p className="muted">Get notified when we launch.</p>
-        <LuxuryButton href="#artist-waitlist" full>
+        <h3>Enter the launch queue</h3>
+        <p className="muted">Receive launch updates and public opening announcements.</p>
+        <LuxuryButton href="#artist-priority" variant="ghost" full>
           Join Free Waitlist
         </LuxuryButton>
       </article>
 
       <article className="pricing-card featured fade-in">
-        <span className="badge">Limited 100 passes</span>
+        <span className="badge">Most Exclusive · Limited 100</span>
         <p className="plan">Founding Artist&apos;s Priority Access — ₹99</p>
-        <h3>Own your spot before public launch</h3>
+        <h3>Reserved entry before public launch</h3>
         <ul>
           <li>Priority booking before public launch</li>
           <li>2 complimentary jam/recording sessions</li>
@@ -26,15 +26,16 @@ export default function PricingCards() {
           <li>Early access to studio and courses</li>
         </ul>
         <div className="progress-wrap">
-          <p>
-            {foundersProgress.claimed}/{foundersProgress.total} claimed
+          <p className="scarcity-copy">
+            {foundersProgress.claimed}/{foundersProgress.total} claimed · only{' '}
+            {foundersProgress.total - foundersProgress.claimed} remaining
           </p>
           <div className="progress-track" aria-label="Founding access claimed progress">
             <div className="progress-fill" style={{ width: `${progressPercentage}%` }} />
           </div>
         </div>
         <LuxuryButton href="#founding-access" variant="outline" full>
-          Upgrade to Founders Priority Access — ₹99
+          Secure Founders Access — ₹99
         </LuxuryButton>
       </article>
     </div>

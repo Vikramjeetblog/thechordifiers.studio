@@ -3,30 +3,8 @@ import Section from './components/Section';
 import LuxuryButton from './components/LuxuryButton';
 import ExperienceGrid from './components/ExperienceGrid';
 import PricingCards from './components/PricingCards';
+import LeadCaptureCard from './components/LeadCaptureCard';
 import { media, studentPoints } from './data/content';
-
-function WaitlistForm({ id, audience, tier }) {
-  return (
-    <form id={id} className="lead-form">
-      <input type="hidden" name="audience" value={audience} />
-      <input type="hidden" name="tier" value={tier} />
-      <input type="hidden" name="paymentStatus" value="pending" />
-      <label>
-        Name
-        <input type="text" name="name" placeholder="Your name" />
-      </label>
-      <label>
-        Email
-        <input type="email" name="email" placeholder="artist@email.com" />
-      </label>
-      <label>
-        Phone
-        <input type="tel" name="phone" placeholder="+91 XXXXXXXXXX" />
-      </label>
-      <button type="submit">Secure My Spot</button>
-    </form>
-  );
-}
 
 export default function App() {
   useEffect(() => {
@@ -52,15 +30,18 @@ export default function App() {
       <header className="hero" id="top">
         <video className="hero-video" src={media.heroVideo} autoPlay muted loop playsInline />
         <div className="hero-overlay" />
+        <div className="hero-grain" />
         <div className="hero-content fade-in">
           <p className="hero-kicker">The Chordifiers Studio</p>
-          <h1>A new era of sound is being built.</h1>
+          <h1>
+            A new era of <span>sound</span> is being built.
+          </h1>
           <p>
             We are currently under renovations, crafting a next-generation creative environment
             for artists, producers, and visionaries.
           </p>
           <div className="hero-actions">
-            <LuxuryButton href="#artist-waitlist">Join Priority Artist Waitlist</LuxuryButton>
+            <LuxuryButton href="#artist-priority">Join Priority Artist Waitlist</LuxuryButton>
             <LuxuryButton href="#students" variant="outline">
               Explore Courses
             </LuxuryButton>
@@ -78,11 +59,13 @@ export default function App() {
           title="This Is More Than a Studio. This is your 2nd Home."
         >
           <div className="vision-grid fade-in">
-            <p>
-              Every element is being rebuilt to honor emotion, craft, and creative identity. This
-              is a sanctuary where artists push boundaries, students find mentorship, and stories
-              become timeless records.
-            </p>
+            <div className="vision-copy">
+              <p>
+                Every element is being rebuilt to honor emotion, craft, and creative identity. This
+                is a sanctuary where artists push boundaries, students find mentorship, and stories
+                become timeless records.
+              </p>
+            </div>
             <img src={media.visionImage} alt="Sample cinematic studio interior" loading="lazy" />
           </div>
         </Section>
@@ -126,10 +109,46 @@ export default function App() {
           <PricingCards />
         </Section>
 
-        <Section id="artist-waitlist" subtitle="Priority Funnel" title="Artist Priority Waitlist">
-          <div className="forms-grid fade-in">
-            <WaitlistForm id="artist-form" audience="artist" tier="free" />
-            <WaitlistForm id="founder-form" audience="artist" tier="founding" />
+        <Section id="lead-capture" subtitle="Priority Funnel" title="Secure Your Launch Position">
+          <div className="lead-columns">
+            <div className="lead-column fade-in">
+              <h3>For Artists</h3>
+              <LeadCaptureCard
+                title="Artist Priority Waitlist"
+                description="For independent artists, bands, and producers wanting first launch notifications."
+                audience="artist"
+                tier="free"
+                formId="artist-priority"
+              />
+              <LeadCaptureCard
+                title="Founding Artist Priority Access — ₹99"
+                description="Premium fast-track queue for founding artists before public launch opens."
+                audience="artist"
+                tier="founding"
+                formId="founding-access"
+                cta="Secure Founders Access — ₹99"
+              />
+            </div>
+
+            <div className="lead-divider" />
+
+            <div className="lead-column fade-in">
+              <h3>For Students</h3>
+              <LeadCaptureCard
+                title="Student Priority List"
+                description="For students seeking early seat access before course batches go public."
+                audience="student"
+                tier="free"
+                formId="student-priority"
+              />
+              <LeadCaptureCard
+                title="Wildcard Collaboration Interest"
+                description="For mentors, labels, and collaborators exploring strategic launch partnerships."
+                audience="artist"
+                tier="wildcard"
+                formId="wildcard-access"
+              />
+            </div>
           </div>
         </Section>
 

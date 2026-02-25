@@ -115,7 +115,12 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="pricing" subtitle="Priority Access" title="Choose Your Launch Position">
+        <Section
+          id="pricing"
+          subtitle="Priority Access"
+          title="Choose Your Launch Position"
+          className="pricing-dramatic"
+        >
           <PricingCards />
         </Section>
 

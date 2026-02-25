@@ -9,6 +9,7 @@
   --gold: #c9a869;
   --gold-border: rgba(201, 168, 105, 0.55);
   --border: rgba(255, 255, 255, 0.12);
+  --scrollY: 0px;
 }
 
 * {
@@ -50,6 +51,9 @@ a {
 
 .hero-video {
   object-fit: cover;
+  transform: translateY(calc(var(--scrollY) * 0.12)) scale(1.08);
+  transform-origin: center;
+  will-change: transform;
 }
 
 .hero-overlay {
@@ -62,6 +66,8 @@ a {
   opacity: 0.14;
   background-image: radial-gradient(rgba(255, 255, 255, 0.04) 0.6px, transparent 0.6px);
   background-size: 4px 4px;
+  transform: translateY(calc(var(--scrollY) * -0.06));
+  will-change: transform;
 }
 
 .hero-content {
@@ -70,6 +76,8 @@ a {
   text-align: center;
   max-width: 980px;
   padding-top: 5.2rem;
+  transform: translateY(calc(var(--scrollY) * -0.03));
+  will-change: transform;
 }
 
 .hero-kicker,
@@ -419,6 +427,23 @@ a {
   transform: translateY(0);
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video,
+  .hero-ambient,
+  .hero-content {
+    transform: none;
+  }
+
+  .fade-in,
+  .lux-btn,
+  .experience-card,
+  .lead-form input,
+  .lead-form button {
+    transition: none;
+  }
+}
+
 @media (max-width: 980px) {
   .vision-grid,
   .experience-layout,
@@ -443,6 +468,12 @@ a {
 }
 
 @media (max-width: 600px) {
+  .hero-video,
+  .hero-ambient,
+  .hero-content {
+    transform: none;
+  }
+
   .hero-actions {
     flex-direction: column;
   }

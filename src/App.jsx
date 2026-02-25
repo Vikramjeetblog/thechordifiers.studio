@@ -85,13 +85,23 @@ export default function App() {
           <ExperienceGrid />
         </Section>
 
-        <Section id="students" subtitle="For Students" title="Learn Inside a Real Studio" className="alt-bg">
+        <Section
+          id="students"
+          subtitle="For Students"
+          title="Master Music Production in a Real Studio Environment"
+          className="alt-bg students-premium"
+        >
           <div className="students-layout fade-in">
-            <div>
-              <p>Learn music production in a premium real-world environment.</p>
+            <div className="students-main">
+              <h3>Learn where real records are born.</h3>
+              <p>
+                Build your craft inside a premium professional environment with mentor-led sessions,
+                practical workflows, and artist-first creative discipline.
+              </p>
+              <p className="students-highlight">Limited 30 Students Only</p>
               <LuxuryButton href="#student-priority">Join Student Priority List</LuxuryButton>
             </div>
-            <div className="diploma-card">
+            <div className="students-elegant-list">
               <p className="section-subtitle">Diploma & Certification Teaser</p>
               <ul>
                 {studentPoints.map((point) => (

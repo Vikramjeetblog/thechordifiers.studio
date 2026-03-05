@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import { FaPlay } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
+import heroImg from "../assets/hero.jpg";
 import { useState } from "react";
 
 const container = {
@@ -48,7 +49,7 @@ export default function Hero() {
       <motion.div
         style={{
           y,
-          backgroundImage: "url('/src/assets/hero.jpg')"
+           backgroundImage: `url(${heroImg})`
         }}
         initial={{ scale: 1.15 }}
         animate={{
@@ -187,3 +188,4 @@ export default function Hero() {
   );
 
 }
+

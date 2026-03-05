@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import visionImg from "../assets/vision.webp";
+import visionImg from "../assets/studio.webp";
 
 const container = {
   hidden: {},
@@ -216,4 +216,5 @@ export default function Vision() {
 
     </section>
   );
+
 }

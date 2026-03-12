@@ -1,0 +1,66 @@
+@import "tailwindcss";
+html, body {
+  scroll-behavior: auto;
+}
+/* Text glow effect */
+
+.text-glow {
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.4),
+    0 0 12px rgba(240,232,27,0.4);
+}
+
+/* Background slow zoom */
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-zoom {
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+
+/* Text animation */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text {
+  animation: fadeUp 1s ease;
+}
+
+/* Button hover animation */
+
+.hero-btn {
+  transition: all 0.35s ease;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(240,232,27,0.3);
+}
+
+/* Pagination dots */
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: #f0e81b !important;
+  opacity: 1;
+}

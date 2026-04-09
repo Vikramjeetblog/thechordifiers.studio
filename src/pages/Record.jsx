@@ -8,45 +8,52 @@ const artists = [
     name: "MizzieLmb",
     image: mizzie,
     location: "Zimbabwe",
-    desc: "is a talented artist from Zimbabwe, celebrated for her strong voice and electrifying energy. As part of The Chordifiers Studio, she’s redefining music with her unique approach. Don’t miss her latest creations!"
+    desc: "A powerful voice with electrifying stage energy, Mizzie is redefining modern music expression.",
   },
   {
     name: "Sweta",
     image: sweta,
     location: "Kurseong",
-    desc: "a rising artist from Kurseong, is known for her heartfelt and soothing voice. Proudly representing The Chordifiers Studio, she’s bringing fresh energy to the music scene. Stay tuned for her upcoming projects!"
+    desc: "Known for her soulful tone and emotional depth, Sweta brings raw storytelling into music.",
   },
   {
     name: "Diyaan",
     image: diyaan,
     location: "Kashmir",
-    desc: "is an artist from Kashmir, known for their unique sound and captivating music. Representing The Chordifiers Studio, he is making waves from his heart out. Stay tuned for their latest hits!"
+    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
   }
 ];
 
 export default function RecordLabelArtists() {
 
   return (
-    <section className="bg-[#111111] text-white py-20">
+    <div className="bg-[#111111] text-white">
 
-      <div className="max-w-5xl mx-auto px-6">
+      {/* HERO */}
 
-        {/* Title */}
+      <section className="py-28 text-center">
 
-        <h2 className="text-center text-3xl md:text-5xl tracking-widest mb-6 mt-6 font-['League_Spartan']">
-          OUR LATEST SIGNED ARTIST
-        </h2>
+        <h1 className="text-4xl md:text-6xl font-['League_Spartan'] tracking-widest">
+          OUR ARTISTS
+        </h1>
 
-        <div className="w-24 h-[2px] bg-[#f0e81b] mx-auto mt-4 mb-6"></div>
+        <div className="w-24 h-[3px] bg-[#f0e81b] mx-auto mt-6 mb-6"></div>
 
-        <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed font-['Inter']">
-          Meet the newest talent to join our creative family. With a unique sound
-          and undeniable passion, this artist is set to make waves in the music industry.
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          Discover emerging talent from The Chordifiers. Artists shaping
+          the future of music through creativity and passion.
         </p>
 
-        <div className="relative">
+      </section>
 
-          {/* Timeline line */}
+
+      {/* TIMELINE */}
+
+      <section className="pb-24">
+
+        <div className="max-w-5xl mx-auto px-6 relative">
+
+          {/* LINE */}
 
           <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 h-full w-[2px] bg-gray-700"></div>
 
@@ -54,47 +61,56 @@ export default function RecordLabelArtists() {
 
             <div
               key={artist.name}
-              className={`relative mb-16 md:mb-24 flex flex-col md:items-center md:justify-between ${
+              className={`relative mb-20 flex flex-col md:items-center md:justify-between ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
 
-              {/* Timeline Node */}
+              {/* NODE */}
 
-              <div className="absolute left-4 top-2 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-5 h-5 border-2 border-[#f0e81b] bg-[#111111] rounded-full shadow-[0_0_12px_#f0e81b]"></div>
+              <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-4 md:top-1/2 md:-translate-y-1/2 w-5 h-5 border-2 border-[#f0e81b] bg-[#111] rounded-full shadow-[0_0_12px_#f0e81b]"></div>
 
-              {/* Poster */}
 
-              <motion.img
+              {/* IMAGE */}
+
+              <motion.div
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                src={artist.image}
-                className="w-40 md:w-52 ml-12 md:ml-0 mx-auto md:mx-0 mb-6 md:mb-0 rounded-md border border-[#f0e81b] shadow-[0_12px_40px_rgba(240,232,27,0.25)]"
-              />
+                className="relative group ml-12 md:ml-0"
+              >
 
-              {/* Text */}
+                <img
+                  src={artist.image}
+                  className="w-44 md:w-56 rounded-md border border-[#f0e81b] shadow-[0_12px_40px_rgba(240,232,27,0.25)]"
+                />
 
-              <div className="w-full md:w-1/2 pl-12 md:pl-6 pr-2 md:pr-6 text-left">
+                {/* HOVER OVERLAY */}
 
-                {/* Artist Name */}
+                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
 
-                <h3 className="text-2xl md:text-3xl text-[#f0e81b] font-['Anton'] tracking-wide">
+                  <button className="border border-[#f0e81b] px-4 py-2 text-[#f0e81b] hover:bg-[#f0e81b] hover:text-black transition">
+                    ▶ Play Demo
+                  </button>
+
+                </div>
+
+              </motion.div>
+
+
+              {/* TEXT */}
+
+              <div className="w-full md:w-1/2 pl-12 md:pl-8 pr-2 md:pr-8 mt-6 md:mt-0">
+
+                <h3 className="text-2xl md:text-3xl text-[#f0e81b] font-['Anton']">
                   {artist.name}
                 </h3>
 
-                {/* Accent Line */}
-
                 <div className="w-16 h-[3px] bg-[#f0e81b] my-3"></div>
 
-                {/* Location */}
-
-                <p className="text-gray-400 text-md mb-3 uppercase tracking-widest font-['League_Gothic']">
+                <p className="text-gray-400 uppercase tracking-widest text-sm mb-3">
                   {artist.location}
                 </p>
 
-                {/* Description */}
-
-                <p className="text-gray-300 leading-relaxed font-['Inter'] text-sm md:text-base">
+                <p className="text-gray-300 leading-relaxed">
                   {artist.desc}
                 </p>
 
@@ -106,8 +122,67 @@ export default function RecordLabelArtists() {
 
         </div>
 
-      </div>
+      </section>
 
-    </section>
+
+      {/* STATS */}
+
+      <section className="py-20 bg-[#0e0e0e] text-center">
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6">
+
+          {[
+            ["50+", "Artists Trained"],
+            ["100+", "Tracks Produced"],
+            ["10+", "Industry Collaborations"]
+          ].map((item, i) => (
+
+            <div key={i}>
+
+              <h3 className="text-4xl font-['Anton'] text-[#f0e81b]">
+                {item[0]}
+              </h3>
+
+              <p className="text-gray-400 mt-2">
+                {item[1]}
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
+
+      {/* CTA */}
+
+      <section className="py-24 text-center">
+
+        <h2 className="text-3xl md:text-5xl font-['League_Spartan'] mb-6">
+          Are You The Next Artist?
+        </h2>
+
+        <p className="text-gray-400 max-w-xl mx-auto mb-8">
+          Join The Chordifiers and start your journey in professional
+          music production and performance.
+        </p>
+
+        <div className="flex justify-center gap-4 flex-wrap">
+
+          <button className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90 transition">
+            Submit Demo
+          </button>
+
+          <button className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 hover:bg-[#f0e81b] hover:text-black transition">
+            Book Studio Visit
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
   );
 }

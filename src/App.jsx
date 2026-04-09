@@ -4,10 +4,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Record from "./pages/Record";
-import Contact from './pages/Contact'
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/Privacy";
+import TermsAndCondition from './pages/TermsAndCondition';
+import AboutUs from "./pages/AboutUs";
+import OurStory from "./pages/OurStory";
+import VisitUs from "./pages/VisitUs";
+import Gallery from "./pages/Gallery"; // optional
+
 import Institute from "./pages/Institute";
 import Location from "./pages/Location";
-import Courses from "./pages/Courses";   // ✅ NEW PAGE
+import Courses from "./pages/Courses";
 
 import CursorGlow from "./components/CursorGlow";
 
@@ -54,7 +61,14 @@ function App() {
 
             <Route path="/" element={<Home />} />
             <Route path="/record" element={<Record />} />
-       
+
+            {/* ABOUT SECTION */}
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/our-story" element={<OurStory />} />
+            <Route path="/visit-us" element={<VisitUs />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path ="/Privacy" element = {<PrivacyPolicy/>}/>
+            <Route path = "/Terms" element ={<TermsAndCondition/>}/>
           </Route>
 
 
@@ -63,10 +77,9 @@ function App() {
 
             <Route path="/institute" element={<Institute />} />
             <Route path="/institute/location" element={<Location />} />
-
-            {/* ✅ NEW ROUTE */}
             <Route path="/institute/courses" element={<Courses />} />
-          <Route path = '/institute/contact' element={<Contact/>}/>
+            <Route path="/institute/contact" element={<Contact />} />
+
           </Route>
 
         </Routes>
@@ -79,4 +92,3 @@ function App() {
 }
 
 export default App;
-

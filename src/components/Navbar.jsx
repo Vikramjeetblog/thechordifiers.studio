@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -24,7 +25,8 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
 
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
+
           <div className="bg-white text-black font-bold w-8 h-8 flex items-center justify-center rounded">
             C
           </div>
@@ -32,7 +34,9 @@ const Navbar = () => {
           <span className="tracking-widest text-sm">
             CREATOUS COLLECTIVE
           </span>
-        </div>
+
+        </Link>
+
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-10 text-sm tracking-wide relative">
@@ -42,18 +46,22 @@ const Navbar = () => {
 
               {/* RECORD PAGE */}
               {item.id === "record" ? (
-                <Link
-                  to="/record"
-                  className="hover:text-gray-300 transition"
-                >
+                <Link to="/record" className="hover:text-gray-300 transition">
                   {item.name}
                 </Link>
 
               /* INSTITUTE PAGE */
               ) : item.id === "academy" ? (
+                <Link to="/institute" className="hover:text-gray-300 transition">
+                  {item.name}
+                </Link>
+
+              /* ABOUT PAGE */
+              ) : item.id === "about" ? (
                 <Link
-                  to="/institute"
-                  className="hover:text-gray-300 transition flex items-center gap-3"
+                  to="/about-us"
+                  onClick={() => setActive("about")}
+                  className="hover:text-gray-300 transition"
                 >
                   {item.name}
                 </Link>
@@ -71,19 +79,8 @@ const Navbar = () => {
 
               {/* STUDIO DROPDOWN */}
               {item.id === "studio" && (
-                <div
-                  className="
-                  absolute left-1/2 -translate-x-1/2 top-10
-                  opacity-0 invisible
-                  group-hover:opacity-100 group-hover:visible
-                  transition-all duration-300
-                  bg-[#d9d2c7] text-black
-                  p-8 w-[520px]
-                  flex gap-16 shadow-xl
-                  "
-                >
+                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-[#d9d2c7] text-black p-8 w-[520px] flex gap-16 shadow-xl">
 
-                  {/* Column 1 */}
                   <div>
                     <h3 className="font-semibold mb-3 text-sm tracking-wide">
                       RECORDING & MIXING
@@ -96,14 +93,9 @@ const Navbar = () => {
                       <li className="hover:underline cursor-pointer">Studio C</li>
                       <li className="hover:underline cursor-pointer">Jam Rentals</li>
                       <li className="hover:underline cursor-pointer">Video Production</li>
-                      <li className="hover:underline cursor-pointer">Music Video</li>
-                      <li className="hover:underline cursor-pointer">Commercial Video</li>
-                      <li className="hover:underline cursor-pointer">Technical Services</li>
-                      <li className="hover:underline cursor-pointer">Filming & Live Streaming</li>
                     </ul>
                   </div>
 
-                  {/* Column 2 */}
                   <div>
                     <h3 className="font-semibold mb-3 text-sm tracking-wide">
                       MASTERING
@@ -112,14 +104,46 @@ const Navbar = () => {
                     <ul className="space-y-1 text-sm">
                       <li className="hover:underline cursor-pointer">Studio A</li>
                       <li className="hover:underline cursor-pointer">Studio D</li>
-                      <li className="hover:underline cursor-pointer">Dolby Atmos Mastering</li>
+                      <li className="hover:underline cursor-pointer">Dolby Atmos</li>
                       <li className="hover:underline cursor-pointer">Stem Mastering</li>
-                      <li className="hover:underline cursor-pointer">Mastering</li>
                     </ul>
                   </div>
 
                 </div>
               )}
+
+
+              {/* ABOUT DROPDOWN */}
+              {item.id === "about" && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-[#d9d2c7] text-black p-6 w-[220px] shadow-xl">
+
+                  <ul className="space-y-3 text-sm">
+
+                    
+
+                    <li>
+                      <Link to="/our-story" className="hover:underline">
+                        Our Story
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to="/gallery" className="hover:underline">
+                        Gallery
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to="/visit-us" className="hover:underline">
+                        Visit Us
+                      </Link>
+                    </li>
+
+                  </ul>
+
+                </div>
+              )}
+
 
               {/* Active Indicator */}
               {active === item.id && (
@@ -134,6 +158,7 @@ const Navbar = () => {
 
         </ul>
 
+
         {/* Mobile Menu Button */}
         <button
           className="md:hidden text-2xl"
@@ -144,6 +169,7 @@ const Navbar = () => {
 
       </div>
 
+
       {/* Mobile Menu */}
       {menuOpen && (
         <motion.div
@@ -152,43 +178,18 @@ const Navbar = () => {
           className="md:hidden mt-6 flex flex-col gap-6 text-sm"
         >
 
-          {navItems.map((item) => (
+          <Link to="/" onClick={() => setMenuOpen(false)}>HOME</Link>
+          <a href="#vision" onClick={() => setMenuOpen(false)}>VISION</a>
+          <a href="#experience" onClick={() => setMenuOpen(false)}>THE EXPERIENCE</a>
 
-            item.id === "record" ? (
-              <Link
-                key={item.id}
-                to="/record"
-                onClick={() => setMenuOpen(false)}
-                className="hover:text-gray-300"
-              >
-                {item.name}
-              </Link>
+          <Link to="/record" onClick={() => setMenuOpen(false)}>RECORD</Link>
+          <Link to="/institute" onClick={() => setMenuOpen(false)}>TCMI ACADEMY</Link>
 
-            ) : item.id === "academy" ? (
-              <Link
-                key={item.id}
-                to="/institute"
-                onClick={() => setMenuOpen(false)}
-                className="hover:text-gray-300"
-              >
-                {item.name}
-              </Link>
-
-            ) : (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={() => {
-                  setActive(item.id);
-                  setMenuOpen(false);
-                }}
-                className="hover:text-gray-300"
-              >
-                {item.name}
-              </a>
-            )
-
-          ))}
+          {/* About Mobile */}
+          <Link to="/about-us" onClick={() => setMenuOpen(false)}>ABOUT US</Link>
+          <Link to="/our-story" onClick={() => setMenuOpen(false)}>OUR STORY</Link>
+          <Link to="/gallery" onClick={() => setMenuOpen(false)}>GALLERY</Link>
+          <Link to="/visit-us" onClick={() => setMenuOpen(false)}>VISIT US</Link>
 
         </motion.div>
       )}
@@ -198,3 +199,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

@@ -5,14 +5,14 @@ import { useState, useRef } from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import img1 from "../../../assets/studioD-1.png";
-import img2 from "../../../assets/studioD-2.png";
-import img3 from "../../../assets/studioD-3.png";
-import img4 from "../../../assets/studioD-4.png";
-import img5 from "../../../assets/studioD-5.png";
-import img6 from "../../../assets/studioD-6.png";
-import img7 from "../../../assets/studioD-7.png";
-import img8 from "../../../assets/studioD-8.png";
+import img1 from "../../../assets/studioD-1.webp";
+import img2 from "../../../assets/studioD-2.webp";
+import img3 from "../../../assets/studioD-3.webp";
+import img4 from "../../../assets/studioD-4.webp";
+import img5 from "../../../assets/studioD-5.webp";
+import img6 from "../../../assets/studioD-6.webp";
+import img7 from "../../../assets/studioD-7.webp";
+import img8 from "../../../assets/studioD-8.webp";
 
 const slides = [img1, img2, img3, img4, img5, img6, img7, img8];
 

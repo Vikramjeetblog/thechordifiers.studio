@@ -7,7 +7,7 @@ import Record from "./pages/Record";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/Privacy";
 import TermsAndCondition from './pages/TermsAndCondition';
-import AboutUs from "./pages/AboutUs";
+import AboutUs from "./pages/Aboutus";
 import OurStory from "./pages/OurStory";
 import VisitUs from "./pages/VisitUs";
 import Gallery from "./pages/Gallery"; 

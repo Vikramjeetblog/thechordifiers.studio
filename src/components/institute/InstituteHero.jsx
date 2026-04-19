@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
@@ -10,7 +10,7 @@ import hero2 from "../../assets/institute2.webp";
 import hero3 from "../../assets/institute3.png";
 
 export default function InstituteHero() {
-
+const navigate = useNavigate();
   return (
 
     <section className="relative h-screen pt-14">
@@ -61,11 +61,15 @@ export default function InstituteHero() {
 
               <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
 
-                <button className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
+                <button 
+                   onClick={() => navigate("/institute/courses")}
+                  className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
                   Explore Programs
                 </button>
 
-                <button className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
+                <button 
+                   onClick={() => navigate("/register/mentorship")}
+                  className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
                   Apply Now
                 </button>
 
@@ -109,7 +113,9 @@ export default function InstituteHero() {
                 skills for modern producers.
               </p>
 
-              <button className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
+              <button
+                onClick={() => navigate("/institute/courses")} 
+                className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
                 View Programs
               </button>
 
@@ -151,7 +157,9 @@ export default function InstituteHero() {
                 inside a real working recording studio.
               </p>
 
-              <button className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
+              <button
+                  onClick={() => navigate("/register/mentorship")}
+               className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
                 Apply Now
               </button>
 

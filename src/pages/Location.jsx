@@ -9,7 +9,7 @@ import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
-
+import { useNavigate } from "react-router-dom";
 import hero1 from "../assets/institute.webp";
 import hero2 from "../assets/institute2.webp";
 import hero3 from "../assets/institute3.png";
@@ -19,7 +19,7 @@ import studio2 from "../assets/studio2.jpg";
 import studio3 from "../assets/studio3.webp";
 
 export default function Location() {
-
+const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -71,7 +71,9 @@ Our Siliguri Campus
 Located inside one of Mumbai's leading recording studios.
 </p>
 
-<button className="mt-4 border border-[#f0e81b] text-[#f0e81b] px-8 py-3 hover:bg-[#f0e81b] hover:text-black transition">
+<button 
+  onClick={() => navigate("/book-a-call")}
+  className="mt-4 border border-[#f0e81b] text-[#f0e81b] px-8 py-3 hover:bg-[#f0e81b] hover:text-black transition">
 Book A Tour
 </button>
 
@@ -241,7 +243,9 @@ Our campus provides a professional environment designed
 for modern music production, recording and sound engineering.
 </p>
 
-<button className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90 transition">
+<button
+  onClick={() => navigate("/book-a-call")}
+ className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90 transition">
 Book a Campus Call
 </button>
 

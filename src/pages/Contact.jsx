@@ -9,7 +9,9 @@ import { Autoplay, Pagination } from "swiper/modules"
 
 import "swiper/css"
 import "swiper/css/pagination"
+import { useNavigate } from "react-router-dom";
 export default function Contact() {
+	const navigate = useNavigate();
 
 return (
 
@@ -200,7 +202,9 @@ Send Message
 Ready to Start Your Music Career?
 </h2>
 
-<button className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90">
+<button
+  onClick={() => navigate("/book-a-call")}
+   className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90">
 Book a Career Call
 </button>
 

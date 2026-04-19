@@ -23,8 +23,16 @@ import MainLayout from "./layout/MainLayout";
 import InstituteLayout from "./layout/InstituteLayout";
 
 import Lenis from "lenis";
+import ScrollToTop from "./components/ScrollToTop";
+import BookCall from "./pages/BookCall";
 
+import ProgramDetails from "./pages/ProgramDetails";
+import MentorshipRegister from "./forms/Mentorship";
+import Certification from "./forms/Certification";
+import Diploma from "./forms/Diploma";
 function App() {
+
+<ScrollToTop />
 
   useEffect(() => {
 
@@ -62,6 +70,11 @@ function App() {
 
             <Route path="/" element={<Home />} />
             <Route path="/record" element={<Record />} />
+           <Route path="/program/:slug" element={<ProgramDetails />} />
+           <Route path="/book-a-call" element={<BookCall />} />
+            <Route path="/register/mentorship" element={<MentorshipRegister />} />
+              <Route path="/register/certification" element={<Certification />} />
+              <Route path="/register/diploma" element={<Diploma />} />
 
        {/* STUDIO PAGES */}
          <Route path="/studio-b" element={<StudioB />} />
@@ -83,6 +96,7 @@ function App() {
             <Route path="/institute/location" element={<Location />} />
             <Route path="/institute/courses" element={<Courses />} />
             <Route path="/institute/contact" element={<Contact />} />
+          
 
           </Route>
 

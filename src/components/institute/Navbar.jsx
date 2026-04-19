@@ -52,7 +52,7 @@ const InstituteNavbar = () => {
         {/* Apply Button */}
 
         <Link
-          to="/institute/apply"
+          to="/institute/courses"
           className="hidden md:block border border-[#f0e81b] text-[#f0e81b] px-6 py-2 hover:bg-[#f0e81b] hover:text-black transition duration-300 shadow-[0_0_12px_rgba(240,232,27,0.4)]"
         >
           Apply Now

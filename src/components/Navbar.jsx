@@ -68,18 +68,18 @@ const Navbar = () => {
 
               /* NORMAL SECTION LINKS */
               ) : (
-                <a
-                  href={`#${item.id}`}
+                <Link
+                   to={`/#${item.id}`}
                   onClick={() => setActive(item.id)}
                   className="hover:text-gray-300 transition"
                 >
                   {item.name}
-                </a>
+                </Link>
               )}
 
               {/* STUDIO DROPDOWN */}
               {item.id === "studio" && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-[#d9d2c7] text-black p-8 w-[520px] flex gap-16 shadow-xl">
+                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300  bg-[#111111]/95 backdrop-blur-md text-[#f2f2f2] border border-white/10 p-8 w-[520px] flex gap-16 shadow-xl">
 
                   <div>
                     <h3 className="font-semibold mb-3 text-sm tracking-wide">
@@ -89,7 +89,11 @@ const Navbar = () => {
                     <ul className="space-y-1 text-sm">
                       <li className="hover:underline cursor-pointer">The Studios</li>
                       <li className="hover:underline cursor-pointer">Studio A</li>
-                      <li className="hover:underline cursor-pointer">Studio B</li>
+                      <li>
+  <Link to="/studio-b" className="hover:underline">
+    Studio B
+  </Link>
+</li>
                       <li className="hover:underline cursor-pointer">Studio C</li>
                       <li className="hover:underline cursor-pointer">Jam Rentals</li>
                       <li className="hover:underline cursor-pointer">Video Production</li>
@@ -103,7 +107,9 @@ const Navbar = () => {
 
                     <ul className="space-y-1 text-sm">
                       <li className="hover:underline cursor-pointer">Studio A</li>
-                      <li className="hover:underline cursor-pointer">Studio D</li>
+                    <Link to="/studio-d" className="hover:underline">
+    Studio D
+  </Link>
                       <li className="hover:underline cursor-pointer">Dolby Atmos</li>
                       <li className="hover:underline cursor-pointer">Stem Mastering</li>
                     </ul>

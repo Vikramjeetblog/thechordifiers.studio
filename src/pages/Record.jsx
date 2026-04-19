@@ -2,7 +2,10 @@ import { motion } from "framer-motion";
 import mizzie from "../assets/mizzie.jpg";
 import sweta from "../assets/sweta.jpg";
 import diyaan from "../assets/diyaan.jpg";
-
+import dhruv from "../assets/dhruv.png";
+import mayank from "../assets/mayank.png";
+import ost from "../assets/ost.png";
+import aryan from "../assets/aryan.png"
 const artists = [
   {
     name: "MizzieLmb",
@@ -20,6 +23,31 @@ const artists = [
     name: "Diyaan",
     image: diyaan,
     location: "Kashmir",
+    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+  },
+
+  {
+    name: "Aryan",
+    image: aryan,
+    location: "Mumbai",
+    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+  },
+  {
+    name: "Mayank",
+    image: mayank,
+    location: "Greator Noida",
+    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+  },
+  {
+    name: "Dhruv",
+    image: dhruv,
+    location: "Delhi",
+    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+  },
+  {
+    name: "Off The Streets",
+    image: ost,
+    location: "Bhopal",
     desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
   }
 ];

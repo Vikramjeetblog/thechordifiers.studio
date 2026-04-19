@@ -303,8 +303,8 @@ Visit our campus to explore opportunities in music production.
 <div className="space-y-8 text-lg">
 
 <p>
-Bay Owl Studios<br/>
-Khar West, Mumbai
+The Chordifiers Studio<br/>
+Siliguri, West Bengal
 </p>
 
 <p>

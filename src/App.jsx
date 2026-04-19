@@ -10,8 +10,9 @@ import TermsAndCondition from './pages/TermsAndCondition';
 import AboutUs from "./pages/AboutUs";
 import OurStory from "./pages/OurStory";
 import VisitUs from "./pages/VisitUs";
-import Gallery from "./pages/Gallery"; // optional
-
+import Gallery from "./pages/Gallery"; 
+import StudioB from "./pages/StudioB";
+import StudioD from "./pages/StudioD";
 import Institute from "./pages/Institute";
 import Location from "./pages/Location";
 import Courses from "./pages/Courses";
@@ -62,6 +63,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/record" element={<Record />} />
 
+       {/* STUDIO PAGES */}
+         <Route path="/studio-b" element={<StudioB />} />
+         <Route path="/studio-d" element={<StudioD />} />
             {/* ABOUT SECTION */}
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/our-story" element={<OurStory />} />

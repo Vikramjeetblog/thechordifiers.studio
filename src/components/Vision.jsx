@@ -190,17 +190,10 @@ export default function Vision() {
             className="flex gap-14 mt-12"
           >
 
-            <motion.div>
-              <h3 className="text-3xl font-black bg-gradient-to-r from-[#FFD700] via-[#FFC300] to-[#FFB000] bg-clip-text text-transparent">
-                100%
-              </h3>
-              <p className="text-xs text-gray-500 tracking-widest mt-1">
-                ACOUSTICALLY PERFECT
-              </p>
-            </motion.div>
+            
 
             <motion.div>
-              <h3 className="text-4xl font-bold text-yellow-400">
+              <h3 className="text-4xl font-bold text-[#f0e81b]">
                 24/7
               </h3>
               <p className="text-xs text-gray-500 tracking-widest mt-1">

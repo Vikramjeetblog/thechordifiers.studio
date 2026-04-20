@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Hero from "../components/Hero";
 import AIConcept from "../components/AIConcept";
 import Vision from "../components/Vision";
+import Expereince from "../components/Expereince"
 import Academy from "../components/Academy";
 import Waitlist from "../components/Waitlist";
 
@@ -32,16 +33,19 @@ export default function Home() {
         <Hero />
       </section>
 
-      <section id="vision">
-        <AIConcept />
+    <section id="vision">
+      
         <Vision />
       </section>
 
       <section id="experience">
-        <Academy />
+        <Expereince />
       </section>
 
       <section id="academy">
+        <Academy />
+      </section>
+      <section id ="waitlist">
         <Waitlist />
       </section>
     </>

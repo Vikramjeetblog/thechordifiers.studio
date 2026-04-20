@@ -56,7 +56,7 @@ const Waitlist = () => {
           {/* Founders Access */}
           <div className="border border-zinc-800 rounded-xl p-8">
 
-            <h3 className="text-sm text-yellow-400 font-semibold tracking-widest">
+            <h3 className="text-sm text-[#f0e81b] font-semibold tracking-widest">
               FOUNDERS PRIORITY ACCESS
             </h3>
 
@@ -73,7 +73,7 @@ const Waitlist = () => {
             </ul>
 
 
-            <button className="w-full bg-yellow-500 text-black py-3 rounded-lg mt-8 font-semibold hover:scale-105 transition">
+            <button className="w-full bg-[#f0e81b] text-black py-3 rounded-lg mt-8 font-semibold hover:scale-105 transition">
               GET FOUNDERS PASS
             </button>
 

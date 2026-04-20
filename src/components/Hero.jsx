@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import studioD from "../assets/studioB-1.webp"; // make sure file exists
-
+import heroBg from "../assets/hero.jpg";
 const container = {
   hidden: {},
   show: {
@@ -54,7 +54,7 @@ export default function Hero() {
       <motion.div
         style={{
           y,
-          backgroundImage: "url('/src/assets/hero.jpg')"
+         backgroundImage: `url(${heroBg})`
         }}
         initial={{ scale: 1.15 }}
         animate={{

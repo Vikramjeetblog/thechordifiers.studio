@@ -5,7 +5,8 @@ import diyaan from "../assets/diyaan.jpg";
 import dhruv from "../assets/dhruv.png";
 import mayank from "../assets/mayank.png";
 import ost from "../assets/ost.png";
-import aryan from "../assets/aryan.png"
+import aryan from "../assets/aryan.png";
+import { useNavigate } from "react-router-dom"; 
 const artists = [
   {
     name: "MizzieLmb",
@@ -53,7 +54,7 @@ const artists = [
 ];
 
 export default function RecordLabelArtists() {
-
+const navigate = useNavigate();
   return (
     <div className="bg-[#111111] text-white">
 
@@ -116,7 +117,7 @@ export default function RecordLabelArtists() {
                 <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
 
                   <button className="border border-[#f0e81b] px-4 py-2 text-[#f0e81b] hover:bg-[#f0e81b] hover:text-black transition">
-                    ▶ Play Demo
+                     Play Demo
                   </button>
 
                 </div>
@@ -199,11 +200,11 @@ export default function RecordLabelArtists() {
 
         <div className="flex justify-center gap-4 flex-wrap">
 
-          <button className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90 transition">
-            Submit Demo
-          </button>
+         
 
-          <button className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 hover:bg-[#f0e81b] hover:text-black transition">
+          <button
+          onClick={() => navigate("/book-a-call")}
+           className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 hover:bg-[#f0e81b] hover:text-black transition">
             Book Studio Visit
           </button>
 

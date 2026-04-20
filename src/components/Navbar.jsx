@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import logo from "../assets/tcs.png";
 const navItems = [
   { name: "HOME", id: "home" },
   { name: "VISION", id: "vision" },
@@ -20,20 +20,19 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 text-white px-8 py-6">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 text-white px-8 h-[80px] flex items-center">
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between w-full">
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
 
-          <div className="bg-white text-black font-bold w-8 h-8 flex items-center justify-center rounded">
-            C
-          </div>
+           <img
+    src={logo}
+    alt="TCS Logo"
+    className="h-36 w-auto object-contain"
+  />
 
-          <span className="tracking-widest text-sm">
-            CREATOUS COLLECTIVE
-          </span>
 
         </Link>
 
@@ -121,9 +120,9 @@ const Navbar = () => {
 
               {/* ABOUT DROPDOWN */}
               {item.id === "about" && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-[#d9d2c7] text-black p-6 w-[220px] shadow-xl">
+                <div className="absolute left-1/2 -translate-x-1/2 top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-[#111111]/95 backdrop-blur-md text-white border border-white/10 p-6 w-[220px] shadow-xl">
 
-                  <ul className="space-y-3 text-sm">
+                  <ul className="space-y-3 text-sm text-gray-300">
 
                     
 

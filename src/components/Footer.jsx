@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="flex gap-5 mt-8 text-xl text-gray-400">
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/chordifiers.studio"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
@@ -31,7 +31,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://youtube.com"
+              href="https://www.youtube.com/channel/UCjv2UfFlSKRsfYcWFZyszow"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
@@ -40,7 +40,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/chordifiers.studio/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"

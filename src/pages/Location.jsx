@@ -312,11 +312,11 @@ Siliguri, West Bengal
 </p>
 
 <p>
-Phone: +91 98929 37097
+Phone: +91 7811092672
 </p>
 
 <p>
-Email: info@chordifiers.com
+Email: team@thechordifiers.studio
 </p>
 
 </div>
@@ -325,7 +325,7 @@ Email: info@chordifiers.com
 
 <iframe
 title="map"
-src="https://maps.google.com/maps?q=khar%20west%20mumbai&t=&z=13&ie=UTF8&iwloc=&output=embed"
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.5492559700447!2d88.4100217742397!3d26.69489467677753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e441acea247e9b%3A0x77c74beed4aadd84!2sThe%20Chordifiers%20Studio%20(TCS)!5e0!3m2!1sen!2sin!4v1749987584228!5m2!1sen!2sin"
 className="w-full h-[520px]"
 />
 

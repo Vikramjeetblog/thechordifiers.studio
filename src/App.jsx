@@ -32,7 +32,7 @@ import Certification from "./forms/Certification";
 import Diploma from "./forms/Diploma";
 function App() {
 
-<ScrollToTop />
+
 
   useEffect(() => {
 
@@ -58,7 +58,7 @@ function App() {
   return (
 
     <BrowserRouter>
-
+       <ScrollToTop />
       <div className="bg-black text-white">
 
         <CursorGlow />

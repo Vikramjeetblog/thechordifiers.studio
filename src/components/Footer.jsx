@@ -11,7 +11,7 @@ export default function Footer() {
         <div>
 
           <h3 className="tracking-[6px] text-sm text-gray-400">
-            CREATOUS COLLECTIVE
+            THE CHORDIFIRES STUDIO
           </h3>
 
           <p className="text-gray-500 text-sm mt-6 leading-relaxed">
@@ -96,7 +96,7 @@ export default function Footer() {
 
             <p className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-[#f0e81b]" />
-              CREATOUS COLLECTIVE PRIVATE LIMITED
+              THE CHORDIFIRES STUDIO
 SHAKTIGARH ROAD NO. 8, Siliguri, Dist- Darjeeling, West Bengal, 734004
             </p>
 
@@ -107,7 +107,7 @@ SHAKTIGARH ROAD NO. 8, Siliguri, Dist- Darjeeling, West Bengal, 734004
 
             <p className="flex items-center gap-3">
               <FaEnvelope className="text-[#f0e81b]" />
-            team@thechordifiers.studio
+            thechordifiersstudio@gmail.com
             </p>
 
           </div>

@@ -157,12 +157,7 @@ export default function Courses() {
 
             <div className="w-16 h-[3px] bg-[#f0e81b] mb-8"></div>
 
-            {category.price && (
-              <div className="mb-12 flex items-center gap-4">
-                <span className="text-gray-400 line-through text-lg">₹9,999</span>
-                <span className="text-[#f0e81b] text-3xl font-bold">₹3,999</span>
-              </div>
-            )}
+            
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
@@ -194,7 +189,7 @@ export default function Courses() {
                       </p>
                     )}
 
-                    {/* ✅ FIXED BUTTON */}
+                    {/*  FIXED BUTTON */}
                     <Link to={`/program/${course.slug}`}>
                       <button className="mt-3 border border-[#f0e81b] text-[#f0e81b] px-5 py-2 text-sm hover:bg-[#f0e81b] hover:text-black transition">
                         Enquire Now

@@ -93,7 +93,7 @@ export default function Certification() {
             Certification Course Registration
           </h1>
           <div className="text-[#f0e81b] text-center py-3 text-md font-medium mb-6">
-            Register now just at ₹999/- only!
+            Register now just at ₹999 + 18% GST
           </div>
 
           <p className="text-gray-400 text-sm mb-8">

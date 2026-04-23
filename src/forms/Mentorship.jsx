@@ -108,7 +108,7 @@ export default function Mentorship() {
           </h1>
 
           <div className="text-[#f0e81b] text-center py-3 text-md font-medium mb-6">
-            Register now just at ₹599/- only!
+            Register now just at ₹599 + 18% GST
           </div>
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">

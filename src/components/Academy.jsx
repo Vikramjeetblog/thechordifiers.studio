@@ -16,9 +16,12 @@ export default function Academy() {
       <div className="max-w-6xl mx-auto text-center relative z-10">
 
         {/* TITLE */}
-        <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
-          The TCMI Academy
-        </h2>
+        <h3 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+        THE CHORDIFIRES MUSIC INSTITUTE
+        <span className="block">
+            ( TCMI )
+         </span>
+        </h3>
 
         {/* SUBTITLE */}
         <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-[17px] md:text-[19px] leading-relaxed">
@@ -32,7 +35,7 @@ export default function Academy() {
             onClick={() => navigate("/institute")}
             className="bg-[#f0e81b] text-black px-8 py-4 text-sm font-semibold tracking-wide rounded-lg hover:scale-105 transition"
           >
-            EXPLORE THE ACADEMY
+            EXPLORE INSTITUTE
           </button>
         </div>
 
@@ -42,7 +45,7 @@ export default function Academy() {
           {/* CARD 1 */}
           <div className="border border-zinc-800 rounded-2xl p-8 text-left hover:border-zinc-600 transition bg-zinc-900/30 backdrop-blur-sm">
             <h3 className="font-semibold text-xl">
-               Professional Diploma
+               Professional Diploma Courses
             </h3>
 
             <p className="text-gray-400 mt-4 text-[15px] leading-relaxed">
@@ -54,7 +57,7 @@ export default function Academy() {
           {/* CARD 2 */}
           <div className="border border-zinc-800 rounded-2xl p-8 text-left hover:border-zinc-600 transition bg-zinc-900/30 backdrop-blur-sm">
             <h3 className="font-semibold text-xl">
-               Short-Term Certifications
+            Certifications Courses
             </h3>
 
             <p className="text-gray-400 mt-4 text-[15px] leading-relaxed">

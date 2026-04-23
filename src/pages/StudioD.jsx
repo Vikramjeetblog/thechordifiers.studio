@@ -1,11 +1,17 @@
 import React from 'react'
 import StudioHero from "../components/studio/studioD/StudioHero"
-const StudioD = () => {
+import Equipment from "../components/studio/studioD/Equipment"
+import StudioIntro from "../components/studio/studioD/StudioIntro"
+import StudioCTA from "../components/studioCTA"
+const StudioB = () => {
 	return (
 		<div>
-		<StudioHero/>	
+		<StudioHero/>
+		<StudioIntro/>
+		<Equipment/>
+		<StudioCTA/>	
 		</div>
 	)
 }
 
-export default StudioD
+export default StudioB

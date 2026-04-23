@@ -28,7 +28,7 @@ const maskItem = {
 
 export default function Hero() {
   const navigate = useNavigate();
-
+  const [hoveredBtn, setHoveredBtn] = useState(null);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 120]);
 
@@ -114,7 +114,8 @@ export default function Hero() {
         <div className="overflow-hidden mb-6">
           <motion.p
             variants={maskItem}
-            className="text-xs tracking-[6px] text-gray-300"
+            className="text-xs tracking-[6px] text-[#f0e81b] font-semibold 
+drop-shadow-[0_0_12px_rgba(240,232,27,0.8)] animate-pulse"
           >
             A NEW ERA OF SOUND IS BEING BUILT
           </motion.p>
@@ -147,37 +148,45 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-4 mt-10"
         >
 
-          {/* WAITLIST */}
-          
-           <motion.button
+  <motion.button
   whileHover={{ scale: 1.08 }}
   whileTap={{ scale: 0.96 }}
+  onMouseEnter={() => setHoveredBtn("artist")}
+  onMouseLeave={() => setHoveredBtn(null)}
   onClick={() => navigate("/#waitlist")}
-  className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-yellow-400 transition"
+  className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
 >
-  JOIN ARTIST WAITLIST
+  {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
 </motion.button>
 
-          {/*  STUDIO PREVIEW (UPDATED) */}
-          <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => setOpenPreview(true)}
-            className="flex items-center gap-2 backdrop-blur-md border border-white/40 px-7 py-3 rounded-full hover:bg-yellow-400 hover:border-yellow-400 hover:text-black transition"
-          >
-            <FaPlay size={12} />
-            STUDIO PREVIEW
-          </motion.button>
+         <motion.button
+  whileHover={{ scale: 1.08 }}
+  whileTap={{ scale: 0.96 }}
+  onClick={() => setOpenPreview(true)}
+  className="flex items-center gap-3 backdrop-blur-md border border-white/40 
+  px-6 py-3 rounded-full 
+  max-w-[220px] leading-tight text-left
+  hover:bg-[#f0e81b] hover:border-[#f0e81b] hover:text-black transition"
+>
+  <FaPlay size={12} />
+
+  <span className="text-sm font-medium">
+    WATCH THE <br />
+    STUDIO PREVIEW
+  </span>
+</motion.button>
 
           {/* COURSES */}
-          <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => navigate("/institute/courses")}
-            className="border border-white/40 backdrop-blur-md px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
-          >
-            EXPLORE COURSES
-          </motion.button>
+         <motion.button
+  whileHover={{ scale: 1.08 }}
+  whileTap={{ scale: 0.96 }}
+  onMouseEnter={() => setHoveredBtn("student")}
+  onMouseLeave={() => setHoveredBtn(null)}
+  onClick={() => navigate("/institute/courses")}
+  className="border border-white/40 backdrop-blur-md px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
+>
+  {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
+</motion.button>
 
         </motion.div>
 

@@ -316,7 +316,7 @@ Phone: +91 7811092672
 </p>
 
 <p>
-Email: team@thechordifiers.studio
+Email: thechordifiers@gmail.com
 </p>
 
 </div>

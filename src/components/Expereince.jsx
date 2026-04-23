@@ -39,7 +39,7 @@ export default function Experience() {
   return (
     <section
       ref={ref}
-      id="vision"
+      id="experience"
       className="bg-black text-white py-32 px-6 relative overflow-hidden"
     >
       {/* ambient glow */}
@@ -75,7 +75,7 @@ export default function Experience() {
             variants={item}
             className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight"
           >
-            Feel the Experience
+            Experience
           </motion.h2>
 
           {/* PARAGRAPH */}
@@ -84,18 +84,27 @@ export default function Experience() {
             className="mt-8 text-gray-300 max-w-xl text-[17px] md:text-[19px] leading-relaxed"
           >
             Built for serious artists who are ready to surrender their lives to
-            music and turn raw passion into a lasting legacy. This is where sound
-            becomes identity, and creativity becomes career.
+            music and turn raw passion into a lasting legacy. 
           </motion.p>
 
           {/* BULLETS */}
           <motion.div
-            variants={item}
-            className="mt-7 space-y-3 text-gray-400 text-[15px] md:text-[16px]"
-          >
-            <p>• Award-winning studio & record label</p>
-            <p>• World-class creative environment</p>
-          </motion.div>
+  variants={item}
+  className="mt-7 space-y-3 text-gray-400 text-[15px] md:text-[16px]"
+>
+  {[
+    "Award-winning studio & record label",
+    "World-class creative environment",
+    "Industry-grade equipment & acoustics",
+    "Mentorship from experienced producers",
+    "Built for career-focused artists"
+  ].map((text, i) => (
+    <div key={i} className="flex items-center gap-3">
+      <span className="w-2 h-2 bg-[#f0e81b] rounded-full flex-shrink-0" />
+      <p>{text}</p>
+    </div>
+  ))}
+</motion.div>
 
           {/* BUTTONS */}
           <motion.div
@@ -106,7 +115,7 @@ export default function Experience() {
               onClick={() => navigate("/studio-b")}
               className="px-7 py-3.5 text-sm tracking-wide border border-white/20 hover:bg-white hover:text-black transition"
             >
-              EXPLORE
+              EXPLORE STUDIO
             </button>
 
             <button

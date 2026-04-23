@@ -1,6 +1,14 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import visionImg from "../assets/studio.webp";
+import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { FaPlay } from "react-icons/fa";
+
+// 🔥 BTS IMAGES
+import bts1 from "../assets/bts1.webp";
+import bts2 from "../assets/bts2.webp";
+import bts3 from "../assets/bts3.webp";
+import bts4 from "../assets/bts4.webp";
+
+const images = [bts1, bts2, bts3, bts4];
 
 const container = {
   hidden: {},
@@ -25,16 +33,16 @@ const item = {
 };
 
 export default function Vision() {
-
   const ref = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [previewIndex, setPreviewIndex] = useState(null);
 
-  /* PARALLAX IMAGE */
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   return (
     <section
@@ -42,114 +50,106 @@ export default function Vision() {
       id="vision"
       className="bg-black text-white py-32 px-6 relative overflow-hidden"
     >
-
       {/* ambient glow */}
-      <div className="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-yellow-400/10 blur-[200px]" />
+      <div className="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-[#f0e81b]/10 blur-[200px]" />
       <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-purple-500/10 blur-[200px]" />
-
-      {/* floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <motion.span
-            key={i}
-            className="absolute w-[3px] h-[3px] bg-white rounded-full opacity-40"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight
-            }}
-            animate={{
-              y: ["0%", "-120%"],
-              opacity: [0.3, 1, 0]
-            }}
-            transition={{
-              duration: 6 + Math.random() * 8,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-
-      {/* animated soundwave bars */}
-      <div className="absolute bottom-0 left-0 w-full flex justify-center gap-[4px] opacity-20 pointer-events-none">
-        {[...Array(60)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="w-[3px] bg-yellow-400"
-            animate={{
-              height: [10, 40 + Math.random() * 80, 10]
-            }}
-            transition={{
-              duration: 1 + Math.random(),
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </div>
-
-      {/* film grain */}
-      <div
-        className="absolute inset-0 opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage:
-            "url('https://grainy-gradients.vercel.app/noise.svg')"
-        }}
-      />
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
 
-        {/* PARALLAX IMAGE */}
+        {/* 🔥 GALLERY */}
         <motion.div
           style={{ y: imageY }}
-          initial={{ opacity: 0, scale: 1.15 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-2xl border border-zinc-800 h-[360px] md:h-[460px]"
+          className="grid grid-cols-2 grid-rows-4 gap-5 md:gap-6 h-[480px] md:h-[560px]"
         >
 
-          <motion.img
-            src={visionImg}
-            alt="Studio Vision"
-            className="w-full h-full object-cover"
-            animate={{
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-
-          <div className="absolute inset-0 bg-black/40" />
-
-          {/* light sweep */}
+          {/* HERO IMAGE */}
           <motion.div
-            animate={{ x: ["-200%", "200%"] }}
-            transition={{
-              duration: 16,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          />
+            whileHover={{ scale: 1.02 }}
+            onClick={() => setPreviewIndex(0)}
+            className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl border border-white/10 cursor-pointer group"
+          >
+            <motion.img
+              src={images[0]}
+              className="w-full h-full object-cover brightness-[0.85]"
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 14, repeat: Infinity }}
+            />
 
-          {/* glow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+            {/* ✅ ALWAYS VISIBLE ICON */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-black/50 backdrop-blur-md p-4 rounded-full shadow-md 
+              opacity-90 group-hover:scale-110 group-hover:bg-black/70 transition duration-300">
+                <FaPlay size={16} className="text-white" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* SMALL TILES */}
+          {images.slice(1).map((img, i) => {
+            const index = i + 1;
+            const isActive = activeIndex === index;
+
+            return (
+              <motion.div
+                key={index}
+                onMouseEnter={() => setActiveIndex(index)}
+                onMouseLeave={() => setActiveIndex(null)}
+                onClick={() => setPreviewIndex(index)}
+                animate={{
+                  scale: isActive ? 1.08 : 1,
+                  filter:
+                    activeIndex !== null && !isActive
+                      ? "brightness(0.5) blur(2px)"
+                      : "brightness(0.9)"
+                }}
+                transition={{ duration: 0.4 }}
+                className="relative overflow-hidden rounded-xl border border-white/10 cursor-pointer group"
+              >
+                <motion.img
+                  src={img}
+                  className="w-full h-full object-cover brightness-[0.85]"
+                  animate={{ scale: isActive ? 1.12 : 1.05 }}
+                  transition={{ duration: 6 }}
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                {/* ✅ ALWAYS VISIBLE ICON */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/50 backdrop-blur-md p-3 rounded-full shadow-md 
+                  opacity-90 group-hover:scale-110 group-hover:bg-black/70 transition duration-300">
+                    <FaPlay size={14} className="text-white" />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+
+          {/* BALANCE TILE */}
           <motion.div
-            animate={{
-              opacity: [0.2, 0.35, 0.2]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity
-            }}
-            className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,210,120,0.25),transparent_70%)]"
-          />
+            onClick={() => setPreviewIndex(1)}
+            className="relative overflow-hidden rounded-xl border border-white/10 cursor-pointer group"
+          >
+            <motion.img
+              src={bts2}
+              className="w-full h-full object-cover brightness-[0.85]"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-black/50 backdrop-blur-md p-3 rounded-full shadow-md 
+              opacity-90 group-hover:scale-110 group-hover:bg-black/70 transition duration-300">
+                <FaPlay size={14} className="text-white" />
+              </div>
+            </div>
+          </motion.div>
 
         </motion.div>
-
 
         {/* TEXT */}
         <motion.div
@@ -158,6 +158,12 @@ export default function Vision() {
           whileInView="show"
           viewport={{ once: true }}
         >
+          <motion.p
+            variants={item}
+            className="text-xs tracking-[5px] text-[#f0e81b] mb-4"
+          >
+            BEHIND THE BUILD
+          </motion.p>
 
           <motion.h2
             variants={item}
@@ -166,9 +172,7 @@ export default function Vision() {
             <span className="text-white">
               THIS IS MORE THAN A STUDIO.
             </span>
-
             <br />
-
             <span className="text-gray-500">
               THIS IS YOUR 2ND HOME.
             </span>
@@ -183,30 +187,41 @@ export default function Vision() {
             to ensure every artist who walks in feels the weight of a
             global music standard.
           </motion.p>
-
-          {/* stats */}
-          <motion.div
-            variants={item}
-            className="flex gap-14 mt-12"
-          >
-
-            
-
-            <motion.div>
-              <h3 className="text-4xl font-bold text-[#f0e81b]">
-                24/7
-              </h3>
-              <p className="text-xs text-gray-500 tracking-widest mt-1">
-                CREATIVE ACCESS
-              </p>
-            </motion.div>
-
-          </motion.div>
-
         </motion.div>
-
       </div>
 
+      {/* 🔥 FULLSCREEN MODAL */}
+      <AnimatePresence>
+        {previewIndex !== null && (
+          <motion.div
+            className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div
+              className="absolute inset-0"
+              onClick={() => setPreviewIndex(null)}
+            />
+
+            <motion.img
+              key={previewIndex}
+              src={images[previewIndex % images.length]}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative max-w-[90%] max-h-[80vh] rounded-xl object-cover"
+            />
+
+            <button
+              onClick={() => setPreviewIndex(null)}
+              className="absolute top-6 right-6 text-white text-2xl"
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

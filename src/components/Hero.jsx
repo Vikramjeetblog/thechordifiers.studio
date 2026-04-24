@@ -1,201 +1,96 @@
 import Navbar from "./Navbar";
 import { FaPlay } from "react-icons/fa";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// ✅ IMPORT STUDIO IMAGES
+// IMAGES
 import studioA from "../assets/studioA-2.jpeg";
 import studioB from "../assets/studioB-1.webp";
 import studioC from "../assets/studioC-10.png";
 import studioD from "../assets/studioD-7.webp";
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      delayChildren: 1.2,
-      staggerChildren: 0.25
-    }
-  }
-};
-
-const maskItem = {
-  hidden: { y: "100%" },
-  show: {
-    y: "0%",
-    transition: {
-      duration: 0.9,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
 export default function Hero() {
   const navigate = useNavigate();
   const [hoveredBtn, setHoveredBtn] = useState(null);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 120]);
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [openPreview, setOpenPreview] = useState(false);
 
-  // ✅ IMAGE SLIDER STATE
   const images = [studioA, studioB, studioC, studioD];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // change every 4 sec
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const handleMouseMove = (e) => {
-    setMousePos({
-      x: e.clientX,
-      y: e.clientY
-    });
-  };
-
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden pt-28 pb-24"
-    >
+    <section className="relative min-h-screen w-full flex flex-col items-center justify-center text-white pt-28 pb-24">
 
-      {/* 🔥 IMAGE SLIDER BACKGROUND */}
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={index}
-          src={images[index]}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 1 }}
-          style={{ y }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </AnimatePresence>
-
-      {/* Light Sweep */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{ x: ["-40%", "40%", "-40%"] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        style={{
-          background:
-            "linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.25), transparent 60%)",
-          filter: "blur(100px)"
-        }}
+      {/* BACKGROUND IMAGE (NO MOTION) */}
+      <img
+        src={images[index]}
+        className="absolute inset-0 w-full h-full object-cover"
+        alt="studio"
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
-
-      {/* Mouse Spotlight */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(
-            500px circle at ${mousePos.x}px ${mousePos.y}px,
-            rgba(255,220,150,0.25),
-            transparent 60%
-          )`
-        }}
-      />
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/60 to-black/90" />
 
       <Navbar />
 
-      {/* HERO CONTENT */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 text-center max-w-5xl px-6"
-      >
+      {/* CONTENT */}
+      <div className="relative z-10 text-center max-w-5xl px-6">
 
-        <div className="overflow-hidden mb-6">
-          <div className="flex justify-center mb-6">
-            <span className="px-4 py-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full">
-              <span className="text-xs md:text-sm tracking-[3px] uppercase text-[#f0e81b] font-medium">
-                A NEW ERA OF SOUND IS BEING BUILT
-              </span>
-            </span>
-          </div>
+        <div className="mb-6">
+          <span className="px-4 py-1.5 bg-black/50 border border-white/10 rounded-full text-xs tracking-[3px] text-[#f0e81b]">
+            A NEW ERA OF SOUND IS BEING BUILT
+          </span>
         </div>
 
-        <div className="overflow-hidden">
-          <motion.h1
-            variants={maskItem}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-extrabold tracking-tight leading-[1.05] drop-shadow-[0_5px_20px_rgba(0,0,0,0.8)]"
-          >
-            THE <br />
-            CHORDIFIERS <br />
-            STUDIO
-          </motion.h1>
-        </div>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-extrabold leading-[1.05]">
+          THE <br /> CHORDIFIERS <br /> STUDIO
+        </h1>
 
-        <div className="overflow-hidden mt-6">
-          <motion.p
-            variants={maskItem}
-            className="text-gray-300 max-w-xl mx-auto text-sm md:text-base"
-          >
-            We are currently under renovations, crafting a next-generation
-            creative environment for artists, producers, and visionaries.
-          </motion.p>
-        </div>
+        <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base mt-6">
+          We are currently under renovations, crafting a next-generation
+          creative environment for artists, producers, and visionaries.
+        </p>
 
-        {/* BUTTONS */}
-        <motion.div
-          variants={maskItem}
-          className="flex flex-wrap justify-center gap-4 mt-10"
-        >
+        <div className="flex flex-wrap justify-center gap-4 mt-10">
 
-          <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
+          <button
             onMouseEnter={() => setHoveredBtn("artist")}
             onMouseLeave={() => setHoveredBtn(null)}
             onClick={() => navigate("/#waitlist")}
-            className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
+            className="bg-white text-black px-7 py-3 rounded-full font-semibold hover:bg-[#f0e81b]"
           >
             {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
-          </motion.button>
+          </button>
 
-          <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
+          <button
             onClick={() => setOpenPreview(true)}
-            className="flex items-center gap-3 backdrop-blur-md border border-white/40 
-            px-6 py-3 rounded-full 
-            max-w-[220px] leading-tight text-left
-            hover:bg-[#f0e81b] hover:border-[#f0e81b] hover:text-black transition"
+            className="flex items-center gap-3 border border-white/40 px-6 py-3 rounded-full hover:bg-[#f0e81b] hover:text-black"
           >
             <FaPlay size={12} />
-            <span className="text-sm font-medium">
-              WATCH THE <br />
-              STUDIO PREVIEW
-            </span>
-          </motion.button>
+            <span className="text-sm">WATCH THE STUDIO PREVIEW</span>
+          </button>
 
-          <motion.button
-  whileHover={{ scale: 1.08 }}
-  whileTap={{ scale: 0.96 }}
-  onMouseEnter={() => setHoveredBtn("student")}
-  onMouseLeave={() => setHoveredBtn(null)}
-  onClick={() => navigate("/institute/courses")}
-  className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
->
-  {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
-</motion.button>
+          <button
+            onMouseEnter={() => setHoveredBtn("student")}
+            onMouseLeave={() => setHoveredBtn(null)}
+            onClick={() => navigate("/institute/courses")}
+            className="bg-white text-black px-7 py-3 rounded-full font-semibold hover:bg-[#f0e81b]"
+          >
+            {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
+          </button>
 
-        </motion.div>
+        </div>
 
-      </motion.div>
+      </div>
 
-      {/* 🔥 OPTIONAL DOT INDICATORS */}
+      {/* DOTS */}
       <div className="absolute bottom-6 flex gap-2 z-20">
         {images.map((_, i) => (
           <div
@@ -206,51 +101,6 @@ export default function Hero() {
           />
         ))}
       </div>
-
-      {/* MODAL (UNCHANGED) */}
-      <AnimatePresence>
-        {openPreview && (
-          <motion.div
-            className="fixed inset-0 z-[999] bg-black/80 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0" onClick={() => setOpenPreview(false)} />
-
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative w-[90%] max-w-4xl h-[500px] overflow-hidden rounded-xl border border-white/10"
-            >
-              <img
-                src={studioD}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-center px-6">
-                <div>
-                  <h2 className="text-4xl font-['Anton'] text-[#f0e81b] mb-4">
-                    STUDIO PREVIEW
-                  </h2>
-                  <p className="text-white/70">
-                    Coming Soon — Experience the next generation studio environment
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setOpenPreview(false)}
-                className="absolute top-4 right-4 text-white text-xl"
-              >
-                ✕
-              </button>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </section>
   );

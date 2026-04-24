@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
@@ -29,30 +28,29 @@ const media = [
   { type: "video", src: vid3 }
 ];
 
-// ✅ VIDEO COMPONENT (NO BLANK ISSUE)
+// VIDEO COMPONENT
 function VideoCard({ src, fallback }) {
-  const [loaded, setLoaded] = useState(false);
+  const [canPlay, setCanPlay] = useState(false);
 
   return (
     <div className="relative w-full h-full">
-      {/* IMAGE FIRST */}
       <img
         src={fallback}
         className="absolute inset-0 w-full h-full object-cover"
         alt="fallback"
       />
 
-      {/* VIDEO */}
       <video
         src={src}
-        autoPlay
         muted
         loop
         playsInline
         preload="metadata"
-        onLoadedData={() => setLoaded(true)}
+        autoPlay
+        onCanPlay={() => setCanPlay(true)}
+        onError={() => setCanPlay(false)}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          loaded ? "opacity-100" : "opacity-0"
+          canPlay ? "opacity-100" : "opacity-0"
         }`}
       />
     </div>
@@ -60,52 +58,44 @@ function VideoCard({ src, fallback }) {
 }
 
 export default function Vision() {
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-
   return (
     <section
-      ref={ref}
       id="vision"
-      className="bg-black text-white py-20 px-4 md:px-6 overflow-hidden"
+      className="bg-black text-white py-12 md:py-16 px-4 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
 
-        {/* 🎬 LEFT SIDE */}
-        <motion.div style={{ y }} className="relative">
+        {/* LEFT - SLIDER */}
+        <div className="relative w-full">
 
-          {/* NAV */}
-          <div className="absolute -left-2 top-1/2 -translate-y-1/2 z-20 vision-prev bg-white/10 p-2 rounded-full cursor-pointer">
-            <FiChevronLeft size={18} />
-          </div>
+          {/* NAV BUTTONS (HIDE ON MOBILE) */}
+          <div className="hidden md:block">
+            <div className="absolute -left-5 top-1/2 -translate-y-1/2 z-20 vision-prev bg-white/10 p-2 rounded-full cursor-pointer">
+              <FiChevronLeft size={20} />
+            </div>
 
-          <div className="absolute -right-2 top-1/2 -translate-y-1/2 z-20 vision-next bg-white/10 p-2 rounded-full cursor-pointer">
-            <FiChevronRight size={18} />
+            <div className="absolute -right-5 top-1/2 -translate-y-1/2 z-20 vision-next bg-white/10 p-2 rounded-full cursor-pointer">
+              <FiChevronRight size={20} />
+            </div>
           </div>
 
           <Swiper
             modules={[Navigation]}
-            spaceBetween={14}
-            slidesPerView={1} // ✅ mobile fix
+            spaceBetween={12}
+            slidesPerView={1}
             navigation={{
               nextEl: ".vision-next",
               prevEl: ".vision-prev"
             }}
             breakpoints={{
               640: { slidesPerView: 1.1 },
-              768: { slidesPerView: 1.4 },
-              1024: { slidesPerView: 1.8 }
+              768: { slidesPerView: 1.3 },
+              1024: { slidesPerView: 1.6 }
             }}
           >
             {media.map((item, i) => (
               <SwiperSlide key={i}>
-                <div className="h-[220px] sm:h-[260px] md:h-[300px] rounded-xl overflow-hidden relative group cursor-pointer">
+                <div className="h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden relative">
 
                   {item.type === "video" ? (
                     <VideoCard src={item.src} fallback={bts1} />
@@ -117,13 +107,13 @@ export default function Vision() {
                     />
                   )}
 
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-black/25" />
+                  {/* overlay */}
+                  <div className="absolute inset-0 bg-black/30" />
 
-                  {/* PLAY ICON */}
+                  {/* play icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-black/50 p-2 md:p-3 rounded-full">
-                      <FaPlay size={10} />
+                    <div className="bg-black/60 p-2 rounded-full">
+                      <FaPlay size={12} />
                     </div>
                   </div>
 
@@ -131,27 +121,25 @@ export default function Vision() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </motion.div>
+        </div>
 
-        {/* 🎯 RIGHT SIDE TEXT */}
-        <motion.div className="hidden md:flex justify-end">
-          {/* ❌ HIDDEN ON MOBILE */}
-
-          <div className="bg-[#0a0a0a] border border-[#f0e81b]/30 rounded-2xl p-8 max-w-lg relative">
+        {/* RIGHT - TEXT */}
+        <div className="w-full flex justify-center md:justify-end">
+          <div className="bg-[#0a0a0a] border border-[#f0e81b]/30 rounded-2xl p-5 md:p-8 w-full max-w-md relative">
 
             <div className="absolute inset-0 bg-[#f0e81b]/5 blur-2xl pointer-events-none" />
 
-            <p className="text-xs tracking-[6px] text-[#f0e81b] mb-5">
+            <p className="text-[10px] md:text-xs tracking-[3px] md:tracking-[5px] text-[#f0e81b] mb-3">
               BEHIND THE BUILD
             </p>
 
-            <h2 className="text-4xl font-extrabold leading-tight">
-              <span className="text-[#f0e81b] block mb-2">THIS IS MORE</span>
-              <span className="text-white block mb-2">THAN A STUDIO.</span>
+            <h2 className="text-xl md:text-3xl font-extrabold leading-tight">
+              <span className="text-[#f0e81b] block mb-1">THIS IS MORE</span>
+              <span className="block mb-1">THAN A STUDIO.</span>
               <span className="text-white/50 block">THIS IS YOUR 2ND HOME.</span>
             </h2>
 
-            <div className="w-16 h-[2px] bg-[#f0e81b] mt-6 mb-6" />
+            <div className="w-10 md:w-16 h-[2px] bg-[#f0e81b] mt-4 mb-4" />
 
             <p className="text-gray-400 text-sm leading-relaxed">
               We aren't just changing the gear; we are changing the energy.
@@ -159,7 +147,7 @@ export default function Vision() {
             </p>
 
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

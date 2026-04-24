@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/Privacy";
 import TermsAndCondition from './pages/TermsAndCondition';
 import AboutUs from "./pages/Aboutus";
+import TheStudio from "./pages/TheStudio";
 import StudioA from "./pages/StudioA";
 import StudioB from "./pages/StudioB";
 import StudioC from "./pages/StudioC";
@@ -78,6 +79,7 @@ function App() {
               <Route path="/Label-Signup" element={<LabelSignup />} />
 
        {/* STUDIO PAGES */}
+        <Route path="/thestudio" element={<TheStudio />} />
          <Route path="/studio-b" element={<StudioB />} />
          <Route path="/studio-d" element={<StudioD />} />
           <Route path="/studio-c" element={<StudioC/>}/>

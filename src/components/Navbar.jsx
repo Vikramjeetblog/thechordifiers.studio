@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/tcs.png";
-import DolbyAtmosMastering from "./studio/DolbyAtmosMastering"
+import atmosMixing from "../assets/atmosMixing.jpg";
+import atmosMastering from "../assets/atmosMastering.jpg";
+import { useLocation } from "react-router-dom";
 const navItems = [
   { name: "HOME", id: "home" },
   { name: "VISION", id: "vision" },
@@ -18,8 +21,24 @@ const Navbar = () => {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDolbyPopup, setShowDolbyPopup] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [popupType, setPopupType] = useState(null);
+  /*  SCROLL */
+  const location = useLocation();
 
-  /*  SCROLL ACTIVE FIX */
+useEffect(() => {
+  const path = location.pathname;
+
+  if (path === "/record") {
+    setActive("record");
+  } 
+  else if (path.includes("studio")) {
+    setActive("studio");
+  } 
+  else if (path === "/about-us") {
+    setActive("about");
+  }
+}, [location.pathname]);
   useEffect(() => {
   const sections = document.querySelectorAll("section[id]");
 
@@ -51,17 +70,17 @@ const Navbar = () => {
 }, []);
 
   return (
+    <>
     <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 text-white px-4 md:px-8 h-[70px] md:h-[80px] flex items-center">
       <div className="flex items-center justify-between w-full">
 
         {/* LOGO */}
         <Link to="/" className="flex items-center gap-3">
-          <img
-            src={logo}
-            alt="TCS Logo"
-            className="h-16 md:h-20 w-auto object-contain"
-          />
-        </Link>
+  <img
+    src={logo}
+    className="h-28 md:h-32 lg:h-36 object-contain brightness-125 contrast-125"
+  />
+</Link>
 
         {/* DESKTOP MENU */}
         <ul className="hidden md:flex gap-8 lg:gap-10 text-sm tracking-wide relative">
@@ -192,9 +211,15 @@ const Navbar = () => {
                           </Link>
                         </li>
 
-                        <li className="hover:text-white cursor-pointer">
-                          Dolby Atmos Mixing
-                        </li>
+                        <li
+  onClick={() => {
+    setPopupType("mixing");
+    setShowDolbyPopup(true);
+  }}
+  className="hover:text-white cursor-pointer"
+>
+  Dolby Atmos Mixing
+</li>
                       </ul>
                     </div>
 
@@ -214,8 +239,11 @@ const Navbar = () => {
 
                         
 
-                        <li
-  onClick={() => setShowDolbyPopup(true)}
+    <li
+  onClick={() => {
+    setPopupType("mastering");
+    setShowDolbyPopup(true);
+  }}
   className="hover:text-white cursor-pointer"
 >
   Dolby Atmos Mastering
@@ -259,24 +287,178 @@ const Navbar = () => {
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-[70px] left-0 w-full bg-black/95 backdrop-blur-lg px-6 py-8 flex flex-col gap-6 text-sm border-t border-white/10"
-        >
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={`/#${item.id}`}
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-300 hover:text-white transition"
+  <motion.div
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="md:hidden absolute top-[70px] left-0 w-full bg-black/95 backdrop-blur-lg px-6 py-8 flex flex-col gap-6 text-sm border-t border-white/10"
+  >
+    {navItems.map((item) => (
+      <div key={item.id}>
+
+        {/* NORMAL LINKS */}
+        {item.id !== "studio" && item.id !== "about" && (
+          <Link
+            to={`/#${item.id}`}
+            onClick={() => setMenuOpen(false)}
+            className="block text-gray-300"
+          >
+            {item.name}
+          </Link>
+        )}
+
+        {/* STUDIO DROPDOWN */}
+        {item.id === "studio" && (
+          <div>
+            <div
+              onClick={() =>
+                setOpenDropdown(openDropdown === "studio" ? null : "studio")
+              }
+              className="flex justify-between items-center text-gray-300 cursor-pointer"
             >
-              {item.name}
-            </Link>
-          ))}
-        </motion.div>
-      )}
+              <span>STUDIO</span>
+              <FiChevronDown
+                className={`transition-transform ${
+                  openDropdown === "studio" ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+
+            {openDropdown === "studio" && (
+              <div className="mt-4 ml-3 space-y-5 text-gray-400">
+
+                <div>
+                  <p className="text-xs text-white/60 mb-2 uppercase">Recording</p>
+                  <div className="flex flex-col gap-2">
+                    <Link to="/studio-a">Studio A</Link>
+                    <Link to="/studio-b">Studio B</Link>
+                    <Link to="/studio-c">Studio C</Link>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/60 mb-2 uppercase">Jam Sessions</p>
+                  <div className="flex flex-col gap-2">
+                    <Link to="/studio-b">Studio B</Link>
+                    <Link to="/studio-c">Studio C</Link>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/60 mb-2 uppercase">Video Production</p>
+                  <div className="flex flex-col gap-2">
+                    <span>Music Video</span>
+                    <span>Commercial Video</span>
+                    <span>For Corporates</span>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/60 mb-2 uppercase">Mixing</p>
+                  <div className="flex flex-col gap-2">
+                    <Link to="/studio-a">Studio A</Link>
+                    <Link to="/studio-d">Studio D</Link>
+                    <span>Dolby Atmos Mixing</span>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/60 mb-2 uppercase">Mastering</p>
+                  <div className="flex flex-col gap-2">
+                    <Link to="/studio-d">Studio D</Link>
+                    <span onClick={() => setShowDolbyPopup(true)} className="cursor-pointer">
+                      Dolby Atmos Mastering
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ABOUT DROPDOWN */}
+        {item.id === "about" && (
+          <div>
+            <div
+              onClick={() =>
+                setOpenDropdown(openDropdown === "about" ? null : "about")
+              }
+              className="flex justify-between items-center text-gray-300 cursor-pointer"
+            >
+              <span>ABOUT</span>
+              <FiChevronDown
+                className={`transition-transform ${
+                  openDropdown === "about" ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+
+            {openDropdown === "about" && (
+              <div className="mt-3 ml-3 flex flex-col gap-2 text-gray-400">
+                <Link to="/about-us#story">Our Story</Link>
+                <Link to="/about-us#gallery">Gallery</Link>
+                <Link to="/about-us#visit">Visit Us</Link>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    ))}
+  </motion.div>
+)}
     </nav>
+{showDolbyPopup && (
+  <div className="fixed inset-0 z-[999] flex items-center justify-center">
+
+    {/* BACKDROP */}
+    <div
+      onClick={() => setShowDolbyPopup(false)}
+      className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+    />
+
+    {/* CONTENT */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="relative w-[90%] max-w-3xl rounded-xl overflow-hidden"
+    >
+
+    <img
+  src={
+    popupType === "mixing"
+      ? atmosMixing
+      : atmosMastering
+  }
+  className="w-full h-[300px] md:h-[400px] object-cover"
+/>
+ 
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+      <div className="absolute bottom-6 left-6 right-6">
+        <h2 className="text-2xl md:text-3xl font-bold">
+  {popupType === "mixing"
+    ? "Dolby Atmos Mixing"
+    : "Dolby Atmos Mastering"}
+</h2>
+       <p className="text-gray-300 mt-2 text-sm">
+  {popupType === "mixing"
+    ? "Immersive spatial mixing designed for next-generation audio experiences. Launching soon."
+    : "Next-generation immersive mastering for cinematic sound. Launching soon."}
+</p>
+      </div>
+
+      <button
+        onClick={() => setShowDolbyPopup(false)}
+        className="absolute top-4 right-4 text-white text-xl"
+      >
+        ✕
+      </button>
+    </motion.div>
+  </div>
+)}
+</>
   );
 };
 

@@ -11,48 +11,48 @@ export default function StudioDIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Mixing. Designed for Precision.
+          Built for Mixing & Mastering. Designed for Perfection.
         </h2>
 
         {/* HIGHLIGHT */}
         <p className="text-xl md:text-2xl font-semibold mb-10">
-          This is where your sound becomes final.
+          The final stage where your music becomes release-ready.
         </p>
 
         {/* DESCRIPTION */}
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          Studio D is dedicated to mixing and mastering — the stage where your
-          music transforms from a project into a professional release. Every
-          detail, balance, and frequency is refined to achieve clarity,
-          depth, and impact.
+          Studio D is the final destination in your production journey. 
+          Designed for both mixing and mastering, this space is built to refine 
+          every element of your track — from balance and depth to loudness and clarity.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          Designed for accurate monitoring and critical listening, this space
-          allows engineers and artists to make confident decisions that
-          translate across all platforms — from headphones to large systems.
+          Equipped with advanced monitoring systems and high-end processing tools, 
+          the room allows for critical listening and precise decision-making. 
+          Every adjustment is made with accuracy, ensuring your music translates 
+          seamlessly across all platforms and playback systems.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed">
-          This is where your music is finalized for the world.
+          This is where your music is polished, finalized, and prepared for the world.
         </p>
 
         {/* FEATURES */}
         <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-gray-300">
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Precision Monitoring</p>
-            <p>Hear every detail with accurate frequency response.</p>
+            <p className="text-[#f0e81b] mb-2">Advanced Mixing</p>
+            <p>Refine balance, depth, and dynamics with precision.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Mix & Balance</p>
-            <p>Perfect levels, clarity, and stereo imaging.</p>
+            <p className="text-[#f0e81b] mb-2">Mastering Suite</p>
+            <p>Optimize loudness and clarity for all platforms.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Master Ready</p>
-            <p>Final output optimized for all streaming platforms.</p>
+            <p className="text-[#f0e81b] mb-2">High-End Monitoring</p>
+            <p>Accurate listening environment for critical decisions.</p>
           </div>
 
         </div>

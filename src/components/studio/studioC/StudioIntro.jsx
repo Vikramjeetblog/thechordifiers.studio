@@ -11,49 +11,48 @@ export default function StudioCIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Recording. Designed for Clarity.
+          Built for Recording & Jam Sessions. Designed for Energy.
         </h2>
 
         {/* HIGHLIGHT LINE */}
         <p className="text-xl md:text-2xl font-semibold mb-10">
-          Not a practice room. A recording environment.
+          Built for loud ideas, live sessions, and real performance.
         </p>
 
         {/* DESCRIPTION */}
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          Studio C is purpose-built for recording artists who want clean, 
-          professional sound from the source. Whether you're tracking vocals, 
-          instruments, or laying down ideas, the space is designed to capture 
-          every detail with precision.
+          Studio C is designed for artists who create through performance. 
+          Whether you're jamming with a full band, rehearsing, or recording 
+          high-energy sessions, the space is built to handle movement, volume, 
+          and collaboration.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          The room is tuned for clarity and consistency, allowing artists to 
-          perform naturally while maintaining studio-grade recording quality. 
-          From first take to final output, every session is focused, efficient, 
-          and distraction-free.
+          With a more open layout and flexible setup, Studio C allows artists 
+          to perform naturally while still capturing clean, usable recordings. 
+          It’s ideal for group sessions, live takes, and content-driven workflows.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed">
-          This is where recordings start sounding like finished records.
+          This is where performances happen — and music feels alive.
         </p>
 
         {/* FEATURES */}
         <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-gray-300">
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Vocal Recording</p>
-            <p>Clean, controlled environment for studio-quality vocals.</p>
+            <p className="text-[#f0e81b] mb-2">Band Jam Sessions</p>
+            <p>Spacious setup for full-band rehearsals and live play.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Instrument Tracking</p>
-            <p>Capture live instruments with clarity and balance.</p>
+            <p className="text-[#f0e81b] mb-2">Live Recording</p>
+            <p>Capture raw, energetic performances in real time.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Session Workflow</p>
-            <p>Optimized setup for smooth and efficient recording sessions.</p>
+            <p className="text-[#f0e81b] mb-2">Open Performance Space</p>
+            <p>Designed for movement, collaboration, and creative flow.</p>
           </div>
 
         </div>

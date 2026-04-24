@@ -3,8 +3,10 @@ import { FaPlay } from "react-icons/fa";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import studioD from "../assets/studioB-1.webp"; // make sure file exists
-import heroBg from "../assets/hero.jpg";
+
+import studioD from "../assets/studioB-1.webp";
+import heroVideo from "../assets/hero.mp4"; // ✅ NEW VIDEO
+
 const container = {
   hidden: {},
   show: {
@@ -33,8 +35,6 @@ export default function Hero() {
   const y = useTransform(scrollY, [0, 500], [0, 120]);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // 🔥 NEW STATE (modal)
   const [openPreview, setOpenPreview] = useState(false);
 
   const handleMouseMove = (e) => {
@@ -50,22 +50,19 @@ export default function Hero() {
       className="relative min-h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden pt-28 pb-24"
     >
 
-      {/* Background */}
-      <motion.div
-        style={{
-          y,
-         backgroundImage: `url(${heroBg})`
-        }}
+      {/* 🎬 VIDEO BACKGROUND */}
+      <motion.video
+        src={heroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        style={{ y }}
         initial={{ scale: 1.15 }}
-        animate={{
-          scale: 1,
-          y: [0, -20, 0]
-        }}
-        transition={{
-          scale: { duration: 10, ease: "easeOut" },
-          y: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-        }}
-        className="absolute inset-0 bg-cover bg-center"
+        animate={{ scale: 1 }}
+        transition={{ duration: 10, ease: "easeOut" }}
+        className="absolute inset-0 w-full h-full object-cover scale-105"
       />
 
       {/* Light Sweep */}
@@ -112,13 +109,13 @@ export default function Hero() {
       >
 
         <div className="overflow-hidden mb-6">
-          <motion.p
-            variants={maskItem}
-            className="text-xs tracking-[6px] text-[#f0e81b] font-semibold 
-drop-shadow-[0_0_12px_rgba(240,232,27,0.8)] animate-pulse"
-          >
-            A NEW ERA OF SOUND IS BEING BUILT
-          </motion.p>
+          <div className="flex justify-center mb-6">
+  <span className="px-4 py-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full">
+    <span className="text-xs md:text-sm tracking-[3px] uppercase text-white font-medium">
+      A NEW ERA OF SOUND IS BEING BUILT
+    </span>
+  </span>
+</div>
         </div>
 
         <div className="overflow-hidden">
@@ -126,7 +123,7 @@ drop-shadow-[0_0_12px_rgba(240,232,27,0.8)] animate-pulse"
             variants={maskItem}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-extrabold tracking-tight leading-[1.05] drop-shadow-[0_5px_20px_rgba(0,0,0,0.8)]"
           >
-            THE <br/>
+            THE <br />
             CHORDIFIERS <br />
             STUDIO
           </motion.h1>
@@ -148,51 +145,49 @@ drop-shadow-[0_0_12px_rgba(240,232,27,0.8)] animate-pulse"
           className="flex flex-wrap justify-center gap-4 mt-10"
         >
 
-  <motion.button
-  whileHover={{ scale: 1.08 }}
-  whileTap={{ scale: 0.96 }}
-  onMouseEnter={() => setHoveredBtn("artist")}
-  onMouseLeave={() => setHoveredBtn(null)}
-  onClick={() => navigate("/#waitlist")}
-  className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
->
-  {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
-</motion.button>
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
+            onMouseEnter={() => setHoveredBtn("artist")}
+            onMouseLeave={() => setHoveredBtn(null)}
+            onClick={() => navigate("/#waitlist")}
+            className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
+          >
+            {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
+          </motion.button>
 
-         <motion.button
-  whileHover={{ scale: 1.08 }}
-  whileTap={{ scale: 0.96 }}
-  onClick={() => setOpenPreview(true)}
-  className="flex items-center gap-3 backdrop-blur-md border border-white/40 
-  px-6 py-3 rounded-full 
-  max-w-[220px] leading-tight text-left
-  hover:bg-[#f0e81b] hover:border-[#f0e81b] hover:text-black transition"
->
-  <FaPlay size={12} />
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => setOpenPreview(true)}
+            className="flex items-center gap-3 backdrop-blur-md border border-white/40 
+            px-6 py-3 rounded-full 
+            max-w-[220px] leading-tight text-left
+            hover:bg-[#f0e81b] hover:border-[#f0e81b] hover:text-black transition"
+          >
+            <FaPlay size={12} />
+            <span className="text-sm font-medium">
+              WATCH THE <br />
+              STUDIO PREVIEW
+            </span>
+          </motion.button>
 
-  <span className="text-sm font-medium">
-    WATCH THE <br />
-    STUDIO PREVIEW
-  </span>
-</motion.button>
-
-          {/* COURSES */}
-         <motion.button
-  whileHover={{ scale: 1.08 }}
-  whileTap={{ scale: 0.96 }}
-  onMouseEnter={() => setHoveredBtn("student")}
-  onMouseLeave={() => setHoveredBtn(null)}
-  onClick={() => navigate("/institute/courses")}
-  className="border border-white/40 backdrop-blur-md px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
->
-  {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
-</motion.button>
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
+            onMouseEnter={() => setHoveredBtn("student")}
+            onMouseLeave={() => setHoveredBtn(null)}
+            onClick={() => navigate("/institute/courses")}
+            className="border border-white/40 backdrop-blur-md px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
+          >
+            {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
+          </motion.button>
 
         </motion.div>
 
       </motion.div>
 
-      {/* 🔥 MODAL (NO UI CHANGE TO PAGE) */}
+      {/* 🎬 MODAL */}
       <AnimatePresence>
         {openPreview && (
           <motion.div
@@ -221,7 +216,6 @@ drop-shadow-[0_0_12px_rgba(240,232,27,0.8)] animate-pulse"
                   <h2 className="text-4xl font-['Anton'] text-[#f0e81b] mb-4">
                     STUDIO PREVIEW
                   </h2>
-
                   <p className="text-white/70">
                     Coming Soon — Experience the next generation studio environment
                   </p>

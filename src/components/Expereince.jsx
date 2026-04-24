@@ -75,7 +75,7 @@ export default function Experience() {
             variants={item}
             className="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight"
           >
-            Experience
+            The Experience
           </motion.h2>
 
           {/* PARAGRAPH */}
@@ -112,7 +112,7 @@ export default function Experience() {
             className="flex gap-4 mt-12 flex-wrap"
           >
             <button
-              onClick={() => navigate("/studio-b")}
+              onClick={() => navigate("/thestudio")}
               className="px-7 py-3.5 text-sm tracking-wide border border-white/20 hover:bg-white hover:text-black transition"
             >
               EXPLORE STUDIO

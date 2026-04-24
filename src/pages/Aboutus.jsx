@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import hero from "../assets/institute.webp";
 import studio from "../assets/studioD-1.webp";
 
-import bts1 from "../assets/bts1.webp";
-import bts2 from "../assets/bts2.webp";
-import bts3 from "../assets/bts3.webp";
+import bts1 from "../assets/studiogallery1.jpg";
+import bts2 from "../assets/studiogallery2.jpeg";
+import bts3 from "../assets/studiogallery3.jpeg";
 
 const timeline = [
   { date: "Aug 2022", title: "Founded & Established" },
@@ -15,7 +15,8 @@ const timeline = [
   { date: "Jun 2024", title: "Renovations Started" },
   { date: "Nov 2024", title: "Renovations Ongoing" },
   { date: "Dec 2024", title: "Ranked to Top 3 Music Studio's & School category In North Bengal" },
-  { date: "2025", title: "Relaunching Soon" }
+  { date: "Dec 2025", title: "Awarded for the best Music Video Directed by The West Bengal International Flim Festival" },
+  { date: " 2026", title:"Relaunching soon" }
 ];
 
 export default function AboutPage() {
@@ -43,7 +44,7 @@ export default function AboutPage() {
 
         <div className="relative text-center px-6">
           <h1 className="text-4xl md:text-5xl font-['Anton'] text-[#f0e81b] mb-6">
-            WELCOME TO CHORDIFIRES STUDIO
+            WELCOME TO THE CHORDIFIRES STUDIO
           </h1>
 
           <p className="text-white/70">
@@ -53,7 +54,7 @@ export default function AboutPage() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-32 bg-black text-white">
+      <section id="about" className="pt-32  bg-black text-white">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
 
           <img
@@ -63,7 +64,7 @@ export default function AboutPage() {
 
           <div>
             <h2 className="text-4xl md:text-5xl font-['League_Spartan'] mb-8">
-              Welcome to Chordifires
+              Welcome to The Chordifires Studio
             </h2>
 
             <p className="text-white/70 mb-6 text-lg">

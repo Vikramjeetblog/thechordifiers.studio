@@ -7,7 +7,8 @@ import mayank from "../assets/mayank.png";
 import ost from "../assets/ost.png";
 import aryan from "../assets/aryan.png";
 import { useNavigate } from "react-router-dom"; 
-import LabelSignup from "../forms/LabelSignup"
+import LabelSignup from "../forms/LabelSignup";
+import labelVideo from "../assets/label.mp4";
 const artists = [
   {
     name: "MizzieLmb",
@@ -59,37 +60,59 @@ export default function RecordLabelArtists() {
   return (
     <div className="bg-[#111111] text-white">
 
-      {/* 🔥 NEW: ABOUT RECORD LABEL */}
-      <section className="py-28 text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-['League_Spartan'] tracking-widest">
-          ABOUT OUR RECORD LABEL
-        </h1>
+      {/*  NEW: ABOUT RECORD LABEL */}
+      import labelVideo from "../assets/label.mp4";
 
-        <div className="w-24 h-[3px] bg-[#f0e81b] mx-auto mt-6 mb-6"></div>
+<section
+  id="record"
+  className="relative py-28 text-center px-6 overflow-hidden"
+>
+  {/* 🎬 BACKGROUND VIDEO */}
+  <video
+    src={labelVideo}
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    className="absolute inset-0 w-full h-full object-cover scale-105"
+  />
 
-        <p className="text-gray-400 max-w-3xl mx-auto text-lg leading-relaxed">
-          The Chordifiers Record Label is built for artists who are ready to move beyond
-          creation and step into the real music industry. We don’t just produce tracks —
-          we develop identities, shape sound, and build careers.
-          <br /><br />
-          From studio production to release strategy, we work closely with artists to
-          transform raw talent into a professional presence.
-        </p>
+  {/* 🌑 OVERLAY (for readability) */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
 
-        {/*  LABEL SIGNUP BUTTON */}
-        <div className="mt-10">
-          <button
-            onClick={() => navigate("/label-signup")}
-            className="bg-[#f0e81b] text-black px-8 py-3 font-semibold tracking-wide hover:scale-105 transition"
-          >
-            LABEL SIGNUP
-          </button>
-        </div>
-      </section>
+  {/* 📄 CONTENT */}
+  <div className="relative z-10">
+    <h1 className="text-4xl md:text-6xl font-['League_Spartan'] tracking-widest">
+      ABOUT OUR RECORD LABEL
+    </h1>
+
+    <div className="w-24 h-[3px] bg-[#f0e81b] mx-auto mt-6 mb-6"></div>
+
+    <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+      The Chordifiers Record Label is built for artists who are ready to move beyond
+      creation and step into the real music industry. We don’t just produce tracks —
+      we develop identities, shape sound, and build careers.
+      <br /><br />
+      From studio production to release strategy, we work closely with artists to
+      transform raw talent into a professional presence.
+    </p>
+
+    {/* BUTTON */}
+    <div className="mt-10">
+      <button
+        onClick={() => navigate("/label-signup")}
+        className="bg-[#f0e81b] text-black px-8 py-3 font-semibold tracking-wide hover:scale-105 transition shadow-[0_0_20px_rgba(240,232,27,0.3)]"
+      >
+        LABEL SIGNUP
+      </button>
+    </div>
+  </div>
+</section>
 
 
       {/* HERO */}
-      <section className="py-28 text-center">
+      <section className="pt-12 pb-14 text-center text-center">
         <h1 className="text-4xl md:text-6xl font-['League_Spartan'] tracking-widest">
           OUR LATEST SINGED ARTISTS
         </h1>

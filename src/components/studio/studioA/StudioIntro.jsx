@@ -11,49 +11,49 @@ export default function StudioCIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Recording. Designed for Clarity.
+          Built for Recording & Mixing. Designed for Control.
         </h2>
 
         {/* HIGHLIGHT LINE */}
         <p className="text-xl md:text-2xl font-semibold mb-10">
-          Not a practice room. A recording environment.
+          From first take to final sound — all in one space.
         </p>
 
         {/* DESCRIPTION */}
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          Studio A is purpose-built for recording artists who want clean, 
-          professional sound from the source. Whether you're tracking vocals, 
-          instruments, or laying down ideas, the space is designed to capture 
-          every detail with precision.
+          Studio A is a hybrid space built for both recording and mixing. 
+          Whether you're capturing vocals, instruments, or shaping your track 
+          in post-production, the environment is designed to support the entire 
+          creative process.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          The room is tuned for clarity and consistency, allowing artists to 
-          perform naturally while maintaining studio-grade recording quality. 
-          From first take to final output, every session is focused, efficient, 
-          and distraction-free.
+          The room delivers clean recording conditions alongside accurate 
+          monitoring, allowing you to move seamlessly from tracking to mixing 
+          without losing momentum. Every detail — from performance to balance — 
+          is handled in one focused workflow.
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed">
-          This is where recordings start sounding like finished records.
+          This is where ideas are recorded, refined, and turned into finished tracks.
         </p>
 
         {/* FEATURES */}
         <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-gray-300">
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Vocal Recording</p>
-            <p>Clean, controlled environment for studio-quality vocals.</p>
+            <p className="text-[#f0e81b] mb-2">Vocal & Instrument Recording</p>
+            <p>Capture performances in a clean, controlled environment.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Instrument Tracking</p>
-            <p>Capture live instruments with clarity and balance.</p>
+            <p className="text-[#f0e81b] mb-2">Mixing & Balance</p>
+            <p>Shape your sound with clarity across all elements.</p>
           </div>
 
           <div>
-            <p className="text-[#f0e81b] mb-2">Session Workflow</p>
-            <p>Optimized setup for smooth and efficient recording sessions.</p>
+            <p className="text-[#f0e81b] mb-2">Seamless Workflow</p>
+            <p>Record, edit, and mix without switching spaces.</p>
           </div>
 
         </div>

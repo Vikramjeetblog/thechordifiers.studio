@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ ADDED
 
-// IMPORT ALL STUDIO IMAGES
-import studioA from "../assets/studioA-1.jpeg";
+import studioA from "../assets/studioA-7.jpeg";
 import studioB from "../assets/studioB-1.webp";
 import studioC from "../assets/studioC-1.webp";
 import studioD from "../assets/studioD-7.webp";
@@ -38,7 +38,7 @@ export default function Experience() {
 
   const [active, setActive] = useState(0);
 
-  // 🔥 AUTO IMAGE CHANGE
+  // ✅ AUTO SLIDE
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
@@ -46,6 +46,15 @@ export default function Experience() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // ✅ MANUAL CONTROLS
+  const nextSlide = () => {
+    setActive((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setActive((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -72,6 +81,22 @@ export default function Experience() {
         {/* 🔥 IMAGE SLIDER */}
         <div className="relative overflow-hidden rounded-2xl border border-zinc-800 h-[360px] md:h-[460px]">
 
+          {/* ✅ LEFT BUTTON */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
+          >
+            <FiChevronLeft size={20} />
+          </button>
+
+          {/* ✅ RIGHT BUTTON */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
+          >
+            <FiChevronRight size={20} />
+          </button>
+
           <AnimatePresence mode="wait">
             <motion.img
               key={active}
@@ -85,10 +110,10 @@ export default function Experience() {
             />
           </AnimatePresence>
 
-          {/* DARK OVERLAY */}
+          {/* overlay */}
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* 🔥 DOT INDICATOR */}
+          {/* dots */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
             {images.map((_, i) => (
               <div

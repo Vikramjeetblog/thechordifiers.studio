@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import { FaPlay } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import StudioPreviewModal from "../components/StudioPreviewModal";
 
 // IMAGES
 import studioA from "../assets/studioA-2.jpeg";
@@ -12,10 +13,12 @@ import studioD from "../assets/studioD-7.webp";
 export default function Hero() {
   const navigate = useNavigate();
   const [hoveredBtn, setHoveredBtn] = useState(null);
-  const [openPreview, setOpenPreview] = useState(false);
 
   const images = [studioA, studioB, studioC, studioD];
   const [index, setIndex] = useState(0);
+
+  // ✅ Correct state
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,7 +31,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center text-white pt-28 pb-24">
 
-      {/* BACKGROUND IMAGE (NO MOTION) */}
+      {/* BACKGROUND IMAGE */}
       <img
         src={images[index]}
         className="absolute inset-0 w-full h-full object-cover"
@@ -36,7 +39,7 @@ export default function Hero() {
       />
 
       {/* OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/60 to-black/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
 
       <Navbar />
 
@@ -58,6 +61,7 @@ export default function Hero() {
           creative environment for artists, producers, and visionaries.
         </p>
 
+        {/* BUTTONS */}
         <div className="flex flex-wrap justify-center gap-4 mt-10">
 
           <button
@@ -69,9 +73,10 @@ export default function Hero() {
             {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
           </button>
 
+          {/* ✅ PREVIEW BUTTON */}
           <button
-            onClick={() => setOpenPreview(true)}
-            className="flex items-center gap-3 border border-white/40 px-6 py-3 rounded-full hover:bg-[#f0e81b] hover:text-black"
+            onClick={() => setIsPreviewOpen(true)}
+            className="flex items-center gap-3 border border-white/40 px-6 py-3 rounded-full hover:bg-[#f0e81b] hover:text-black transition"
           >
             <FaPlay size={12} />
             <span className="text-sm">WATCH THE STUDIO PREVIEW</span>
@@ -101,6 +106,12 @@ export default function Hero() {
           />
         ))}
       </div>
+
+      {/* ✅ FIXED: correct prop name */}
+      <StudioPreviewModal
+        open={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+      />
 
     </section>
   );

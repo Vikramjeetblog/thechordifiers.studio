@@ -22,7 +22,7 @@ export default function StudioPreviewModal({ open, onClose }) {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative w-[90%] max-w-4xl h-[500px] rounded-xl overflow-hidden border border-white/10"
+            className="relative w-[95%] md:w-[85%] max-w-6xl h-[70vh] md:h-[80vh] rounded-xl overflow-hidden border border-white/10"
           >
             {/* IMAGE */}
             <img

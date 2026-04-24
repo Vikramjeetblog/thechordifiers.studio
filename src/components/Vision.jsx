@@ -1,155 +1,174 @@
-import React, { useState } from "react";
-import { FaPlay } from "react-icons/fa";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ NEW
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+// IMAGES
+import studioA from "../assets/gallery1.jpeg";
+import studioB from "../assets/gallery2.jpeg";
+import studioC from "../assets/gallery3.jpeg";
+import studioD from "../assets/gallery4.jpeg";
 
-import "swiper/css";
-import "swiper/css/navigation";
+const images = [studioA, studioB, studioC, studioD];
 
-// MEDIA
-import bts1 from "../assets/studiogallery1.jpg";
-import bts2 from "../assets/studiogallery3.jpeg";
-import bts4 from "../assets/studiogallery2.jpeg";
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.35,
+      delayChildren: 0.6
+    }
+  }
+};
 
-import vid1 from "../assets/studiovideo3.mp4";
-import vid2 from "../assets/video1.mp4";
-import vid3 from "../assets/video3.mp4";
-import vid4 from "../assets/video2.mp4";
-
-const media = [
-  { type: "video", src: vid1 },
-  { type: "image", src: bts1 },
-  { type: "image", src: bts2 },
-  { type: "video", src: vid2 },
-  { type: "video", src: vid4 },
-  { type: "image", src: bts4 },
-  { type: "video", src: vid3 }
-];
-
-// VIDEO COMPONENT
-function VideoCard({ src, fallback }) {
-  const [canPlay, setCanPlay] = useState(false);
-
-  return (
-    <div className="relative w-full h-full">
-      <img
-        src={fallback}
-        className="absolute inset-0 w-full h-full object-cover"
-        alt="fallback"
-      />
-
-      <video
-        src={src}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        autoPlay
-        onCanPlay={() => setCanPlay(true)}
-        onError={() => setCanPlay(false)}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          canPlay ? "opacity-100" : "opacity-0"
-        }`}
-      />
-    </div>
-  );
-}
+const item = {
+  hidden: { opacity: 0, y: 80 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.1,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 export default function Vision() {
+  const ref = useRef(null);
+  const [active, setActive] = useState(0);
+
+  // AUTO CHANGE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // ✅ MANUAL CONTROLS
+  const nextSlide = () => {
+    setActive((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setActive((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+
   return (
     <section
+      ref={ref}
       id="vision"
-      className="bg-black text-white py-12 md:py-16 px-4 overflow-hidden"
+      className="bg-black text-white py-24 px-6 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+      {/* ambient glow */}
+      <div className="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] bg-yellow-400/10 blur-[200px]" />
+      <div className="absolute bottom-[-200px] right-[-200px] w-[600px] h-[600px] bg-purple-500/10 blur-[200px]" />
 
-        {/* LEFT - SLIDER */}
-        <div className="relative w-full">
+      <motion.div
+        style={{ y: imageY }}
+        className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10"
+      >
 
-          {/* NAV BUTTONS (HIDE ON MOBILE) */}
-          <div className="hidden md:block">
-            <div className="absolute -left-5 top-1/2 -translate-y-1/2 z-20 vision-prev bg-white/10 p-2 rounded-full cursor-pointer">
-              <FiChevronLeft size={20} />
-            </div>
+        {/* IMAGE */}
+        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 h-[340px] md:h-[460px]">
 
-            <div className="absolute -right-5 top-1/2 -translate-y-1/2 z-20 vision-next bg-white/10 p-2 rounded-full cursor-pointer">
-              <FiChevronRight size={20} />
-            </div>
-          </div>
-
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={12}
-            slidesPerView={1}
-            navigation={{
-              nextEl: ".vision-next",
-              prevEl: ".vision-prev"
-            }}
-            breakpoints={{
-              640: { slidesPerView: 1.1 },
-              768: { slidesPerView: 1.3 },
-              1024: { slidesPerView: 1.6 }
-            }}
+          {/* ✅ NAV BUTTONS */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
           >
-            {media.map((item, i) => (
-              <SwiperSlide key={i}>
-                <div className="h-[200px] sm:h-[240px] md:h-[280px] rounded-xl overflow-hidden relative">
+            <FiChevronLeft size={20} />
+          </button>
 
-                  {item.type === "video" ? (
-                    <VideoCard src={item.src} fallback={bts1} />
-                  ) : (
-                    <img
-                      src={item.src}
-                      className="w-full h-full object-cover"
-                      alt="studio"
-                    />
-                  )}
+          <button
+            onClick={nextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
+          >
+            <FiChevronRight size={20} />
+          </button>
 
-                  {/* overlay */}
-                  <div className="absolute inset-0 bg-black/30" />
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={active}
+              src={images[active]}
+              alt="Vision"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
 
-                  {/* play icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-black/60 p-2 rounded-full">
-                      <FaPlay size={12} />
-                    </div>
-                  </div>
+          <div className="absolute inset-0 bg-black/40" />
 
-                </div>
-              </SwiperSlide>
+          {/* dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, i) => (
+              <div
+                key={i}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === active ? "w-6 bg-[#f0e81b]" : "w-2 bg-white/40"
+                }`}
+              />
             ))}
-          </Swiper>
-        </div>
-
-        {/* RIGHT - TEXT */}
-        <div className="w-full flex justify-center md:justify-end">
-          <div className="bg-[#0a0a0a] border border-[#f0e81b]/30 rounded-2xl p-5 md:p-8 w-full max-w-md relative">
-
-            <div className="absolute inset-0 bg-[#f0e81b]/5 blur-2xl pointer-events-none" />
-
-            <p className="text-[10px] md:text-xs tracking-[3px] md:tracking-[5px] text-[#f0e81b] mb-3">
-              BEHIND THE BUILD
-            </p>
-
-            <h2 className="text-xl md:text-3xl font-extrabold leading-tight">
-              <span className="text-[#f0e81b] block mb-1">THIS IS MORE</span>
-              <span className="block mb-1">THAN A STUDIO.</span>
-              <span className="text-white/50 block">THIS IS YOUR 2ND HOME.</span>
-            </h2>
-
-            <div className="w-10 md:w-16 h-[2px] bg-[#f0e81b] mt-4 mb-4" />
-
-            <p className="text-gray-400 text-sm leading-relaxed">
-              We aren't just changing the gear; we are changing the energy.
-              The Chordifiers Studio is being rebuilt from the ground up.
-            </p>
-
           </div>
         </div>
 
-      </div>
+        {/* TEXT */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-xl"
+        >
+          <motion.p
+            variants={item}
+            className="text-xs tracking-[4px] text-[#f0e81b] mb-4"
+          >
+            BEHIND THE BUILD
+          </motion.p>
+
+          <motion.h2
+            variants={item}
+            className="text-4xl md:text-6xl font-extrabold leading-[1.1]"
+          >
+            <span className="block text-white mb-2">THIS IS MORE</span>
+            <span className="block text-white mb-2">THAN A STUDIO.</span>
+            <span className="block text-white/60">THIS IS YOUR 2ND HOME.</span>
+          </motion.h2>
+
+          <motion.div
+            variants={item}
+            className="w-12 h-[2px] bg-white mt-6 mb-6"
+          />
+
+          <motion.p
+            variants={item}
+            className="text-gray-400 text-[15px] md:text-[17px] leading-relaxed"
+          >
+            We aren't just changing the gear; we are changing the energy.
+            The Chordifiers Studio is being rebuilt from the ground up.
+          </motion.p>
+
+          {/* ✅ CTA BUTTON */}
+          <motion.button
+            variants={item}
+            onClick={() => (window.location.href = "/about-us#gallery")}
+            className="mt-8 px-6 py-3 border border-white/30 hover:bg-white hover:text-black transition"
+          >
+            EXPLORE GALLERY
+          </motion.button>
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 }

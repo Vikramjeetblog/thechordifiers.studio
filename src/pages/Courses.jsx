@@ -148,7 +148,7 @@ export default function Courses() {
         .filter(cat => activeFilter === "All" || cat.title === activeFilter)
         .map((category,index)=>(
 
-        <section key={index} className="py-24">
+        <section key={index} className="py-16">
           <div className="max-w-7xl mx-auto px-6">
 
             <h2 className="text-4xl md:text-5xl font-['League_Spartan'] mb-4">

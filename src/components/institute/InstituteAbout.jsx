@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImg from "../../assets/institute.webp";
+import aboutImg from "../../assets/studioD-7.webp";
 
 const InstituteAbout = () => {
   return (

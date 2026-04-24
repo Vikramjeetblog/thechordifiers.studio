@@ -1,11 +1,14 @@
 import Navbar from "./Navbar";
 import { FaPlay } from "react-icons/fa";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import studioD from "../assets/studioB-1.webp";
-import heroVideo from "../assets/hero.mp4"; // ✅ NEW VIDEO
+// ✅ IMPORT STUDIO IMAGES
+import studioA from "../assets/studioA-2.jpeg";
+import studioB from "../assets/studioB-1.webp";
+import studioC from "../assets/studioC-10.png";
+import studioD from "../assets/studioD-7.webp";
 
 const container = {
   hidden: {},
@@ -37,6 +40,18 @@ export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [openPreview, setOpenPreview] = useState(false);
 
+  // ✅ IMAGE SLIDER STATE
+  const images = [studioA, studioB, studioC, studioD];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3000); // change every 4 sec
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleMouseMove = (e) => {
     setMousePos({
       x: e.clientX,
@@ -50,32 +65,25 @@ export default function Hero() {
       className="relative min-h-screen w-full flex flex-col items-center justify-center text-white overflow-hidden pt-28 pb-24"
     >
 
-      {/* 🎬 VIDEO BACKGROUND */}
-      <motion.video
-        src={heroVideo}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        style={{ y }}
-        initial={{ scale: 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
-        className="absolute inset-0 w-full h-full object-cover scale-105"
-      />
+      {/* 🔥 IMAGE SLIDER BACKGROUND */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={images[index]}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{ duration: 1 }}
+          style={{ y }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
 
       {/* Light Sweep */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{
-          x: ["-40%", "40%", "-40%"]
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+        animate={{ x: ["-40%", "40%", "-40%"] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         style={{
           background:
             "linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.25), transparent 60%)",
@@ -110,12 +118,12 @@ export default function Hero() {
 
         <div className="overflow-hidden mb-6">
           <div className="flex justify-center mb-6">
-  <span className="px-4 py-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full">
-    <span className="text-xs md:text-sm tracking-[3px] uppercase text-white font-medium">
-      A NEW ERA OF SOUND IS BEING BUILT
-    </span>
-  </span>
-</div>
+            <span className="px-4 py-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full">
+              <span className="text-xs md:text-sm tracking-[3px] uppercase text-[#f0e81b] font-medium">
+                A NEW ERA OF SOUND IS BEING BUILT
+              </span>
+            </span>
+          </div>
         </div>
 
         <div className="overflow-hidden">
@@ -173,21 +181,33 @@ export default function Hero() {
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.96 }}
-            onMouseEnter={() => setHoveredBtn("student")}
-            onMouseLeave={() => setHoveredBtn(null)}
-            onClick={() => navigate("/institute/courses")}
-            className="border border-white/40 backdrop-blur-md px-7 py-3 rounded-full hover:bg-white hover:text-black transition"
-          >
-            {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
-          </motion.button>
+  whileHover={{ scale: 1.08 }}
+  whileTap={{ scale: 0.96 }}
+  onMouseEnter={() => setHoveredBtn("student")}
+  onMouseLeave={() => setHoveredBtn(null)}
+  onClick={() => navigate("/institute/courses")}
+  className="backdrop-blur-md bg-white/90 text-black px-7 py-3 rounded-full font-semibold shadow-xl hover:bg-[#f0e81b] transition"
+>
+  {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}
+</motion.button>
 
         </motion.div>
 
       </motion.div>
 
-      {/* 🎬 MODAL */}
+      {/* 🔥 OPTIONAL DOT INDICATORS */}
+      <div className="absolute bottom-6 flex gap-2 z-20">
+        {images.map((_, i) => (
+          <div
+            key={i}
+            className={`w-2 h-2 rounded-full ${
+              i === index ? "bg-[#f0e81b]" : "bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* MODAL (UNCHANGED) */}
       <AnimatePresence>
         {openPreview && (
           <motion.div
@@ -196,7 +216,6 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-
             <div className="absolute inset-0" onClick={() => setOpenPreview(false)} />
 
             <motion.div
@@ -205,7 +224,6 @@ export default function Hero() {
               exit={{ scale: 0.9 }}
               className="relative w-[90%] max-w-4xl h-[500px] overflow-hidden rounded-xl border border-white/10"
             >
-
               <img
                 src={studioD}
                 className="absolute inset-0 w-full h-full object-cover"

@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 const navItems = [
   { name: "HOME", id: "home" },
   { name: "VISION", id: "vision" },
-  { name: "EXPERIENCE", id: "experience" },
+  { name: "THE EXPERIENCE", id: "experience" },
   { name: "INSTITUTE", id: "academy" },
   { name: "STUDIO", id: "studio" },
   { name: "RECORD LABEL", id: "record" },
@@ -413,48 +413,56 @@ useEffect(() => {
     {/* BACKDROP */}
     <div
       onClick={() => setShowDolbyPopup(false)}
-      className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+      className="absolute inset-0 bg-black/90 backdrop-blur-md"
     />
 
-    {/* CONTENT */}
+    {/* MODAL */}
     <motion.div
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-      className="relative w-[90%] max-w-3xl rounded-xl overflow-hidden"
+      initial={{ opacity: 0, scale: 0.9, y: 40 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+      className="relative w-[95%] max-w-6xl h-[85vh] rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl"
     >
 
-    <img
-  src={
-    popupType === "mixing"
-      ? atmosMixing
-      : atmosMastering
-  }
-  className="w-full h-[300px] md:h-[400px] object-cover"
-/>
- 
+      {/* IMAGE */}
+      <img
+        src={
+          popupType === "mixing"
+            ? atmosMixing
+            : atmosMastering
+        }
+        className="absolute inset-0 w-full h-full object-cover"
+        alt="Dolby Atmos"
+      />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/60" />
 
-      <div className="absolute bottom-6 left-6 right-6">
-        <h2 className="text-2xl md:text-3xl font-bold">
-  {popupType === "mixing"
-    ? "Dolby Atmos Mixing"
-    : "Dolby Atmos Mastering"}
-</h2>
-       <p className="text-gray-300 mt-2 text-sm">
-  {popupType === "mixing"
-    ? "Immersive spatial mixing designed for next-generation audio experiences. Launching soon."
-    : "Next-generation immersive mastering for cinematic sound. Launching soon."}
-</p>
+      {/* 🔥 CENTER CONTENT */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+
+        {/* MAIN HEADING (LIKE YOUR REFERENCE) */}
+        <h2 className="text-4xl md:text-7xl font-extrabold text-[#f0e81b] tracking-wide drop-shadow-[0_0_20px_rgba(240,232,27,0.5)]">
+          COMING SOON
+        </h2>
+
+        {/* SUB TITLE */}
+        <p className="mt-6 text-lg md:text-2xl font-semibold text-white">
+          {popupType === "mixing"
+            ? "Dolby Atmos Mixing"
+            : "Dolby Atmos Mastering"}
+        </p>
+
       </div>
 
+      {/* CLOSE BUTTON */}
       <button
         onClick={() => setShowDolbyPopup(false)}
-        className="absolute top-4 right-4 text-white text-xl"
+        className="absolute top-6 right-6 w-11 h-11 flex items-center justify-center rounded-full bg-black/60 hover:bg-white/10 border border-white/20 text-white text-xl transition"
       >
         ✕
       </button>
+
     </motion.div>
   </div>
 )}

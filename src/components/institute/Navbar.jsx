@@ -7,8 +7,9 @@ const InstituteNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", path: "/institute" },
-    { name: "Studio", path: "/" },
+    { name: "Home", path: "/" },                // ✅ FIXED
+    { name: "Studio", path: "/thestudio" },     // ✅ FIXED
+    { name: "Institute", path: "/institute" },  // ✅ NEW
     { name: "Courses", path: "/institute/courses" },
     { name: "Location", path: "/institute/location" },
     { name: "Contact", path: "/institute/contact" },
@@ -16,18 +17,17 @@ const InstituteNavbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full h-[80px] backdrop-blur-md bg-[#111111]/80 border-b border-white/10 z-50">
-      
+
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
 
         {/* Logo */}
-        
-        <Link to="/institute" className="flex items-center">
-  <img
-    src={logo}
-    alt="Chordifiers Institute"
-    className="h-28 md:h-32 lg:h-36 object-contain brightness-125 contrast-125"
-  />
-</Link>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logo}
+            alt="Chordifiers Institute"
+            className="h-28 md:h-32 lg:h-36 object-contain brightness-125 contrast-125"
+          />
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-10 font-['Inter']">
@@ -63,6 +63,7 @@ const InstituteNavbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-[#111111] border-t border-white/10 px-6 py-6 flex flex-col gap-6 font-['Inter']">
+
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -75,12 +76,13 @@ const InstituteNavbar = () => {
           ))}
 
           <Link
-            to="/institute/apply"
+            to="/institute/courses"
             onClick={() => setMenuOpen(false)}
             className="border border-[#f0e81b] text-[#f0e81b] px-6 py-2 text-center hover:bg-[#f0e81b] hover:text-black transition"
           >
             Apply Now
           </Link>
+
         </div>
       )}
     </header>

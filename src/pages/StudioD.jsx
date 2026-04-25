@@ -2,7 +2,7 @@ import React from 'react'
 import StudioHero from "../components/studio/studioD/StudioHero"
 import Equipment from "../components/studio/studioD/Equipment"
 import StudioIntro from "../components/studio/studioD/StudioIntro"
-import StudioCTA from "../components/studioCTA"
+import StudioCTA from "../components/StudioCTA"
 
 const StudioB = () => {
 	return (

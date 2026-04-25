@@ -185,15 +185,11 @@ We a Trusted by artists, brands, and creators across North Bengal, Darjeeling, S
     {/* LEFT SIDE */}
     <div>
       <p className="text-white/70 mb-6">
-        Visit The Chordifiers Studio and experience real music production in a professional environment.
+        Visit The Chordifiers Studio and experience <br/>real music production in a professional environment.
       </p>
 
       <p className="text-white/80 leading-relaxed">
-        THE CHORDIFIERS STUDIO <br />
-        Shaktigarh, Road No. 8, PWD More <br />
-        Near PWD More <br />
-        Siliguri, Darjeeling <br />
-        West Bengal – 734004
+        SHAKTIGARH ROAD NO. 8, Siliguri,<br/> Dist- Darjeeling, West Bengal, 734004
       </p>
 
       <p className="text-white/80 mt-4">

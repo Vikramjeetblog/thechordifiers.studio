@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ NEW
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi;
+import { HashLink } from "react-router-hash-link";
 
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
@@ -159,14 +160,17 @@ export default function Vision() {
             The Chordifiers Studio is being rebuilt from the ground up.
           </motion.p>
 
-          {/* ✅ CTA BUTTON */}
-          <motion.button
-            variants={item}
-            onClick={() => (window.location.href = "/about-us#gallery")}
-            className="mt-8 px-6 py-3 border border-white/30 hover:bg-white hover:text-black transition"
-          >
-            EXPLORE GALLERY
-          </motion.button>
+          <HashLink
+  smooth
+  to="/about-us#gallery"
+>
+  <motion.button
+    variants={item}
+    className="mt-8 px-6 py-3 border border-white/30 hover:bg-white hover:text-black transition"
+  >
+    EXPLORE GALLERY
+  </motion.button>
+</HashLink>
         </motion.div>
 
       </motion.div>

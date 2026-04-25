@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi;
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { HashLink } from "react-router-hash-link";
 
 // IMAGES

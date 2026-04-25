@@ -68,8 +68,8 @@ export default function AboutPage() {
           <p className="text-white/70">
             Where creativity meets technology. We empower artists and producers to shape the future of sound through innovation and collaboration.
             The Chordifiers Studio is an award-winning music production studio and independent record label based in North Bengal. Recognised at WBIFF 2025, we specialise in music production, music videos, films, and professional training programs.
-We also operate as an independent artist record label, mentoring, managing, and launching emerging talent while supporting original music releases and long-term career growth.
-We a Trusted by artists, brands, and creators across North Bengal, Darjeeling, Siliguri, and Sikkim.
+         We also operate as an independent artist record label, mentoring, managing, and launching emerging talent while supporting original music releases and long-term career growth.
+           We a Trusted by artists, brands, and creators across North Bengal, Darjeeling, Siliguri, and Sikkim.
           </p>
         </div>
       </section>

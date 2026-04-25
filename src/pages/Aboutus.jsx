@@ -26,6 +26,15 @@ const media = [
   { type: "video", src: video1 },
 ];
 
+const timeline = [
+  { date: "Aug 2022", title: "Founded & Established" },
+  { date: "Mar 2023", title: "Top 10 Studio in North Bengal" },
+  { date: "Apr 2023", title: "Started Music Production School" },
+  { date: "Jun 2024", title: "Renovation Started" },
+  { date: "Dec 2025", title: "Awarded at WBIFF" },
+  {date: "2026", title: "Relaunching soon"}
+];
+
 export default function AboutPage() {
   const location = useLocation();
   const [active, setActive] = useState(null);
@@ -76,49 +85,49 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-white/70 mb-6 text-lg">
-              Where creativity meets technology. We empower artists and producers
-              to shape the future of sound through innovation and collaboration.
-            </p>
-
-            <p className="text-white/70 mb-6 text-lg">
-              Award-winning music production studio and record label based in North Bengal.
+              Where creativity meets technology.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 🔥 GALLERY (UPDATED) */}
+      {/* 🔥 TIMELINE (RESTORED) */}
+      <section id="story" className="py-32 bg-black text-white">
+        <h2 className="text-4xl text-center mb-20 font-['League_Spartan']">
+          Our Story
+        </h2>
+
+        <div className="max-w-4xl mx-auto relative px-6">
+          <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-[#f0e81b]/50"></div>
+
+          <div className="space-y-14">
+            {timeline.map((item, i) => (
+              <div key={i} className="relative pl-16">
+                <div className="absolute left-0 top-2 -translate-x-1/2">
+                  <div className="w-3 h-3 bg-[#f0e81b] rounded-full"></div>
+                </div>
+
+                <p className="text-sm text-[#f0e81b] mb-2">
+                  {item.date}
+                </p>
+
+                <h3 className="text-lg text-white">
+                  {item.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 🔥 GALLERY */}
       <section id="gallery" className="py-32 bg-black text-white">
 
-        <h2 className="text-4xl md:text-5xl text-center mb-16 font-['League_Spartan']">
+        <h2 className="text-4xl text-center mb-16 font-['League_Spartan']">
           Studio Gallery
         </h2>
 
         <div className="max-w-7xl mx-auto px-6">
-
-          {/* 2 ITEMS */}
-          {count === 2 && (
-            <div className="grid md:grid-cols-2 gap-6">
-              {media.map((item, i) => (
-                <MediaCard key={i} item={item} setActive={setActive} />
-              ))}
-            </div>
-          )}
-
-          {/* 3 ITEMS */}
-          {count === 3 && (
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="md:col-span-2">
-                <MediaCard item={media[0]} setActive={setActive} large />
-              </div>
-              <div className="flex flex-col gap-6">
-                <MediaCard item={media[1]} setActive={setActive} />
-                <MediaCard item={media[2]} setActive={setActive} />
-              </div>
-            </div>
-          )}
-
-          {/* 4+ ITEMS */}
           {count >= 4 && (
             <div className="grid md:grid-cols-2 gap-6">
               {media.map((item, i) => (
@@ -126,7 +135,6 @@ export default function AboutPage() {
               ))}
             </div>
           )}
-
         </div>
 
         {/* MODAL */}
@@ -144,7 +152,7 @@ export default function AboutPage() {
               {active.type === "image" ? (
                 <img
                   src={active.src}
-                  className="w-full max-h-[85vh] object-contain rounded-lg"
+                  className="w-full max-h-[85vh] object-contain"
                 />
               ) : (
                 <video
@@ -154,28 +162,51 @@ export default function AboutPage() {
                   loop
                   playsInline
                   controls={false}
-                  controlsList="nodownload"
-                  disablePictureInPicture
-                  className="w-full max-h-[85vh] rounded-lg object-contain"
+                  className="w-full max-h-[85vh]"
                 />
               )}
             </div>
           </div>
         )}
+      </section>
 
+      {/* 🔥 VISIT (RESTORED) */}
+      <section id="visit" className="py-32 bg-[#0b0b0b] text-white">
+
+        <h2 className="text-4xl text-center mb-16 font-['League_Spartan']">
+          Visit The Studio
+        </h2>
+
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6">
+
+          <div>
+            <p className="text-white/70 mb-6">
+              Visit The Chordifiers Studio and experience real music production.
+            </p>
+
+            <p className="text-white/80">
+              Siliguri, West Bengal
+            </p>
+          </div>
+
+          <iframe
+            title="map"
+            src="https://www.google.com/maps/embed?..."
+            className="w-full h-[350px] rounded-xl"
+          />
+
+        </div>
       </section>
     </>
   );
 }
 
-/* 🔥 MEDIA CARD */
-const MediaCard = ({ item, setActive, large }) => {
+/* MEDIA CARD */
+const MediaCard = ({ item, setActive }) => {
   return (
     <div
       onClick={() => setActive(item)}
-      className={`relative group rounded-xl overflow-hidden cursor-pointer ${
-        large ? "h-[500px]" : "h-[260px]"
-      }`}
+      className="relative group rounded-xl overflow-hidden cursor-pointer h-[260px]"
     >
       {item.type === "image" ? (
         <img src={item.src} className="w-full h-full object-cover" />
@@ -194,7 +225,7 @@ const MediaCard = ({ item, setActive, large }) => {
       {item.type === "video" && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="bg-black/80 p-3 rounded-full">
-            <FaPlay className="text-white ml-[2px]" />
+            <FaPlay className="text-white" />
           </div>
         </div>
       )}

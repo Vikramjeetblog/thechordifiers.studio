@@ -66,7 +66,10 @@ export default function AboutPage() {
             WELCOME TO THE CHORDIFIRES STUDIO
           </h1>
           <p className="text-white/70">
-            Where creativity meets technology
+            Where creativity meets technology. We empower artists and producers to shape the future of sound through innovation and collaboration.
+            The Chordifiers Studio is an award-winning music production studio and independent record label based in North Bengal. Recognised at WBIFF 2025, we specialise in music production, music videos, films, and professional training programs.
+We also operate as an independent artist record label, mentoring, managing, and launching emerging talent while supporting original music releases and long-term career growth.
+We a Trusted by artists, brands, and creators across North Bengal, Darjeeling, Siliguri, and Sikkim.
           </p>
         </div>
       </section>
@@ -171,32 +174,47 @@ export default function AboutPage() {
       </section>
 
       {/* 🔥 VISIT (RESTORED) */}
-      <section id="visit" className="py-32 bg-[#0b0b0b] text-white">
+   <section id="visit" className="py-32 bg-[#0b0b0b] text-white">
 
-        <h2 className="text-4xl text-center mb-16 font-['League_Spartan']">
-          Visit The Studio
-        </h2>
+  <h2 className="text-4xl text-center mb-16 font-['League_Spartan']">
+    Visit The Studio
+  </h2>
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-6">
 
-          <div>
-            <p className="text-white/70 mb-6">
-              Visit The Chordifiers Studio and experience real music production.
-            </p>
+    {/* LEFT SIDE */}
+    <div>
+      <p className="text-white/70 mb-6">
+        Visit The Chordifiers Studio and experience real music production in a professional environment.
+      </p>
 
-            <p className="text-white/80">
-              Siliguri, West Bengal
-            </p>
-          </div>
+      <p className="text-white/80 leading-relaxed">
+        THE CHORDIFIERS STUDIO <br />
+        Shaktigarh, Road No. 8, PWD More <br />
+        Near PWD More <br />
+        Siliguri, Darjeeling <br />
+        West Bengal – 734004
+      </p>
 
-          <iframe
-            title="map"
-            src="https://www.google.com/maps/embed?..."
-            className="w-full h-[350px] rounded-xl"
-          />
+      <p className="text-white/80 mt-4">
+        +91 7811092672
+      </p>
 
-        </div>
-      </section>
+      <p className="text-white/80 mt-2">
+        thechordifiersstudio@gmail.com
+      </p>
+    </div>
+
+    {/* RIGHT SIDE MAP */}
+    <iframe
+      title="Chordifiers Studio Map"
+      src="https://www.google.com/maps?q=The+Chordifiers+Studio+Siliguri&output=embed"
+      className="w-full h-[350px] md:h-[400px] rounded-xl border-0"
+      loading="lazy"
+    />
+
+  </div>
+</section>
     </>
   );
 }

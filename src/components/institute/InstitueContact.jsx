@@ -1,6 +1,6 @@
-import hero from "../assets/courses.jpg"
+
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"
-import hero2 from "../assets/institute2.webp";
+import hero2 from "../../assets/institute2.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from "swiper/modules"
@@ -83,13 +83,11 @@ export default function Contact() {
 <div className="bg-[#111111] text-white">
 
 {/* HERO */}
-<section
-className="h-[360px] flex items-center justify-center bg-cover bg-center"
-style={{backgroundImage:`url(${hero})`}}
->
-<div className="bg-black/70 w-full h-full flex items-center justify-center">
-<h1 className="text-5xl md:text-6xl font-['Anton'] text-[#f0e81b]">
-Contact Us
+<section>
+<div className=" w-full h-full flex items-center justify-center">
+<h1 className="text-4xl md:text-6xl font-['Anton'] mb-4 tracking-wide">
+  <span className="text-white">CONTACT</span>{" "}
+  <span className="text-[#f0e81b]">US</span>
 </h1>
 </div>
 </section>

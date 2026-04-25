@@ -5,10 +5,11 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ NEW
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
 import studioB from "../assets/gallery2.jpeg";
-import studioC from "../assets/gallery3.jpeg";
+import studioC from "../assets/gallery7.jpeg";
 import studioD from "../assets/gallery4.jpeg";
-
-const images = [studioA, studioB, studioC, studioD];
+import studioE from "../assets/gallery3.jpeg";
+import studioF from "../assets/gallery10.jpeg"
+const images = [studioA, studioB, studioC, studioD,studioE,studioF];
 
 const container = {
   hidden: {},

@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
@@ -10,7 +11,6 @@ import hero2 from "../../assets/institute2.webp";
 import hero3 from "../../assets/institute3.png";
 
 export default function InstituteHero() {
-const navigate = useNavigate();
   return (
 
     <section className="relative h-screen pt-14">
@@ -25,9 +25,7 @@ const navigate = useNavigate();
       >
 
         {/* Slide 1 */}
-
         <SwiperSlide>
-
           <div className="relative h-full flex items-center justify-center text-center">
 
             <div
@@ -58,35 +56,34 @@ const navigate = useNavigate();
               </p>
 
               {/* Buttons */}
-
               <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
 
-                <button 
-                   onClick={() => navigate("/institute/courses")}
-                  className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
+                {/* ✅ FIXED */}
+                <HashLink
+                  smooth
+                  to="/institute#courses"
+                  className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1"
+                >
                   Explore Programs
-                </button>
+                </HashLink>
 
-                <button 
-                   onClick={() => navigate("/register/mentorship")}
-                  className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
+                <HashLink
+                  smooth
+                  to="/register/mentorship"
+                  className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1"
+                >
                   Apply Now
-                </button>
+                </HashLink>
 
               </div>
 
             </div>
-
           </div>
-
         </SwiperSlide>
 
 
-
         {/* Slide 2 */}
-
         <SwiperSlide>
-
           <div className="relative h-full flex items-center justify-center text-center">
 
             <div
@@ -109,28 +106,25 @@ const navigate = useNavigate();
               <div className="w-20 h-[3px] bg-[#f0e81b] mx-auto"></div>
 
               <p className="text-white/80 max-w-lg mx-auto text-base md:text-lg">
-                Hands-on training, real studio workflow and industry-ready
-                skills for modern producers.
+                Hands-on training, real studio workflow and industry-ready skills.
               </p>
 
-              <button
-                onClick={() => navigate("/institute/courses")} 
-                className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1">
+              {/* ✅ FIXED */}
+              <HashLink
+                smooth
+                to="/institute#courses"
+                className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1"
+              >
                 View Programs
-              </button>
+              </HashLink>
 
             </div>
-
           </div>
-
         </SwiperSlide>
 
 
-
         {/* Slide 3 */}
-
         <SwiperSlide>
-
           <div className="relative h-full flex items-center justify-center text-center">
 
             <div
@@ -153,26 +147,23 @@ const navigate = useNavigate();
               <div className="w-20 h-[3px] bg-[#f0e81b] mx-auto"></div>
 
               <p className="text-white/80 max-w-lg mx-auto text-base md:text-lg">
-                Start your journey in professional music production
-                inside a real working recording studio.
+                Start your journey in professional music production.
               </p>
 
-              <button
-                  onClick={() => navigate("/register/mentorship")}
-               className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1">
+              <HashLink
+                smooth
+                to="/register/mentorship"
+                className="border border-[#f0e81b] text-[#f0e81b] px-8 py-3 transition duration-300 hover:bg-[#f0e81b] hover:text-black hover:-translate-y-1"
+              >
                 Apply Now
-              </button>
+              </HashLink>
 
             </div>
-
           </div>
-
         </SwiperSlide>
 
       </Swiper>
 
     </section>
-
   );
-
 }

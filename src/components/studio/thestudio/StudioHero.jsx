@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-import img1 from "../../../assets/studioA-2.jpeg";
+import img1 from "../../../assets/studioA-7.jpeg";
 import img2 from "../../../assets/studioB-1.webp";
 import img3 from "../../../assets/studioC-1.webp";
 import img4 from "../../../assets/studioD-7.webp";

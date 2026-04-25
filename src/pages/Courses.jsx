@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
-
-import hero from "../assets/institute.webp"
 import hero2 from "../assets/institute2.webp"
 
 /* course images */
@@ -115,20 +113,21 @@ export default function Courses() {
 
     <div className="bg-[#111111] text-white pb-24">
 
-      {/* HERO */}
-      <section
-        className="h-[360px] flex items-center justify-center bg-cover bg-center"
-        style={{backgroundImage:`url(${hero})`}}
-      >
-        <div className="bg-black/70 w-full h-full flex items-center justify-center">
-          <h1 className="text-5xl md:text-6xl font-['Anton'] text-[#f0e81b]">
-            Our Courses
-          </h1>
-        </div>
-      </section>
+     {/* HEADER */}
+<section className="py-20 text-center bg-[#111111]">
+
+<h1 className="text-4xl md:text-6xl font-['Anton'] mb-4 tracking-wide">
+  <span className="text-white">OUR</span>{" "}
+  <span className="text-[#f0e81b]">COURSES</span>
+</h1>
+
+  <div className="w-20 h-[3px] bg-[#f0e81b] mx-auto"></div>
+
+</section>
+     
 
       {/* FILTERS */}
-      <div className="max-w-7xl mx-auto px-6 pt-16 flex flex-wrap gap-4 justify-center">
+      <div className="max-w-7xl mx-auto px-6 pt-10 flex flex-wrap gap-4 justify-center">
         {filters.map(filter => (
           <button
             key={filter}

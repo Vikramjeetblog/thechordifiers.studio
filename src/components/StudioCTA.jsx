@@ -6,7 +6,7 @@ export default function StudioCTA() {
   return (
     <section className="bg-black text-white py-28 px-6 relative overflow-hidden">
 
-      {/* 🔥 AMBIENT GLOW */}
+      {/*  AMBIENT GLOW */}
       <div className="absolute top-[-150px] left-[-150px] w-[400px] h-[400px] bg-[#f0e81b]/10 blur-[150px]" />
       <div className="absolute bottom-[-150px] right-[-150px] w-[400px] h-[400px] bg-purple-500/10 blur-[150px]" />
 
@@ -28,7 +28,7 @@ export default function StudioCTA() {
 
           {/* PRIMARY CTA */}
           <button
-            onClick={() => navigate("/book-a-call")}
+            onClick={() => navigate("/book")}
             className="bg-[#f0e81b] text-black px-8 py-4 font-semibold tracking-wide rounded-lg hover:scale-105 transition"
           >
             BOOK A SESSION

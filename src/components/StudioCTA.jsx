@@ -36,7 +36,7 @@ export default function StudioCTA() {
 
           {/* SECONDARY CTA */}
           <button
-            onClick={() => navigate("/institute/contact")}
+            onClick={() => navigate("/#contact")}
             className="border border-white/20 px-8 py-4 rounded-lg hover:bg-white hover:text-black transition"
           >
             VISIT THE STUDIO

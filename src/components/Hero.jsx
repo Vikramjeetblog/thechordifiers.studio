@@ -85,7 +85,7 @@ export default function Hero() {
           <button
             onMouseEnter={() => setHoveredBtn("student")}
             onMouseLeave={() => setHoveredBtn(null)}
-            onClick={() => navigate("/institute/courses")}
+            onClick={() => navigate("/institute/#courses")}
             className="bg-white text-black px-7 py-3 rounded-full font-semibold hover:bg-[#f0e81b]"
           >
             {hoveredBtn === "student" ? "EXPLORE COURSES" : "FOR STUDENTS"}

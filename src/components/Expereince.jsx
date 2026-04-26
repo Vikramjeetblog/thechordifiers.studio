@@ -183,14 +183,14 @@ export default function Experience() {
             </button>
 
             <button
-              onClick={() => navigate("/institute/contact")}
+              onClick={() => navigate("#contact")}
               className="px-7 py-3.5 border border-white/20 hover:bg-white hover:text-black transition"
             >
               CONTACT US
             </button>
 
             <button
-              onClick={() => navigate("/book-a-call")}
+              onClick={() => navigate("/book")}
               className="px-7 py-3.5 bg-[#f0e81b] text-black font-semibold hover:opacity-90 transition"
             >
               BOOK SESSION

@@ -303,18 +303,18 @@ loop
 
 {[
 {
-text:"Applying for the diploma was the best decision I made for my music career.",
-name:"Aarav Mehta",
+text:"Great music institute with supportive teachers and a friendly learning environment. Highly recommended.",
+name:"Kelwin Thapa",
 role:"Alumni"
 },
 {
-text:"Learning inside a professional recording studio environment gave me real industry exposure.",
-name:"Riya Kapoor",
+text:"I am in their Mentorship Program.It's really fun to learn here at TCMI.They are the best, truly.",
+name:"Ent Hub",
 role:"Student"
 },
 {
-text:"The mentors are incredible. They teach how the music industry actually works.",
-name:"Karan Shah",
+text:"The Chordifiers Music Institute is the best music institute in North Bengal, Sikkim. I have learned a lot from my mentor Mr. Raul Das . The staff is very supportive and caring. I recommend everyone join in this place.",
+name:"Jyotirmoy Dey",
 role:"Graduate"
 }
 ].map((item,index)=>(

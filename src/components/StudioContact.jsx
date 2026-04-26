@@ -1,7 +1,16 @@
+import hero from "../assets/courses.jpg";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import hero2 from "../assets/institute2.webp";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Toast from "../../../components/Toast";
+import Toast from "./Toast";
 
 export default function StudioContact() {
   const navigate = useNavigate();
@@ -14,7 +23,7 @@ export default function StudioContact() {
     name: "",
     email: "",
     phone: "",
-    message: "",
+    message: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -23,12 +32,10 @@ export default function StudioContact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // NAME → only letters
     if (name === "name") {
       if (!/^[a-zA-Z\s]*$/.test(value)) return;
     }
 
-    // PHONE → only digits max 10
     if (name === "phone") {
       const digits = value.replace(/\D/g, "");
       if (digits.length > 10) return;
@@ -67,8 +74,7 @@ export default function StudioContact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🚫 Prevent duplicate submit
-    if (loading) return;
+    if (loading) return; // 🚫 prevent duplicate
 
     const validationErrors = validate();
     setErrors(validationErrors);
@@ -90,7 +96,6 @@ export default function StudioContact() {
         }
       );
 
-      // SUCCESS
       setStatus("success");
       setMessage("Message sent successfully!");
 
@@ -98,14 +103,12 @@ export default function StudioContact() {
         name: "",
         email: "",
         phone: "",
-        message: "",
+        message: ""
       });
 
       setErrors({});
     } catch (error) {
       console.error(error);
-
-      // ERROR
       setStatus("error");
       setMessage("Something went wrong. Please try again.");
     } finally {
@@ -115,50 +118,55 @@ export default function StudioContact() {
 
   return (
     <div className="bg-[#111111] text-white">
+
+      {/* TOAST */}
+      {message && (
+        <Toast
+          message={message}
+          type={status}
+          onClose={() => {
+            setMessage("");
+            setStatus("");
+          }}
+        />
+      )}
+
+      {/* HERO */}
+      <section>
+        <div className="w-full h-full flex items-center justify-center">
+          <h1 className="text-4xl md:text-6xl font-['Anton'] mb-4 tracking-wide pt-12">
+            <span className="text-white">CONTACT </span>
+            <span className="text-[#f0e81b]">US</span>
+          </h1>
+        </div>
+      </section>
+
+      {/* CONTACT */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-          
-          {/* TOAST */}
-          {message && (
-            <Toast
-              message={message}
-              type={status}
-              onClose={() => {
-                setMessage("");
-                setStatus("");
-              }}
-            />
-          )}
 
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div>
-            <h2 className="text-4xl font-['League_Spartan'] mb-6">
-              Get In Touch
-            </h2>
+            <h2 className="text-4xl font-['League_Spartan'] mb-6">Get In Touch</h2>
             <p className="text-white/70 mb-10 leading-relaxed">
-              Have questions about our courses or studio programs?
+              Have questions about our courses or studio programs?  
               Our team will help you choose the right path for your music career.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="text-[#f0e81b] text-xl">
-                  <FaMapMarkerAlt />
-                </div>
+                <div className="text-[#f0e81b] text-xl"><FaMapMarkerAlt/></div>
                 <div>
                   <h4 className="font-semibold">Studio Address</h4>
                   <p className="text-white/70 text-sm">
-                    The Chordifiers Studio, Shaktigarh Main Road, Ward 31
-                    <br />
-                    Siliguri, Dist. Darjeeling, West Bengal – 734004
+                    The Chordifiers Studio Shaktigrah road no. 8, <br/>
+                    Woard 31 Siliguri, Dist- Darjeeling, West Bengal,<br/> 734004
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="text-[#f0e81b] text-xl">
-                  <FaPhoneAlt />
-                </div>
+                <div className="text-[#f0e81b] text-xl"><FaPhoneAlt/></div>
                 <div>
                   <h4 className="font-semibold">Phone</h4>
                   <p className="text-white/70 text-sm">+91 7811092672</p>
@@ -166,18 +174,15 @@ export default function StudioContact() {
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="text-[#f0e81b] text-xl">
-                  <FaEnvelope />
-                </div>
+                <div className="text-[#f0e81b] text-xl"><FaEnvelope/></div>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-white/70 text-sm">
-                    thechordifiersstudio@gmail.com
-                  </p>
+                  <p className="text-white/70 text-sm">thechordifiersstudio@gmail.com</p>
                 </div>
               </div>
             </div>
 
+            {/* ✅ MAP ADDED */}
             <div className="mt-12 border border-white/10">
               <iframe
                 title="studio-location"
@@ -188,81 +193,41 @@ export default function StudioContact() {
                 loading="lazy"
               ></iframe>
             </div>
+
           </div>
 
           {/* FORM */}
           <div className="bg-[#1a1a1a] border border-white/10 p-10">
-            <h3 className="text-2xl font-['League_Spartan'] mb-8">
-              Ask Us a Question
-            </h3>
+            <h3 className="text-2xl font-['League_Spartan'] mb-8">Ask Us a Question</h3>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* NAME */}
+
               <div>
-                <input
-                  name="name"
-                  type="text"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:border-[#f0e81b]"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.name}
-                  </p>
-                )}
+                <input name="name" value={form.name} onChange={handleChange} placeholder="Your Name"
+                  className="w-full bg-black border border-white/10 px-4 py-3"/>
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
-              {/* EMAIL */}
               <div>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:border-[#f0e81b]"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.email}
-                  </p>
-                )}
+                <input name="email" value={form.email} onChange={handleChange} placeholder="Email Address"
+                  className="w-full bg-black border border-white/10 px-4 py-3"/>
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
-              {/* PHONE */}
               <div>
-                <input
-                  name="phone"
-                  type="text"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:border-[#f0e81b]"
-                />
-                {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.phone}
-                  </p>
-                )}
+                <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone Number"
+                  className="w-full bg-black border border-white/10 px-4 py-3"/>
+                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
               </div>
 
-              {/* MESSAGE */}
-              <textarea
-                name="message"
-                rows="5"
-                value={form.message}
-                onChange={handleChange}
+              <textarea name="message" rows="5" value={form.message} onChange={handleChange}
                 placeholder="Your Message"
-                className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:border-[#f0e81b]"
-              ></textarea>
+                className="w-full bg-black border border-white/10 px-4 py-3"></textarea>
 
-              {/* BUTTON */}
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full px-8 py-3 font-semibold transition ${
+                className={`w-full px-8 py-3 font-semibold ${
                   loading
                     ? "bg-gray-500 cursor-not-allowed"
                     : "bg-[#f0e81b] text-black hover:opacity-90"
@@ -270,10 +235,58 @@ export default function StudioContact() {
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>
+
             </form>
           </div>
+
         </div>
       </section>
+
+      
+      <section
+        className="relative py-36 bg-cover bg-center"
+        style={{ backgroundImage: `url(${hero2})` }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <Swiper modules={[Autoplay, Pagination]} autoplay={{delay:4500}} pagination={{clickable:true}} loop>
+
+            {[
+              {
+                text:"The word 'amazing' would be an understatement considering our experience at TCS",
+                name:"Arko jyoti Mitra"
+               
+              },
+              {
+                text:"The word 'amazing' would be an understatement considering our experience at TCS",
+                name:"Alesh Barman",
+               
+              },
+              {
+                text:"Best studio in the city! Management is great and helps dealing with every issues. Standard quality sound with professional mix and mastering.",
+                name:"Shashank"
+               
+              },
+              {
+                text:"Visited The Chordifiers Studio and it was a total vibe filled with positivity. And specially the owner of the place makes one so comfortable and their production level is top notch. I would definitely recommend musicians to visit their studio ",
+                name:"Saowna Ash"
+              }
+            ].map((item,index)=>(
+              <SwiperSlide key={index}>
+                <div className="bg-black/40 backdrop-blur-lg border border-white/10 rounded-xl p-12">
+                  <div className="text-[#f0e81b] mb-6 text-lg">★★★★★</div>
+                  <p className="text-2xl md:text-3xl leading-relaxed mb-10">{item.text}</p>
+                  <h4 className="text-xl font-semibold">{item.name}</h4>
+                  <p className="text-white/60 text-sm">{item.role}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+
+          </Swiper>
+        </div>
+      </section>
+
     </div>
   );
 }

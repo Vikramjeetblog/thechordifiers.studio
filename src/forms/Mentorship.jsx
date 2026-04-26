@@ -98,7 +98,7 @@ const [status, setStatus] = useState("");
     setMessage("");
     setStatus("");
 
-    await fetch('https://script.google.com/macros/s/AKfycby3a_uuKpQFqlad5EAbRHF1XicBJaV8Wd5irls-CZBMTiv2QnMSAvHyXpXl7EfQMSyv-Q/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbyiaQ12mtdlBs474In3pPFB3kYQBZ4BhVOT_aa8H-XkIshs-DEbBGy4Zeh3DzXINFoucg/exec', {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify(form),

@@ -7,7 +7,7 @@ import Vision from "../components/Vision";
 import Expereince from "../components/Expereince"
 import Academy from "../components/Academy";
 import Waitlist from "../components/Waitlist";
-
+import StudioContact from "../components/StudioContact";
 export default function Home() {
   const location = useLocation();
 
@@ -47,7 +47,14 @@ export default function Home() {
       </section>
       <section id ="waitlist">
         <Waitlist />
+
       </section>
+        <section id ="contact">
+        
+        <StudioContact />
+
+      </section>
+
     </>
   );
 }

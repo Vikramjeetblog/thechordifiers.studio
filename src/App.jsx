@@ -26,6 +26,7 @@ import InstituteLayout from "./layout/InstituteLayout";
 import Lenis from "lenis";
 import ScrollToTop from "./components/ScrollToTop";
 import BookCall from "./pages/BookCall";
+import Book from "./components/Book";
 
 import ProgramDetails from "./pages/ProgramDetails";
 import MentorshipRegister from "./forms/Mentorship";
@@ -73,7 +74,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/record" element={<Record />} />
            <Route path="/program/:slug" element={<ProgramDetails />} />
-           <Route path="/book-a-call" element={<BookCall />} />
+           <Route path="/book" element={<Book />} />
             <Route path="/register/mentorship" element={<MentorshipRegister />} />
               <Route path="/register/certification" element={<Certification />} />
               <Route path="/register/diploma" element={<Diploma />} />
@@ -88,9 +89,9 @@ function App() {
             {/* ABOUT SECTION */}
             <Route path="/about-us" element={<AboutUs />} />
            
-            <Route path ="/Privacy" element = {<PrivacyPolicy/>}/>
-             <Route path ="/Refund" element = {<Refund/>}/>
-            <Route path = "/Terms" element ={<TermsAndCondition/>}/>
+            <Route path ="/privacy" element = {<PrivacyPolicy/>}/>
+             <Route path ="/refund" element = {<Refund/>}/>
+            <Route path = "/terms" element ={<TermsAndCondition/>}/>
           </Route>
 
 
@@ -101,6 +102,7 @@ function App() {
             <Route path="/institute/location" element={<Location />} />
             <Route path="/institute/courses" element={<Courses />} />
             <Route path="/institute/contact" element={<Contact />} />
+            <Route path="/book-a-call" element={<BookCall />} />
           
 
           </Route>

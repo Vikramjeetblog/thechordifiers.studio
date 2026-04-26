@@ -129,46 +129,60 @@ export default function ProgramDetails() {
         </div>
       </div>
 
-      {/* ================= CTA BAR ================= */}
-      <div className="bg-gradient-to-r from-[#111111] via-[#1a1a1a] to-[#111111] border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/*  CTA BAR */}
+      
+{/* ================= CTA BAR ================= */}
+<div className="bg-gradient-to-r from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] border-t border-white/10">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
-          <h3 className="text-sm sm:text-base md:text-lg text-[#f2f2f2]">
-            SPEAK WITH OUR TEAM
-          </h3>
+    {/* TEXT */}
+    <div className="text-center md:text-left">
+      <h3 className="text-lg md:text-xl font-medium text-white">
+        Speak with our team
+      </h3>
+      <p className="text-sm text-gray-400 mt-1">
+        Get guidance, career clarity & course recommendations
+      </p>
+    </div>
 
-          <div className="flex gap-3 sm:gap-4 w-full sm:w-auto">
+    {/* BUTTONS */}
+    <div className="flex gap-4 w-full md:w-auto justify-center">
 
-            {/* REGISTER */}
-           <button
+      {/* REGISTER (secondary) */}
+     
+     
+       {/* REGISTER */}
+<button
   onClick={() => {
     if (program.type === "Course") {
       navigate("/register/certification");
     } else if (program.type === "Diploma") {
       navigate("/register/diploma");
-    } else if (program.type === "Program") {
-      navigate("/register/mentorship");
     } else {
-      navigate("/register/mentorship"); // fallback
+      navigate("/register/mentorship");
     }
   }}
+  className="px-6 py-3 rounded-full bg-white text-black text-sm font-medium uppercase tracking-wide hover:scale-105 hover:shadow-md transition-all duration-300"
 >
   Register
 </button>
 
-            {/* BOOK CALL */}
-            <button
-              onClick={() =>
-                navigate(`/book-a-call?type=${program.type}&name=${program.slug}`)
-              }
-              className="px-5 py-3 bg-[#f0e81b] text-black hover:brightness-90 transition text-sm uppercase flex items-center gap-2"
-            >
-              Book a Call →
-            </button>
+{/* BOOK CALL */}
+<button
+  onClick={() =>
+    navigate(`/book-a-call?type=${program.type}&name=${program.slug}`)
+  }
+  className="px-7 py-3 rounded-full bg-[#f0e81b] text-black text-sm font-semibold uppercase tracking-wide shadow-lg hover:scale-105 hover:shadow-[0_0_20px_rgba(240,232,27,0.4)] transition-all duration-300"
+>
+  Book a Call
+</button>
 
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
+</div>
+
+           
+        
 
     </section>
   );

@@ -12,13 +12,12 @@ const InstituteNavbar = () => {
     { name: "Home", path: "/", type: "route" },
     { name: "Studio", path: "/thestudio", type: "route" },
     { name: "Institute", path: "/institute#home", id: "home", type: "hash" },
-    { name: "About", path: "/institute#about", id: "about", type: "hash" },
     { name: "Courses", path: "/institute#courses", id: "courses", type: "hash" },
     { name: "Location", path: "/institute#location", id: "location", type: "hash" },
     { name: "Contact", path: "/institute#contact", id: "contact", type: "hash" },
   ];
 
-  // 🔥 Scroll Spy Logic
+  //  Scroll Spy Logic
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
@@ -96,7 +95,7 @@ const InstituteNavbar = () => {
         {/* Apply Button */}
         <HashLink
           smooth
-          to="/register/mentorship"
+          to="/book-a-call"
           className="hidden md:block border border-[#f0e81b] text-[#f0e81b] px-6 py-2 hover:bg-[#f0e81b] hover:text-black transition duration-300 shadow-[0_0_12px_rgba(240,232,27,0.4)]"
         >
           Apply Now

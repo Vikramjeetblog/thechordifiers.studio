@@ -12,10 +12,19 @@ export default function Institute() {
 
   // scroll to top when no hash
   useEffect(() => {
-    if (!location.hash) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  if (location.hash) {
+    const id = location.hash.replace("#", "");
+    const el = document.getElementById(id);
+
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300); 
     }
-  }, [location]);
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}, [location]);
 
   return (
     <main className="bg-[#111111] text-white">
@@ -25,10 +34,7 @@ export default function Institute() {
         <InstituteHero />
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="scroll-mt-18">
-        <InstituteAbout />
-      </section>
+     
 
       {/* COURSES */}
       <section id="courses" className="scroll-mt-20">

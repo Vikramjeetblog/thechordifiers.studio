@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Record from "./pages/Record";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/Privacy";
+import Refund from "./pages/Refund";
 import TermsAndCondition from './pages/TermsAndCondition';
 import AboutUs from "./pages/Aboutus";
 import TheStudio from "./pages/TheStudio";
@@ -88,6 +89,7 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
            
             <Route path ="/Privacy" element = {<PrivacyPolicy/>}/>
+             <Route path ="/Refund" element = {<Refund/>}/>
             <Route path = "/Terms" element ={<TermsAndCondition/>}/>
           </Route>
 

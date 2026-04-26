@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
-
+import Toast from "../components/Toast";
 export default function LabelSignup() {
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
   const [form, setForm] = useState({
     name: "",
-    
     email: "",
     phone: "",
     location: "",
@@ -14,8 +16,7 @@ export default function LabelSignup() {
   });
 
   const [errors, setErrors] = useState({});
-  const [showSuccess, setShowSuccess] = useState(false);
-
+  
   const refs = {
     name: useRef(),
     
@@ -32,14 +33,14 @@ export default function LabelSignup() {
   const { name, value } = e.target;
 
   if (name === "name") {
-    // remove numbers automatically
+   
     const clean = value.replace(/[^a-zA-Z\s]/g, "");
     setForm({ ...form, name: clean });
     return;
   }
 
   if (name === "phone") {
-    // allow only numbers + limit 10
+    
     const clean = value.replace(/\D/g, "").slice(0, 10);
     setForm({ ...form, phone: clean });
     return;
@@ -93,22 +94,71 @@ export default function LabelSignup() {
     return Object.keys(err).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log(form);
+  if (!validate()) return;
 
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
-  };
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbz8sZbg4hwpvXex90wBZLzoNxHvHFkN1VtYHLr6dG3C5SoKY3c4bcQqDZ48OIp56DcM/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    setStatus("success");
+    setMessage("Application submitted successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      location: "",
+      genre: "",
+      experience: "",
+      portfolio: "",
+      about: ""
+    });
+
+    setErrors({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   const inputStyle =
     "w-full bg-black border px-5 py-4 rounded-xl outline-none transition";
 
   return (
     <section className="bg-black text-white min-h-screen py-24 px-6">
-
+      <Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
       <div className="max-w-3xl mx-auto">
 
         <h1 className="text-4xl md:text-6xl font-extrabold text-center">
@@ -134,7 +184,7 @@ export default function LabelSignup() {
 
           
 
-            {/* EMAIL */}
+            
             <div ref={refs.email}>
               <input
                 name="email"
@@ -147,7 +197,7 @@ export default function LabelSignup() {
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
-            {/* PHONE */}
+           
             <div ref={refs.phone}>
               <input
                 name="phone"
@@ -176,7 +226,7 @@ export default function LabelSignup() {
               {errors.location && <p className="text-red-500 text-sm mt-1">{errors.location}</p>}
             </div>
 
-            {/* GENRE */}
+            
             <div ref={refs.genre}>
               <input
                 name="genre"
@@ -189,7 +239,7 @@ export default function LabelSignup() {
               {errors.genre && <p className="text-red-500 text-sm mt-1">{errors.genre}</p>}
             </div>
 
-            {/* EXPERIENCE */}
+            
             <div ref={refs.experience}>
               <select
                 name="experience"
@@ -206,7 +256,7 @@ export default function LabelSignup() {
               {errors.experience && <p className="text-red-500 text-sm mt-1">{errors.experience}</p>}
             </div>
 
-            {/* PORTFOLIO */}
+          
             <div ref={refs.portfolio}>
               <input
                 name="portfolio"
@@ -219,7 +269,7 @@ export default function LabelSignup() {
               {errors.portfolio && <p className="text-red-500 text-sm mt-1">{errors.portfolio}</p>}
             </div>
 
-            {/* ABOUT */}
+           
             <div ref={refs.about}>
               <textarea
                 name="about"
@@ -233,21 +283,23 @@ export default function LabelSignup() {
               {errors.about && <p className="text-red-500 text-sm mt-1">{errors.about}</p>}
             </div>
 
-            <button className="w-full bg-[#f0e81b] text-black py-4 rounded-xl font-semibold hover:scale-105 transition">
-              SUBMIT APPLICATION
-            </button>
+            <button
+  disabled={loading}
+  className={`w-full py-4 rounded-xl font-semibold transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:scale-105"
+  }`}
+>
+  {loading ? "Submitting..." : "SUBMIT APPLICATION"}
+</button>
 
           </form>
         </div>
       </div>
 
-      {showSuccess && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2">
-          <div className="bg-[#111] border border-[#f0e81b] px-6 py-3 rounded-xl">
-            ✓ Application submitted
-          </div>
-        </div>
-      )}
+      
+      
     </section>
   );
 }

@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
-
+import Toast from "../components/Toast";
 export default function Mentorship() {
 
-  const formRef = useRef(null);
-
+const formRef = useRef(null);
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -22,7 +24,7 @@ export default function Mentorship() {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  /* ================= HANDLE CHANGE ================= */
+  /*  HANDLE CHANGE  */
   const handleChange = (e) => {
     let { name, value } = e.target;
 
@@ -31,7 +33,7 @@ export default function Mentorship() {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
 
-    // 🔒 NAME → only letters + space
+    //  NAME 
     if (name === "fullName") {
       value = value.replace(/[^a-zA-Z\s]/g, "");
     }
@@ -43,7 +45,7 @@ export default function Mentorship() {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
-  /* ================= VALIDATION ================= */
+  /*  VALIDATION  */
   const validate = () => {
     let newErrors = {};
 
@@ -67,38 +69,89 @@ export default function Mentorship() {
     return newErrors;
   };
 
-  /* ================= SUBMIT ================= */
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  /*  SUBMIT  */
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
+  const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
 
-      // mark all touched
-      const allTouched = {};
-      Object.keys(form).forEach((key) => (allTouched[key] = true));
-      setTouched(allTouched);
+    const allTouched = {};
+    Object.keys(form).forEach((key) => (allTouched[key] = true));
+    setTouched(allTouched);
 
-      // 🔥 scroll to first error
-      const firstError = Object.keys(validationErrors)[0];
-      const el = document.getElementsByName(firstError)[0];
+    const firstError = Object.keys(validationErrors)[0];
+    const el = document.getElementsByName(firstError)[0];
 
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        el.focus();
-      }
-
-      return;
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.focus();
     }
 
-    console.log("✅ FORM SUBMITTED:", form);
-  };
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
+
+    await fetch('https://script.google.com/macros/s/AKfycby3a_uuKpQFqlad5EAbRHF1XicBJaV8Wd5irls-CZBMTiv2QnMSAvHyXpXl7EfQMSyv-Q/exec', {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    setStatus("success");
+    setMessage("Registration submitted successfully!");
+
+    setForm({
+      fullName: "",
+      email: "",
+      phone: "",
+      dob: "",
+      city: "",
+      skills: "",
+      projects: "",
+      reason: "",
+      timeCommitment: "",
+      experience: "",
+      goals: "",
+      extra: "",
+    });
+
+    setErrors({});
+    setTouched({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   return (
     <section className="bg-[#111111] text-white min-h-screen pt-24 pb-16">
-
+<Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
       <div className="max-w-3xl mx-auto px-6">
 
         <div className="bg-[#1a1a1a] border border-white/10 p-8">
@@ -175,9 +228,16 @@ export default function Mentorship() {
               onChange={handleChange}
             />
 
-            <button className="w-full py-3 bg-[#f0e81b] text-black font-medium hover:brightness-90 transition">
-              Processed to Pay ₹599
-            </button>
+           <button
+  disabled={loading}
+  className={`w-full py-3 font-medium transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:brightness-90"
+  }`}
+>
+  {loading ? "Submitting..." : "Process to Pay ₹599"}
+</button>
 
           </form>
 
@@ -188,7 +248,7 @@ export default function Mentorship() {
   );
 }
 
-/* ================= INPUT ================= */
+/*  INPUT */
 function Field({ label, error, ...props }) {
   return (
     <div>
@@ -206,7 +266,7 @@ function Field({ label, error, ...props }) {
   );
 }
 
-/* ================= TEXTAREA ================= */
+/*  TEXTAREA  */
 function TextareaField({ label, error, ...props }) {
   return (
     <div>

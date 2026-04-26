@@ -6,7 +6,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ ADDED
 import studioA from "../assets/studioA-7.jpeg";
 import studioB from "../assets/studioB-1.webp";
 import studioC from "../assets/studioC-1.webp";
-import studioD from "../assets/studioD-7.webp";
+import studioD from "../assets/studioD-1.webp";
 
 const images = [studioA, studioB, studioC, studioD];
 

@@ -3,10 +3,12 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import Toast from "../../../components/Toast";
 export default function StudioContact() {
-  const navigate = useNavigate();
-
+const navigate = useNavigate();
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -61,16 +63,53 @@ export default function StudioContact() {
   };
 
   //  SUBMIT
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
-    setErrors(validationErrors);
+  const validationErrors = validate();
+  setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) return;
+  if (Object.keys(validationErrors).length > 0) return;
 
-    console.log(form);
-  };
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
+
+    await fetch('https://script.google.com/macros/s/AKfycbz7acdaXq-jpgIMt4rMrhru7SdroDZd4ahiR9K8-AIX7UBWTiYLyP48irtJlWdtBKBvuA/exec', {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    setStatus("success");
+    setMessage("Message sent successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    });
+
+    setErrors({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   return (
 
@@ -79,7 +118,14 @@ export default function StudioContact() {
 {/* CONTACT SECTION */}
 <section className="py-24">
 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-
+<Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
 {/* LEFT SIDE */}
 <div>
 <h2 className="text-4xl font-['League_Spartan'] mb-6">Get In Touch</h2>
@@ -94,8 +140,8 @@ Our team will help you choose the right path for your music career.
 <div>
 <h4 className="font-semibold">Studio Address</h4>
 <p className="text-white/70 text-sm">
-Creatous Collective Pvt Ltd  
-Siliguri, West Bengal, India
+  The Chordifiers Studio, Shaktigarh Main Road, Ward 31<br />
+  Siliguri, Dist. Darjeeling, West Bengal – 734004
 </p>
 </div>
 </div>
@@ -112,7 +158,7 @@ Siliguri, West Bengal, India
 <div className="text-[#f0e81b] text-xl"><FaEnvelope/></div>
 <div>
 <h4 className="font-semibold">Email</h4>
-<p className="text-white/70 text-sm">team@thechordifiers.studio</p>
+<p className="text-white/70 text-sm">thechordifiersstudio@gmail.com</p>
 </div>
 </div>
 </div>
@@ -187,10 +233,15 @@ className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:b
 ></textarea>
 
 <button
-type="submit"
-className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90"
+  type="submit"
+  disabled={loading}
+  className={`px-8 py-3 font-semibold transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:opacity-90"
+  }`}
 >
-Send Message
+  {loading ? "Sending..." : "Send Message"}
 </button>
 
 </form>

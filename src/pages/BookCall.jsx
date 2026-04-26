@@ -3,11 +3,12 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
-
+import Toast from "../components/Toast";
 export default function BookCall() {
-  const [params] = useSearchParams();
-
-  
+const [params] = useSearchParams();
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
 
   const [form, setForm] = useState({
     name:  "",
@@ -22,16 +23,16 @@ export default function BookCall() {
 
   const timeSlots = ["10:00 AM", "01:00 PM", "04:00 PM", "06:00 PM"];
 
-  // 🔹 UPDATED HANDLE CHANGE (IMPORTANT)
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // NAME → only letters + space
+    // NAME
     if (name === "name") {
       if (!/^[a-zA-Z\s]*$/.test(value)) return;
     }
 
-    // PHONE → only digits + max 10
+    // PHONE 
     if (name === "phone") {
       const digits = value.replace(/\D/g, "");
       if (digits.length > 10) return;
@@ -41,7 +42,7 @@ export default function BookCall() {
     setForm({ ...form, [name]: value });
   };
 
-  // 🔹 UPDATED VALIDATION
+  //  UPDATED VALIDATION
   const validate = () => {
     const newErrors = {};
 
@@ -69,27 +70,77 @@ export default function BookCall() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
-    setErrors(validationErrors);
+  const validationErrors = validate();
+  setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) return;
+  if (Object.keys(validationErrors).length > 0) return;
+
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
 
     const formattedData = {
       ...form,
       date: format(form.date, "dd/MM/yyyy"),
     };
 
-    console.log("FINAL DATA:", formattedData);
-  };
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbzluF-dhGrpgg41mZb3kLsGUuBIV-6RJKlxFex0Uj9jCe4YQabR3qJ177KNNuIjfzaE/exec", 
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(formattedData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    setStatus("success");
+    setMessage("Call booked successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      date: null,
+      time: "",
+    });
+
+    setErrors({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   return (
     <section className="bg-[#111111] text-white min-h-screen py-16 pt-24">
+      <Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
 
-        {/* ================= FORM ================= */}
+        {/*  FORM  */}
         <div className="bg-[#1a1a1a] p-8 border border-white/10">
 
           <h2 className="text-2xl font-semibold mb-4">
@@ -98,7 +149,7 @@ export default function BookCall() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
 
-            {/* NAME */}
+           
             <div>
               {/* NAME */}
 <div>
@@ -109,12 +160,12 @@ export default function BookCall() {
     onChange={handleChange}
     className="input"
   />
-  {errors.name && <p className="error">{errors.name}</p>}
+  
 </div>
               {errors.name && <p className="error">{errors.name}</p>}
             </div>
 
-            {/* EMAIL */}
+           
             <div>
               <input
                 name="email"
@@ -140,7 +191,7 @@ export default function BookCall() {
               {errors.phone && <p className="error">{errors.phone}</p>}
             </div>
 
-            {/* DATE */}
+           
             <div>
               <DatePicker
                 selected={form.date}
@@ -171,7 +222,7 @@ export default function BookCall() {
               {errors.time && <p className="error">{errors.time}</p>}
             </div>
 
-            {/* MESSAGE */}
+           
             <div>
               <textarea
                 name="message"
@@ -182,20 +233,27 @@ export default function BookCall() {
               />
             </div>
 
-            <button className="w-full py-3 bg-[#f0e81b] text-black font-medium hover:opacity-90 transition">
-              Book Call
-            </button>
+          <button
+  disabled={loading}
+  className={`w-full py-3 font-medium transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:opacity-90"
+  }`}
+>
+  {loading ? "Booking..." : "Book Call"}
+</button>
 
           </form>
         </div>
 
         <div className="border border-white/10 bg-[#1a1a1a]">
 
-  {/* ===== MAP ===== */}
+  {/*  MAP */}
   <div className="w-full">
     <iframe
-      title="The Chordifiers Studio Location"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.5492559700447!2d88.4100217742397!3d26.69489467677753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e441acea247e9b%3A0x77c74beed4aadd84!2sThe%20Chordifiers%20Studio%20(TCS)!5e0!3m2!1sen!2sin!4v1749987584228!5m2!1sen!2sin"
+      title="The Chordifires Music Institue(TCS)"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3564.545301064381!2d88.4114563!3d26.6950211!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4413f6a1a5b4d%3A0x40144543d5a04f29!2sThe%20Chordifiers%20Music%20Institute%20(TCMI)!5e0!3m2!1sen!2sin!4v1777120218449!5m2!1sen!2sin"
       width="100%"
       height="260"
       style={{ border: 0 }}
@@ -205,7 +263,7 @@ export default function BookCall() {
     ></iframe>
   </div>
 
-  {/* ===== INFO SECTION ===== */}
+  {/*  INFO SECTION */}
   <div className="p-6">
 
     <p className="text-xs text-gray-500 mb-2">

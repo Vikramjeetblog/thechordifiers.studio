@@ -9,10 +9,12 @@ import img1 from "../../../assets/studioC-1.webp";
 import img2 from "../../../assets/studioC-2.webp";
 import img3 from "../../../assets/studioC-3.webp";
 import img4 from "../../../assets/studioC-4.webp";
+import img5 from "../../../assets/studioC-6.webp";
+import img6 from "../../../assets/studioC-7.webp";
+import img7 from "../../../assets/studioC-8.png";
 
 
-
-const slides = [img1, img2, img3, img4];
+const slides = [img1, img2, img3, img4, img5, img6, img7];
 
 export default function StudioBHero() {
   const [activeIndex, setActiveIndex] = useState(0);

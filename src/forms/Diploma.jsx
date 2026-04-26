@@ -1,6 +1,9 @@
 import { useState } from "react";
-
+import Toast from "../components/Toast";
 export default function Diploma() {
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -17,7 +20,7 @@ export default function Diploma() {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  /* ================= HANDLE CHANGE ================= */
+  /*  HANDLE CHANGE */
   const handleChange = (e) => {
     let { name, value } = e.target;
 
@@ -36,7 +39,7 @@ export default function Diploma() {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
-  /* ================= VALIDATION ================= */
+  /* VALIDATION */
   const validate = () => {
     let err = {};
 
@@ -59,28 +62,83 @@ export default function Diploma() {
     return err;
   };
 
-  /* ================= SUBMIT ================= */
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  /*  SUBMIT */
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
+  const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
 
-      const allTouched = {};
-      Object.keys(form).forEach((k) => (allTouched[k] = true));
-      setTouched(allTouched);
+    const allTouched = {};
+    Object.keys(form).forEach((k) => (allTouched[k] = true));
+    setTouched(allTouched);
 
-      return;
-    }
+    return;
+  }
 
-    console.log("✅ Diploma Form:", form);
-  };
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
 
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbyGbMPJBWm2N53Eva2aJzDIUxvSiv3Uzz9R4fXXE6GCO_jk5ruOIIFN3xr1U7o3bhYZ/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    //  SUCCESS UI
+    setStatus("success");
+    setMessage("Registration submitted successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      diploma: "",
+      mode: "",
+      goals: "",
+      experience: "",
+      source: "",
+      notes: "",
+    });
+
+    setErrors({});
+    setTouched({});
+
+  } catch (error) {
+    console.error(error);
+
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    //  auto hide after 3 sec
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
   return (
     <section className="bg-[#111] text-white min-h-screen pt-24 pb-16">
-
+  <Toast
+      message={message}
+      type={status}
+      onClose={() => {
+        setMessage("");
+        setStatus("");
+      }}
+    />
       <div className="max-w-3xl mx-auto px-6">
 
         <div className="bg-[#1a1a1a] border border-white/10 p-8">
@@ -117,7 +175,7 @@ export default function Diploma() {
               error={touched.phone && errors.phone}
             />
 
-            {/* DIPLOMA DROPDOWN */}
+            {/* DROPDOWN */}
             <SelectField
               label="Select Diploma"
               name="diploma"
@@ -164,7 +222,7 @@ export default function Diploma() {
               error={touched.experience && errors.experience}
             />
 
-            {/* SOURCE */}
+          
             <SelectField
               label="How did you hear about us?"
               name="source"
@@ -177,7 +235,7 @@ export default function Diploma() {
                 "YouTube",
                 "Google",
                 "Friend / Referral",
-                "Event",
+               
                 "Other",
               ]}
             />
@@ -189,9 +247,16 @@ export default function Diploma() {
               onChange={handleChange}
             />
 
-            <button className="w-full py-3 bg-[#f0e81b] text-black font-medium hover:brightness-90 transition">
-              Proceed to pay ₹999 
-            </button>
+      <button
+  disabled={loading}
+  className={`w-full py-3 font-medium transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:brightness-90"
+  }`}
+>
+  {loading ? "Submitting..." : "Proceed to pay ₹999"}
+</button>
 
           </form>
 

@@ -1,7 +1,9 @@
 import { useState } from "react";
-
+import Toast from "../components/Toast";
 export default function Certification() {
-
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState("");
+const [status, setStatus] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -18,16 +20,16 @@ export default function Certification() {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  /* ================= HANDLE CHANGE ================= */
+  /* HANDLE CHANGE */
   const handleChange = (e) => {
     let { name, value } = e.target;
 
-    // Name → only letters
+    // Name 
     if (name === "name") {
       value = value.replace(/[^a-zA-Z\s]/g, "");
     }
 
-    // Phone → only numbers (10 digits)
+    // Phone 
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
@@ -39,7 +41,7 @@ export default function Certification() {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
-  /* ================= VALIDATION ================= */
+  /*  VALIDATION  */
   const validate = () => {
     let err = {};
 
@@ -63,28 +65,81 @@ export default function Certification() {
     return err;
   };
 
-  /* ================= SUBMIT ================= */
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  /*  SUBMIT  */
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
+  const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
 
-      const allTouched = {};
-      Object.keys(form).forEach((k) => (allTouched[k] = true));
-      setTouched(allTouched);
+    const allTouched = {};
+    Object.keys(form).forEach((k) => (allTouched[k] = true));
+    setTouched(allTouched);
+    return;
+  }
 
-      return;
-    }
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
 
-    console.log("✅ Certification Form:", form);
-  };
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbwNY0_c9IRb8E4b5Ka6wV8L16GdUk-YFRF9VDedilsfSRVhNCPZ0CCclRklJCB196iP/exec", 
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    setStatus("success");
+    setMessage("Registration submitted successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      course: "",
+      mode: "",
+      goals: "",
+      experience: "",
+      daw: "",
+      source: "",
+      notes: "",
+    });
+
+    setErrors({});
+    setTouched({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   return (
     <section className="bg-[#111] text-white min-h-screen pt-24 pb-16">
-
+    <Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
       <div className="max-w-3xl mx-auto px-6">
 
         <div className="bg-[#1a1a1a] border border-white/10 p-8">
@@ -120,7 +175,7 @@ export default function Certification() {
               error={touched.phone && errors.phone}
             />
 
-            {/* COURSE DROPDOWN */}
+            {/*  DROPDOWN */}
             <SelectField
               label="Select Certification"
               name="course"
@@ -165,7 +220,7 @@ export default function Certification() {
               error={touched.experience && errors.experience}
             />
 
-            {/* DAW RADIO */}
+            {/* DAW */}
             <div>
               <label className="text-sm text-gray-400 block mb-2">
                 Which DAW do you use?
@@ -212,7 +267,7 @@ export default function Certification() {
                 "YouTube",
                 "Google",
                 "Friend / Referral",
-                "Event",
+               
                 "Other",
               ]}
             />
@@ -224,9 +279,16 @@ export default function Certification() {
               onChange={handleChange}
             />
 
-            <button className="w-full py-3 bg-[#f0e81b] text-black font-medium hover:brightness-90 transition">
-              Proceed to pay ₹999
-            </button>
+           <button
+  disabled={loading}
+  className={`w-full py-3 font-medium transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:brightness-90"
+  }`}
+>
+  {loading ? "Submitting..." : "Proceed to pay ₹999"}
+</button>
 
           </form>
 
@@ -236,7 +298,7 @@ export default function Certification() {
   );
 }
 
-/* ================= INPUT ================= */
+/*  INPUT  */
 function Field({ label, error, ...props }) {
   return (
     <div>
@@ -254,7 +316,7 @@ function Field({ label, error, ...props }) {
   );
 }
 
-/* ================= SELECT ================= */
+/*  SELECT  */
 function SelectField({ label, options, error, ...props }) {
   return (
     <div>
@@ -277,7 +339,7 @@ function SelectField({ label, options, error, ...props }) {
   );
 }
 
-/* ================= TEXTAREA ================= */
+/* TEXTAREA  */
 function TextareaField({ label, error, ...props }) {
   return (
     <div>

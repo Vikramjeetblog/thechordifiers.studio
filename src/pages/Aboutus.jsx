@@ -4,16 +4,17 @@ import { FaPlay } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 
 import hero from "../assets/institute.webp";
-import studio from "../assets/studioD-1.webp";
+import studio from "../assets/studioD-4.webp";
 
-import bts1 from "../assets/studio12.png";
-import bts2 from "../assets/studioA-7.jpeg";
-import bts3 from "../assets/studiogallery3.jpeg";
-import bts4 from "../assets/studiogallery4.webp";
-import bts5 from "../assets/studiogallery5.jpeg";
-import bts6 from "../assets/studiogallery6.webp";
-import video1 from "../assets/video1.mp4";
-import video3 from "../assets/video3.mp4";
+import bts1 from "../assets/gallery21.jpg";
+import bts2 from "../assets/gallery22.jpg";
+import bts3 from "../assets/gallery23.jpg";
+import bts4 from "../assets/gallery24.jpg";
+import bts5 from "../assets/gallery25.jpg";
+import bts6 from "../assets/gallery26.jpeg";
+import bts7 from "../assets/gallery27.jpg";
+import video1 from "../assets/studiovideo1.mp4";
+import video3 from "../assets/studiovideo3.mp4";
 
 const media = [
   { type: "image", src: bts1 },
@@ -22,7 +23,7 @@ const media = [
   { type: "image", src: bts5 },
   { type: "image", src: bts6 },
   { type: "video", src: video3 },
-  { type: "image", src: bts3 },
+  { type: "image", src: bts7 },
   { type: "video", src: video1 },
 ];
 
@@ -189,7 +190,7 @@ export default function AboutPage() {
       </p>
 
       <p className="text-white/80 leading-relaxed">
-        SHAKTIGARH ROAD NO. 8, Siliguri,<br/> Dist- Darjeeling, West Bengal, 734004
+      The Chordifres Studio  Shaktigarh Main Road, Ward 31 Siliguri,<br/> Dist- Darjeeling, West Bengal, 734004
       </p>
 
       <p className="text-white/80 mt-4">

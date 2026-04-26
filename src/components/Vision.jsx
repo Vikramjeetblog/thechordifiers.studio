@@ -5,12 +5,13 @@ import { HashLink } from "react-router-hash-link";
 
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
-import studioB from "../assets/gallery2.jpeg";
-import studioC from "../assets/gallery7.jpeg";
-import studioD from "../assets/gallery4.jpeg";
-import studioE from "../assets/gallery3.jpeg";
-import studioF from "../assets/gallery10.jpeg"
-const images = [studioA, studioB, studioC, studioD,studioE,studioF];
+import studioB from "../assets/gallery7.jpeg";
+import studioC from "../assets/vision.jpg"
+import studioD from "../assets/vision2.jpg"
+import studioE from "../assets/vision3.jpg"
+import studioF from "../assets/vision4.jpg"
+
+const images = [studioA,studioB, studioC, studioD,studioE,studioF];
 
 const container = {
   hidden: {},
@@ -46,7 +47,7 @@ export default function Vision() {
     return () => clearInterval(interval);
   }, []);
 
-  // ✅ MANUAL CONTROLS
+  //  MANUAL CONTROLS
   const nextSlide = () => {
     setActive((prev) => (prev + 1) % images.length);
   };

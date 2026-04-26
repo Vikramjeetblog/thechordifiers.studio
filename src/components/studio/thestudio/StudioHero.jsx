@@ -1,84 +1,140 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-import "swiper/css";
-import "swiper/css/effect-fade";
+import video1 from "../../../assets/studiovideo1.mp4";
+import video2 from "../../../assets/studiovideo2.mp4";
 
 import img1 from "../../../assets/studioA-7.jpeg";
-import img2 from "../../../assets/studioB-1.webp";
-import img3 from "../../../assets/studioC-1.webp";
-import img4 from "../../../assets/studioD-7.webp";
+import img2 from "../../../assets/studiogallery5.jpeg";
+import img3 from "../../../assets/studiogallery3.jpeg";
+import img4 from "../../../assets/gallery10.jpeg";
 
-const slides = [
-  { img: img1, title: "STUDIO A" },
-  { img: img2, title: "STUDIO B" },
-  { img: img3, title: "STUDIO C" },
-  { img: img4, title: "STUDIO D" },
+const media = [
+  { type: "image", src: img1 },
+  { type: "video", src: video1 },
+  { type: "image", src: img2 },
+  { type: "video", src: video2 },
+  { type: "image", src: img3 },
+  { type: "image", src: img4 },
 ];
 
-export default function StudioBHero() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const swiperRef = useRef(null);
+export default function StudioMomentsHero() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // 🔥 Auto slide (pause supported)
+  useEffect(() => {
+    if (paused) return;
+
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % media.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [paused]);
+
+  // 🔥 Manual controls
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % media.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev - 1 + media.length) % media.length);
+  };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section
+      className="relative h-screen w-full overflow-hidden bg-black"
+      onClick={() => setPaused(!paused)} // 🔥 click to pause/resume
+    >
 
-      {/* SWIPER */}
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        loop
-        speed={1500}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-        className="w-full h-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative w-full h-screen overflow-hidden">
+      {/* 🔥 MEDIA */}
+      <AnimatePresence mode="wait">
+        {media[index].type === "image" ? (
+          <motion.img
+            key={media[index].src}
+            src={media[index].src}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <motion.video
+            key={media[index].src}
+            src={media[index].src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
+      </AnimatePresence>
 
-              {/* IMAGE */}
-              <img
-                src={slide.img}
-                alt={slide.title}
-                className="w-full h-full object-cover scale-105 transition-transform duration-[6000ms] ease-out"
-              />
+      {/* 🔥 OVERLAY */}
+      <div className="absolute inset-0 bg-black/60" />
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-black/25" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* TEXT CONTENT */}
-      <div className="absolute bottom-20 left-6 md:left-16 text-white z-20 pt-24 pointer-events-none">
-
-        {/* TITLE */}
-        <h1 className="text-[30px] md:text-[140px] font-['League_Spartan'] tracking-wide leading-none">
-          {slides[activeIndex].title}
+      {/* 🔥 TEXT */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <h1 className="text-5xl md:text-7xl font-['Anton'] text-[#f0e81b] mb-4">
+          STUDIO MOMENTS
         </h1>
 
-        {/* INDICATORS */}
-        <div className="flex gap-3 mt-4 pointer-events-auto">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => swiperRef.current?.slideToLoop(i)}
-              className={`h-[3px] transition-all duration-500 ${
-                i === activeIndex
-                  ? "w-14 bg-white"
-                  : "w-8 bg-white/30 hover:bg-white/60"
-              }`}
-            />
-          ))}
-        </div>
+        <p className="text-white/70 text-lg md:text-xl max-w-xl">
+          Real sessions. Real energy. Experience the studio like never before.
+        </p>
 
+        {/* 🔥 PAUSE INDICATOR */}
+        {paused && (
+          <span className="mt-4 text-white/60 text-sm">
+            Paused
+          </span>
+        )}
+      </div>
+
+      {/* 🔥 ARROWS */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          prevSlide();
+        }}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black p-3 rounded-full text-white"
+      >
+        <FiChevronLeft size={24} />
+      </button>
+
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          nextSlide();
+        }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black p-3 rounded-full text-white"
+      >
+        <FiChevronRight size={24} />
+      </button>
+
+      {/* 🔥 DOTS */}
+      <div className="absolute bottom-6 w-full flex justify-center gap-3 z-20">
+        {media.map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex(i);
+            }}
+            className={`w-3 h-3 rounded-full transition ${
+              i === index
+                ? "bg-[#f0e81b] scale-125"
+                : "bg-white/40"
+            }`}
+          />
+        ))}
       </div>
 
     </section>

@@ -1,31 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { FiX } from "react-icons/fi";
+import { useState } from "react";
 
-
-import studio1 from "../assets/studioA-7.jpeg";
-import studio2 from "../assets/studioA-2.jpeg";
-import studio3 from "../assets/studioB-1.webp";
-import studio4 from "../assets/studioB-2.webp";
-import studio5 from "../assets/studioC-1.webp";
-import studio6 from "../assets/studioC-3.webp";
-import studio7 from "../assets/studioD-6.webp";
-import studio8 from "../assets/studioD-7.webp";
-
-const images = [studio1, studio2, studio3, studio4,studio5,studio6,studio7,studio8];
-
+import studioVideo from "../assets/studio-Preview.mp4";
+import studioFallback from "../assets/studioC-1.webp"; // 🔥 fallback image
 export default function StudioPreviewModal({ open, onClose }) {
-  const [index, setIndex] = useState(0);
-
-  //  Auto change images
-  useEffect(() => {
-    if (!open) return;
-
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [open]);
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <AnimatePresence>
@@ -46,22 +26,28 @@ export default function StudioPreviewModal({ open, onClose }) {
             exit={{ scale: 0.95 }}
             className="relative w-[95%] md:w-[85%] max-w-6xl h-[70vh] md:h-[80vh] rounded-xl overflow-hidden border border-white/10"
           >
-            {/* 🔥 IMAGE STACK (NO FLICKER, NO TRANSPARENCY GAP) */}
-            {images.map((img, i) => (
-              <motion.img
-                key={i}
-                src={img}
-                animate={{
-                  opacity: i === index ? 1 : 0,
-                  scale: i === index ? 1 : 1.05,
-                }}
-                transition={{ duration: 0.8 }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            ))}
+            {/* 🔥 FALLBACK IMAGE */}
+            <img
+              src={studioFallback}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                loaded ? "opacity-0" : "opacity-100"
+              }`}
+            />
+
+            {/* 🔥 VIDEO */}
+            <video
+              src={studioVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              onCanPlay={() => setLoaded(true)} // ✅ fade video in
+              className="absolute inset-0 w-full h-full object-cover"
+            />
 
             {/* OVERLAY */}
-            <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-center px-6">
+            <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-center px-6">
               <div>
                 <h2 className="text-4xl md:text-5xl font-['Anton'] text-[#f0e81b] mb-4">
                   STUDIO PREVIEW
@@ -76,9 +62,9 @@ export default function StudioPreviewModal({ open, onClose }) {
             {/* CLOSE BUTTON */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-white text-xl hover:scale-110 transition"
+              className="absolute top-4 right-4 bg-black/70 p-3 rounded-full text-white hover:scale-110 transition"
             >
-              ✕
+              <FiX size={22} />
             </button>
           </motion.div>
         </motion.div>

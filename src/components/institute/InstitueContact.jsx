@@ -4,7 +4,7 @@ import hero2 from "../../assets/institute2.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from "swiper/modules"
-
+import Toast from "../../components/Toast";
 import "swiper/css"
 import "swiper/css/pagination"
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,9 @@ import { useState } from "react";
 
 export default function Contact() {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
+ const [message, setMessage] = useState("");
+ const [status, setStatus] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -22,16 +24,16 @@ export default function Contact() {
 
   const [errors, setErrors] = useState({});
 
-  // 🔹 HANDLE CHANGE (with restrictions)
+  //  HANDLE CHANE
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // NAME → only letters
+    // NAME 
     if (name === "name") {
       if (!/^[a-zA-Z\s]*$/.test(value)) return;
     }
 
-    // PHONE → only digits max 10
+    // PHONE 
     if (name === "phone") {
       const digits = value.replace(/\D/g, "");
       if (digits.length > 10) return;
@@ -41,7 +43,7 @@ export default function Contact() {
     setForm({ ...form, [name]: value });
   };
 
-  // 🔹 VALIDATION
+  //  VALIDATION
   const validate = () => {
     const newErrors = {};
 
@@ -66,17 +68,56 @@ export default function Contact() {
     return newErrors;
   };
 
-  // 🔹 SUBMIT
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  //  SUBMIT
+ const SCRIPT_URL = "YOUR_SCRIPT_LINK_HERE"; // 🔥 ONLY CHANGE THIS
 
-    const validationErrors = validate();
-    setErrors(validationErrors);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (Object.keys(validationErrors).length > 0) return;
+  const validationErrors = validate();
+  setErrors(validationErrors);
 
-    console.log(form);
-  };
+  if (Object.keys(validationErrors).length > 0) return;
+
+  try {
+    setLoading(true);
+    setMessage("");
+    setStatus("");
+
+    await fetch('https://script.google.com/macros/s/AKfycbz7acdaXq-jpgIMt4rMrhru7SdroDZd4ahiR9K8-AIX7UBWTiYLyP48irtJlWdtBKBvuA/exec', {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    setStatus("success");
+    setMessage("Message sent successfully!");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    });
+
+    setErrors({});
+
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+    setMessage("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+
+    setTimeout(() => {
+      setMessage("");
+      setStatus("");
+    }, 3000);
+  }
+};
 
   return (
 
@@ -85,6 +126,14 @@ export default function Contact() {
 {/* HERO */}
 <section>
 <div className=" w-full h-full flex items-center justify-center">
+  <Toast
+  message={message}
+  type={status}
+  onClose={() => {
+    setMessage("");
+    setStatus("");
+  }}
+/>
 <h1 className="text-4xl md:text-6xl font-['Anton'] mb-4 tracking-wide">
   <span className="text-white">CONTACT</span>{" "}
   <span className="text-[#f0e81b]">US</span>
@@ -92,7 +141,7 @@ export default function Contact() {
 </div>
 </section>
 
-{/* CONTACT SECTION */}
+{/* CONTACT  */}
 <section className="py-24">
 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
 
@@ -108,10 +157,9 @@ Our team will help you choose the right path for your music career.
 <div className="flex items-start gap-4">
 <div className="text-[#f0e81b] text-xl"><FaMapMarkerAlt/></div>
 <div>
-<h4 className="font-semibold">Studio Address</h4>
+<h4 className="font-semibold">Institute Address</h4>
 <p className="text-white/70 text-sm">
-Creatous Collective Pvt Ltd  
-Siliguri, West Bengal, India
+The Chordifiers Music Institute (TCMI),<br/> Shaktigarh Main Road, Ward 31, Saktigarh,<br/> Siliguri, West Bengal
 </p>
 </div>
 </div>
@@ -128,15 +176,15 @@ Siliguri, West Bengal, India
 <div className="text-[#f0e81b] text-xl"><FaEnvelope/></div>
 <div>
 <h4 className="font-semibold">Email</h4>
-<p className="text-white/70 text-sm">team@thechordifiers.studio</p>
+<p className="text-white/70 text-sm">thechordifiers.musicinstitute@gmail.com</p>
 </div>
 </div>
 </div>
 
 <div className="mt-12 border border-white/10">
 <iframe
-title="studio-location"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.5492559700447!2d88.4100217742397!3d26.69489467677753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e441acea247e9b%3A0x77c74beed4aadd84!2sThe%20Chordifiers%20Studio%20(TCS)!5e0!3m2!1sen!2sin!4v1749987584228!5m2!1sen!2sin"
+title="institue-location"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3564.545301064381!2d88.4114563!3d26.6950211!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4413f6a1a5b4d%3A0x40144543d5a04f29!2sThe%20Chordifiers%20Music%20Institute%20(TCMI)!5e0!3m2!1sen!2sin!4v1777120218449!5m2!1sen!2sin"
       width="100%"
       height="260"
       style={{ border: 0 }}
@@ -203,10 +251,15 @@ className="w-full bg-black border border-white/10 px-4 py-3 outline-none focus:b
 ></textarea>
 
 <button
-type="submit"
-className="bg-[#f0e81b] text-black px-8 py-3 font-semibold hover:opacity-90"
+  type="submit"
+  disabled={loading}
+  className={`px-8 py-3 font-semibold transition ${
+    loading
+      ? "bg-gray-500 cursor-not-allowed"
+      : "bg-[#f0e81b] text-black hover:opacity-90"
+  }`}
 >
-Send Message
+  {loading ? "Sending..." : "Send Message"}
 </button>
 
 </form>
@@ -215,7 +268,7 @@ Send Message
 </div>
 </section>
 
-{/* CTA SECTION */}
+{/* CTA  */}
 
 <section className="bg-[#0e0e0e] py-24 text-center">
 

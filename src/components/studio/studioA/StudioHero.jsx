@@ -5,13 +5,14 @@ import { useState, useRef } from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import img1 from "../../../assets/studioA-7.jpeg";
-import img2 from "../../../assets/studioA-2.jpeg";
-import img3 from "../../../assets/studioA-5.jpeg";
-import img4 from "../../../assets/studioA-6.jpeg";
+import img2 from "../../../assets/studioA-25.webp";
+import img3 from "../../../assets/studioA-22.jpeg";
+import img4 from "../../../assets/studioA-23.jpeg";
+import img5 from "../../../assets/studioA-24.jpeg";
+import img6 from "../../../assets/studioA-21.jpeg";
 
 
-
-const slides = [img1, img2, img3, img4];
+const slides = [img1, img2, img3, img4,img5,img6];
 
 export default function StudioBHero() {
   const [activeIndex, setActiveIndex] = useState(0);

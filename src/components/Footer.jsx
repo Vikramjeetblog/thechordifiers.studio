@@ -73,6 +73,11 @@ export default function Footer() {
                 Privacy Policy
               </a>
             </li>
+            <li>
+              <a href="/refund" className="hover:text-white transition">
+                Refund Policy
+              </a>
+            </li>
 
             <li>
               <a href="/institute/contact" className="hover:text-white transition">
@@ -97,7 +102,7 @@ export default function Footer() {
             <p className="flex items-start gap-3">
               <FaMapMarkerAlt className="mt-1 text-[#f0e81b]" />
               THE CHORDIFIRES STUDIO
-SHAKTIGARH ROAD NO. 8, Siliguri, Dist- Darjeeling, West Bengal, 734004
+SHAKTIGARH ROAD NO. 8, Woard 31 Siliguri, Dist- Darjeeling, West Bengal, 734004
             </p>
 
             <p className="flex items-center gap-3">

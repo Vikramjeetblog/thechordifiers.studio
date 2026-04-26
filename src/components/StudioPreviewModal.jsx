@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import { useState } from "react";
 
-import studioVideo from "../assets/studio-Preview.mp4";
-import studioFallback from "../assets/studioC-1.webp"; // 🔥 fallback image
+import studioVideo from "../assets/Studio-Preview.mp4";
+import studioFallback from "../assets/studioC-1.webp";
 export default function StudioPreviewModal({ open, onClose }) {
   const [loaded, setLoaded] = useState(false);
 

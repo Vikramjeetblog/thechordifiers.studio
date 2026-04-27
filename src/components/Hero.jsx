@@ -1,32 +1,41 @@
 import Navbar from "./Navbar";
 import { FaPlay } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import StudioPreviewModal from "../components/StudioPreviewModal";
 
 // IMAGES
-import studioA from "../assets/studioA-2.jpeg";
+import studioA from "../assets/studioA-12.webp";
 import studioB from "../assets/studioB-1.webp";
-import studioC from "../assets/studioC-10.png";
+import studioC from "../assets/studioC-10.webp";
 import studioD from "../assets/studioD-7.webp";
 
 export default function Hero() {
   const navigate = useNavigate();
   const [hoveredBtn, setHoveredBtn] = useState(null);
 
-  const images = [studioA, studioB, studioC, studioD];
-  const [index, setIndex] = useState(0);
+  //  memoize images
+  const images = useMemo(() => [studioA, studioB, studioC, studioD], []);
 
-  // ✅ Correct state
+  const [index, setIndex] = useState(0);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
+  //  Preload all images in background 
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [images]);
+
+  //  Slider 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center text-white pt-28 pb-24">
@@ -34,8 +43,10 @@ export default function Hero() {
       {/* BACKGROUND IMAGE */}
       <img
         src={images[index]}
-        className="absolute inset-0 w-full h-full object-cover"
         alt="studio"
+        fetchPriority="high"     // ✅ faster first load
+        decoding="async"        // ✅ better rendering
+        className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* OVERLAY */}
@@ -73,7 +84,6 @@ export default function Hero() {
             {hoveredBtn === "artist" ? "JOIN PRIORITY LIST" : "FOR ARTISTS"}
           </button>
 
-          {/* ✅ PREVIEW BUTTON */}
           <button
             onClick={() => setIsPreviewOpen(true)}
             className="flex items-center gap-3 border border-white/40 px-6 py-3 rounded-full hover:bg-[#f0e81b] hover:text-black transition"
@@ -107,7 +117,6 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* ✅ FIXED: correct prop name */}
       <StudioPreviewModal
         open={isPreviewOpen}
         onClose={() => setIsPreviewOpen(false)}

@@ -1,32 +1,54 @@
 import { useNavigate } from "react-router-dom";
-import academyBg from "../assets/studioD-7.webp"; 
+import { useEffect, useRef, useState } from "react";
+import academyBg from "../assets/studioD-7.webp";
 
 export default function Academy() {
-
   const navigate = useNavigate();
+  const ref = useRef(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  //  Load image ONLY when section is near viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
+      ref={ref}
       id="academy"
       className="relative text-white py-32 px-6 overflow-hidden"
     >
-
-      {/* 🔥 BACKGROUND IMAGE */}
+      {/*  BACKGROUND IMAGE */}
       <div className="absolute inset-0">
-        <img
-          src={academyBg}
-          className="w-full h-full object-cover"
-          alt="Academy"
-        />
+        {isVisible && (
+          <img
+            src={academyBg}
+            alt="Academy"
+            loading="lazy"        // ✅ lazy load
+            decoding="async"     // ✅ faster render
+            className="w-full h-full object-cover"
+          />
+        )}
 
         {/* DARK OVERLAY */}
         <div className="absolute inset-0 bg-black/40" />
 
-        {/* GRADIENT OVERLAY (PREMIUM LOOK) */}
+        {/* GRADIENT OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black" />
       </div>
 
-      {/* subtle glow */}
+      {/* glow  */}
       <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-purple-600/10 blur-[160px]" />
       <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-yellow-400/10 blur-[160px]" />
 
@@ -56,7 +78,6 @@ export default function Academy() {
 
         {/* CARDS */}
         <div className="grid md:grid-cols-2 gap-8 mt-16">
-
           <div className="border border-zinc-700 rounded-2xl p-8 text-left bg-black/40 backdrop-blur-md hover:border-zinc-500 transition">
             <h3 className="font-semibold text-xl">
               Professional Diploma Courses
@@ -76,18 +97,15 @@ export default function Academy() {
               Vocals, and specialized creative skills.
             </p>
           </div>
-
         </div>
 
         {/* AI BOX */}
         <div className="mt-20 border border-purple-800/40 rounded-2xl p-8 max-w-3xl mx-auto bg-black/50 backdrop-blur-md">
-
           <p className="text-xs text-gray-400 tracking-[0.2em] mb-6">
             BUILD YOUR ROADMAP WITH AI
           </p>
 
           <div className="flex flex-col md:flex-row gap-4">
-
             <input
               type="text"
               placeholder="What is your music dream? (e.g., Film composer, Producer...)"
@@ -97,9 +115,7 @@ export default function Academy() {
             <button className="bg-[#f0e81b] text-black px-6 py-4 rounded-lg text-sm font-semibold hover:scale-105 transition">
               ANALYZE MY FUTURE
             </button>
-
           </div>
-
         </div>
 
       </div>

@@ -28,9 +28,8 @@ const media = [
 ];
 
 const timeline = [
-  { date: "Aug 2022", title: "Founded & Established" },
-  { date: "Mar 2023", title: "Top 10 Studio in North Bengal" },
-  { date: "Apr 2023", title: "Started Music Production School" },
+  { date: "Aug 2021", title: "Founded & Established" },
+  { date: "Mar 2023", title: "Among the Top 10 Rank Holder Studios in North Bengal" },
   { date: "Jun 2024", title: "Renovation Started" },
   { date: "Dec 2025", title: "Awarded at WBIFF" },
   {date: "2026", title: "Relaunching soon"}
@@ -125,7 +124,7 @@ export default function AboutPage() {
       </section>
 
       {/* 🔥 GALLERY */}
-      <section id="gallery" className="py-32 bg-black text-white">
+      <section id="gallery" className="py-32 pt-8 bg-black text-white">
 
         <h2 className="text-4xl text-center mb-16 font-['League_Spartan']">
           Studio Gallery

@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // ✅ ADDED
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import studioA from "../assets/studioA-7.jpeg";
 import studioB from "../assets/studioB-1.webp";
@@ -15,9 +15,9 @@ const container = {
   show: {
     transition: {
       staggerChildren: 0.35,
-      delayChildren: 0.9
-    }
-  }
+      delayChildren: 0.9,
+    },
+  },
 };
 
 const item = {
@@ -27,9 +27,9 @@ const item = {
     y: 0,
     transition: {
       duration: 1.2,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 export default function Experience() {
@@ -37,28 +37,44 @@ export default function Experience() {
   const navigate = useNavigate();
 
   const [active, setActive] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // ✅ AUTO SLIDE
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  //  Auto slide 
+  useEffect(() => {
+    if (!isVisible) return;
+
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
     }, 3500);
 
     return () => clearInterval(interval);
+  }, [isVisible]);
+
+  
+  const nextSlide = useCallback(() => {
+    setActive((prev) => (prev + 1) % images.length);
   }, []);
 
-  // ✅ MANUAL CONTROLS
-  const nextSlide = () => {
-    setActive((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setActive((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const imageY = useTransform(scrollYProgress, [0, 1], [-80, 80]);
@@ -77,11 +93,9 @@ export default function Experience() {
         style={{ y: imageY }}
         className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10"
       >
-
-        {/* 🔥 IMAGE SLIDER */}
+        {/* IMAGE */}
         <div className="relative overflow-hidden rounded-2xl border border-zinc-800 h-[360px] md:h-[460px]">
 
-          {/* ✅ LEFT BUTTON */}
           <button
             onClick={prevSlide}
             className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
@@ -89,7 +103,6 @@ export default function Experience() {
             <FiChevronLeft size={20} />
           </button>
 
-          {/* ✅ RIGHT BUTTON */}
           <button
             onClick={nextSlide}
             className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
@@ -102,6 +115,8 @@ export default function Experience() {
               key={active}
               src={images[active]}
               alt="Studio"
+              loading="lazy"        // ✅ invisible optimization
+              decoding="async"     // ✅ faster rendering
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -110,7 +125,6 @@ export default function Experience() {
             />
           </AnimatePresence>
 
-          {/* overlay */}
           <div className="absolute inset-0 bg-black/40" />
 
           {/* dots */}
@@ -119,14 +133,11 @@ export default function Experience() {
               <div
                 key={i}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === active
-                    ? "w-6 bg-[#f0e81b]"
-                    : "w-2 bg-white/40"
+                  i === active ? "w-6 bg-[#f0e81b]" : "w-2 bg-white/40"
                 }`}
               />
             ))}
           </div>
-
         </div>
 
         {/* TEXT */}
@@ -151,17 +162,13 @@ export default function Experience() {
             music and turn raw passion into a lasting legacy.
           </motion.p>
 
-          {/* BULLETS */}
-          <motion.div
-            variants={item}
-            className="mt-7 space-y-3 text-gray-400"
-          >
+          <motion.div variants={item} className="mt-7 space-y-3 text-gray-400">
             {[
               "Award-winning studio & record label",
               "World-class creative environment",
               "Industry-grade equipment & acoustics",
               "Mentorship from experienced producers",
-              "Built for career-focused artists"
+              "Built for career-focused artists",
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-3">
                 <span className="w-2 h-2 bg-[#f0e81b] rounded-full" />
@@ -170,11 +177,7 @@ export default function Experience() {
             ))}
           </motion.div>
 
-          {/* BUTTONS */}
-          <motion.div
-            variants={item}
-            className="flex gap-4 mt-12 flex-wrap"
-          >
+          <motion.div variants={item} className="flex gap-4 mt-12 flex-wrap">
             <button
               onClick={() => navigate("/thestudio")}
               className="px-7 py-3.5 border border-white/20 hover:bg-white hover:text-black transition"
@@ -197,7 +200,6 @@ export default function Experience() {
             </button>
           </motion.div>
         </motion.div>
-
       </motion.div>
     </section>
   );

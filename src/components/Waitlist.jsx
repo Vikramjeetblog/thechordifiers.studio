@@ -122,7 +122,7 @@ const Waitlist = () => {
             </h3>
 
             <p className="text-gray-400 text-sm mt-4">
-              Get notified when studio bookings and courses open.
+              Get notified when studio bookings & sevices open.
             </p>
 
             <input
@@ -189,7 +189,7 @@ const Waitlist = () => {
               <li>Priority booking before public launch</li>
               <li>2 complimentary studio / jam sessions</li>
               <li>Founding Artist status</li>
-              <li>Early access to studio & courses</li>
+              <li>Early access to studio services</li>
             </ul>
 
             <div className="mt-6 space-y-3">

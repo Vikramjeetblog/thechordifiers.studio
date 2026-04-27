@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { HashLink } from "react-router-hash-link";
@@ -6,21 +6,21 @@ import { HashLink } from "react-router-hash-link";
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
 import studioB from "../assets/gallery7.jpeg";
-import studioC from "../assets/vision.jpg"
-import studioD from "../assets/vision2.jpg"
-import studioE from "../assets/vision3.jpg"
-import studioF from "../assets/vision4.jpg"
+import studioC from "../assets/vision.webp";
+import studioD from "../assets/vision2.webp";
+import studioE from "../assets/vision3.webp";
+import studioF from "../assets/vision4.webp";
 
-const images = [studioA,studioB, studioC, studioD,studioE,studioF];
+const images = [studioA, studioB, studioC, studioD, studioE, studioF];
 
 const container = {
   hidden: {},
   show: {
     transition: {
       staggerChildren: 0.35,
-      delayChildren: 0.6
-    }
-  }
+      delayChildren: 0.6,
+    },
+  },
 };
 
 const item = {
@@ -30,35 +30,52 @@ const item = {
     y: 0,
     transition: {
       duration: 1.1,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 export default function Vision() {
   const ref = useRef(null);
   const [active, setActive] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // AUTO CHANGE
+  // ✅ Detect when section is visible (NO UI change)
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // ✅ Auto slider ONLY when visible
+  useEffect(() => {
+    if (!isVisible) return;
+
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
     }, 3500);
+
     return () => clearInterval(interval);
+  }, [isVisible]);
+
+  // ✅ Stable functions (prevents re-renders)
+  const nextSlide = useCallback(() => {
+    setActive((prev) => (prev + 1) % images.length);
   }, []);
 
-  //  MANUAL CONTROLS
-  const nextSlide = () => {
-    setActive((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setActive((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const imageY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
@@ -77,11 +94,10 @@ export default function Vision() {
         style={{ y: imageY }}
         className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10"
       >
-
         {/* IMAGE */}
         <div className="relative overflow-hidden rounded-2xl border border-zinc-800 h-[340px] md:h-[460px]">
-
-          {/* ✅ NAV BUTTONS */}
+          
+          {/* NAV BUTTONS */}
           <button
             onClick={prevSlide}
             className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 p-2 rounded-full"
@@ -101,6 +117,8 @@ export default function Vision() {
               key={active}
               src={images[active]}
               alt="Vision"
+              loading="lazy"           // ✅ optimization (no UI change)
+              decoding="async"        // ✅ faster rendering
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -161,19 +179,15 @@ export default function Vision() {
             The Chordifiers Studio is being rebuilt from the ground up.
           </motion.p>
 
-          <HashLink
-  smooth
-  to="/about-us#gallery"
->
-  <motion.button
-    variants={item}
-    className="mt-8 px-6 py-3 border border-white/30 hover:bg-white hover:text-black transition"
-  >
-    EXPLORE GALLERY
-  </motion.button>
-</HashLink>
+          <HashLink smooth to="/about-us#gallery">
+            <motion.button
+              variants={item}
+              className="mt-8 px-6 py-3 border border-white/30 hover:bg-white hover:text-black transition"
+            >
+              EXPLORE GALLERY
+            </motion.button>
+          </HashLink>
         </motion.div>
-
       </motion.div>
     </section>
   );

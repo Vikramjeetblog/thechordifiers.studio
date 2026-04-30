@@ -8,6 +8,15 @@ import img2 from "../../assets/institute8.jpeg";
 import img3 from "../../assets/institute9.png";
 import img4 from "../../assets/vision5.jpeg"
 import img5 from "../../assets/institute11.jpeg"
+import img6 from "../../assets/institute12.jpeg"
+import img7 from "../../assets/institute22.webp"
+import img8 from "../../assets/institute14.jpeg"
+import img9 from "../../assets/institute16.jpeg"
+import img10 from "../../assets/institute17.jpeg"
+import img11 from "../../assets/institute18.webp"
+import img12 from "../../assets/institute19.webp"
+import img13 from "../../assets/institute20.jpg"
+import img14 from "../../assets/institute21.jpg"
 
 import video1 from "../../assets/institute1.mp4";
 import video2 from "../../assets/institute2.mp4";
@@ -26,15 +35,25 @@ const galleryItems = [
   { type: "video", src: video2 },
   { type: "image", src: img4 },
   { type: "video", src: video7 },
+  { type: "image", src: img6 },
   
   { type: "video", src: video3 },
   { type: "image", src: img5 },
+  { type: "image", src: img7 },
   { type: "video", src: video4 },
+  { type: "image", src: img8 },
 
   
   { type: "video", src: video5 },
+  { type: "image", src: img9 },
+  { type: "image", src: img10 },
+  { type: "image", src: img11},
+  { type: "image", src: img12},
+  { type: "image", src: img13 },
   
   { type: "video", src: video6 },
+  { type: "image", src: img14 },
+
 ];
 
 const InstituteGallery = () => {

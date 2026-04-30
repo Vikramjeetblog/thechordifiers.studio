@@ -109,7 +109,7 @@ export default function InstituteHero() {
                 Hands-on training, real studio workflow and industry-ready skills.
               </p>
 
-              {/* ✅ FIXED */}
+              {/*  FIXED */}
               <HashLink
                 smooth
                 to="/institute#courses"
@@ -149,7 +149,7 @@ export default function InstituteHero() {
               <p className="text-white/80 max-w-lg mx-auto text-base md:text-lg">
                 Start your journey in professional music production.
               </p>
-
+             <div className="flex flex-col md:flex-row justify-center gap-4 mt-4">
               <HashLink
                 smooth
                 to="/book-a-call"
@@ -157,6 +157,14 @@ export default function InstituteHero() {
               >
                 Apply Now
               </HashLink>
+               <HashLink
+                smooth
+                to="/institute#gallery"
+                className="border border-white text-white px-8 py-3 transition duration-300 hover:bg-white hover:text-black hover:-translate-y-1"
+              >
+                View Gallery
+              </HashLink>
+            </div>
 
             </div>
           </div>

@@ -13,6 +13,8 @@ const InstituteNavbar = () => {
     { name: "Studio", path: "/thestudio", type: "route" },
     { name: "Institute", path: "/institute#home", id: "home", type: "hash" },
     { name: "Courses", path: "/institute#courses", id: "courses", type: "hash" },
+    { name: "Gallery", path: "/institute#gallery", id: "gallery", type: "hash" },
+
     { name: "Location", path: "/institute#location", id: "location", type: "hash" },
     { name: "Contact", path: "/institute#contact", id: "contact", type: "hash" },
   ];

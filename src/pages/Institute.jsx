@@ -6,7 +6,7 @@ import InstituteAbout from "../components/institute/InstituteAbout.jsx";
 import Location from "./Location";
 import Courses from "./Courses";
 import InstitueContact from "../components/institute/InstitueContact";
-
+import InstituteGallery from "../components/institute/InstituteGallery";
 export default function Institute() {
   const location = useLocation();
 
@@ -39,6 +39,9 @@ export default function Institute() {
       {/* COURSES */}
       <section id="courses" className="scroll-mt-20">
         <Courses />
+      </section>
+       <section id="gallery" className="scroll-mt-20">
+        <InstituteGallery />
       </section>
 
       {/* LOCATION */}

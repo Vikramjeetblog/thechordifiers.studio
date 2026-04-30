@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 
 const tabs = [
-  "Monitoring",
-  "DAW & Plugins",
-  "Outboard Gear",
-  "Acoustic Design"
+  "Control Room",
+  "Monitoring System",
+  "Hardware & Processing",
+  "Floating Equipment"
 ];
 
 const content = {
-  "Monitoring": {
+  "Control Room": {
     title: "Control Room — Mixing & Mastering Environment",
     desc: "A precision-engineered space for high-end mixing, mastering, and critical listening.",
     sections: [
@@ -32,7 +32,7 @@ const content = {
     ]
   },
 
-  "DAW & Plugins": {
+  "Monitoring System": {
     title: "Monitoring System",
     desc: "Multi-level monitoring for accurate sound translation. ",
     sections: [
@@ -47,7 +47,7 @@ const content = {
     ]
   },
 
-  "Outboard Gear": {
+  "Hardware & Processing": {
     title: "Hardware & Processing",
     desc: "Professional-grade tools for shaping and refining sound. ",
     sections: [
@@ -62,7 +62,7 @@ const content = {
     ]
   },
 
-  "Acoustic Design": {
+  "Floating Equipment": {
     title: "Floating Equipment — Professional Workflow Tools",
     desc: "Essential tools supporting high-end production, monitoring, and session workflows.",
     sections: [
@@ -86,7 +86,7 @@ const content = {
 };
 
 export default function Equipment() {
-  const [active, setActive] = useState("Monitoring");
+  const [active, setActive] = useState("Control Room");
   const [open, setOpen] = useState(false);
 
   return (

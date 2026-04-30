@@ -4,7 +4,7 @@ import Equipment from "../components/studio/studioD/Equipment"
 import StudioIntro from "../components/studio/studioD/StudioIntro"
 import StudioCTA from "../components/StudioCTA"
 
-const StudioB = () => {
+const StudioD = () => {
 	return (
 		<div>
 		<StudioHero/>
@@ -16,4 +16,4 @@ const StudioB = () => {
 	)
 }
 
-export default StudioB
+export default StudioD

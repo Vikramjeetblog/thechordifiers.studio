@@ -5,11 +5,11 @@ import { HashLink } from "react-router-hash-link";
 
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
-import studioB from "../assets/gallery7.jpeg";
+import studioB from "../assets/vision7.jpeg";
 import studioC from "../assets/vision6.jpg";
-import studioD from "../assets/vision.webp";
+import studioD from "../assets/vision8.jpeg";
 import studioE from "../assets/vision3.webp";
-import studioF from "../assets/vision2.webp";
+import studioF from "../assets/vision9.jpg";
 import studioG from "../assets/vision5.jpeg";
 import studioH from "../assets/vision4.webp";
 const images = [studioA, studioB, studioC, studioD, studioE, studioF,studioG,studioH];

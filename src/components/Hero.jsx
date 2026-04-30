@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import StudioPreviewModal from "../components/StudioPreviewModal";
 
 // IMAGES
-import studioA from "../assets/studioA-12.webp";
+import studioA from "../assets/studioA-7.jpeg";
 import studioB from "../assets/studioB-1.webp";
 import studioC from "../assets/studioC-10.webp";
 import studioD from "../assets/studioD-7.webp";

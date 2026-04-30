@@ -23,6 +23,7 @@ const Navbar = () => {
   const [showDolbyPopup, setShowDolbyPopup] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [popupType, setPopupType] = useState(null);
+  const [subDropdown, setSubDropdown] = useState(null);
   /*  SCROLL */
   const location = useLocation();
 
@@ -324,55 +325,105 @@ useEffect(() => {
             </div>
 
             {openDropdown === "studio" && (
-              <div className="mt-4 ml-3 space-y-5 text-gray-400">
+  <div className="mt-4 ml-3 space-y-5 text-gray-400">
 
-                <div>
-                  <p className="text-xs text-white/60 mb-2 uppercase">Recording</p>
-                  <div className="flex flex-col gap-2">
-                    <Link to="/studio-a">Studio A</Link>
-                    <Link to="/studio-b">Studio B</Link>
-                    <Link to="/studio-c">Studio C</Link>
-                  </div>
-                </div>
+    {/* Recording (keep open) */}
+    <div>
+      <p className="text-xs text-white/60 mb-2 uppercase">Recording</p>
+      <div className="flex flex-col gap-2">
+        <Link to="/studio-a">Studio A</Link>
+        <Link to="/studio-b">Studio B</Link>
+        <Link to="/studio-c">Studio C</Link>
+      </div>
+    </div>
 
-                <div>
-                  <p className="text-xs text-white/60 mb-2 uppercase">Jam Sessions</p>
-                  <div className="flex flex-col gap-2">
-                    <Link to="/studio-b">Studio B</Link>
-                    <Link to="/studio-c">Studio C</Link>
-                  </div>
-                </div>
+    {/* Jam Sessions (keep open) */}
+    <div>
+      <p className="text-xs text-white/60 mb-2 uppercase">Jam Sessions</p>
+      <div className="flex flex-col gap-2">
+        <Link to="/studio-b">Studio B</Link>
+        <Link to="/studio-c">Studio C</Link>
+      </div>
+    </div>
 
-                <div>
-                  <p className="text-xs text-white/60 mb-2 uppercase">Video Production</p>
-                  <div className="flex flex-col gap-2">
-                    <span>Music Video</span>
-                    <span>Commercial Video</span>
-                    <span>For Corporates</span>
-                  </div>
-                </div>
+    {/* Mixing (collapsible) */}
+    <div>
+      <div
+        onClick={() =>
+          setSubDropdown(subDropdown === "mixing" ? null : "mixing")
+        }
+        className="flex justify-between items-center cursor-pointer"
+      >
+        <p className="text-xs text-white/60 uppercase">Mixing</p>
+        <FiChevronDown
+          className={`transition-transform ${
+            subDropdown === "mixing" ? "rotate-180" : ""
+          }`}
+        />
+      </div>
 
-                <div>
-                  <p className="text-xs text-white/60 mb-2 uppercase">Mixing</p>
-                  <div className="flex flex-col gap-2">
-                    <Link to="/studio-a">Studio A</Link>
-                    <Link to="/studio-d">Studio D</Link>
-                    <span>Dolby Atmos Mixing</span>
-                  </div>
-                </div>
+      {subDropdown === "mixing" && (
+        <div className="flex flex-col gap-2 mt-2 ml-2">
+          <Link to="/studio-a">Studio A</Link>
+          <Link to="/studio-d">Studio D</Link>
+          <span>Dolby Atmos Mixing</span>
+        </div>
+      )}
+    </div>
 
-                <div>
-                  <p className="text-xs text-white/60 mb-2 uppercase">Mastering</p>
-                  <div className="flex flex-col gap-2">
-                    <Link to="/studio-d">Studio D</Link>
-                    <span onClick={() => setShowDolbyPopup(true)} className="cursor-pointer">
-                      Dolby Atmos Mastering
-                    </span>
-                  </div>
-                </div>
+    {/* Mastering (collapsible) */}
+    <div>
+      <div
+        onClick={() =>
+          setSubDropdown(subDropdown === "mastering" ? null : "mastering")
+        }
+        className="flex justify-between items-center cursor-pointer"
+      >
+        <p className="text-xs text-white/60 uppercase">Mastering</p>
+        <FiChevronDown
+          className={`transition-transform ${
+            subDropdown === "mastering" ? "rotate-180" : ""
+          }`}
+        />
+      </div>
 
-              </div>
-            )}
+      {subDropdown === "mastering" && (
+        <div className="flex flex-col gap-2 mt-2 ml-2">
+          <Link to="/studio-d">Studio D</Link>
+          <span onClick={() => setShowDolbyPopup(true)}>
+            Dolby Atmos Mastering
+          </span>
+        </div>
+      )}
+    </div>
+
+    {/* Video Production (LAST + collapsible ✅) */}
+    <div>
+      <div
+        onClick={() =>
+          setSubDropdown(subDropdown === "video" ? null : "video")
+        }
+        className="flex justify-between items-center cursor-pointer"
+      >
+        <p className="text-xs text-white/60 uppercase">Video Production</p>
+        <FiChevronDown
+          className={`transition-transform ${
+            subDropdown === "video" ? "rotate-180" : ""
+          }`}
+        />
+      </div>
+
+      {subDropdown === "video" && (
+        <div className="flex flex-col gap-2 mt-2 ml-2">
+          <span>Music Video</span>
+          <span>Commercial Video</span>
+          <span>For Corporates</span>
+        </div>
+      )}
+    </div>
+
+  </div>
+)}
           </div>
         )}
 

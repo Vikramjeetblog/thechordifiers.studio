@@ -32,25 +32,25 @@ const artists = [
     name: "Aryan",
     image: aryan,
     location: "Mumbai",
-    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+    desc: "A rising singer-songwriter delivering powerful vocals and emotionally driven music, Aryan brings a fresh sound built for impact.",
   },
   {
     name: "Mayank",
     image: mayank,
     location: "Greater Noida",
-    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+    desc:"With a sharp creative edge and evolving sound, Mayank Jain is carving his space with music that connects and stands out.",
   },
   {
-    name: "Dhruv",
+    name: "SCAR DG",
     image: dhruv,
     location: "Delhi",
-    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+    desc: "Bold, energetic, and unapologetic—SCAR DG brings raw attitude and a hard-hitting sound to the new wave of music",
   },
   {
     name: "Off The Streets",
     image: ost,
-    location: "Bhopal",
-    desc: "Blending culture and sound, Diyaan creates a unique sonic identity rooted in originality.",
+    location: "CHENNAI",
+    desc: "Driven by raw energy and a powerful band dynamic, OFF THE STREETS delivers a sound built for the stage and beyond",
   }
 ];
 

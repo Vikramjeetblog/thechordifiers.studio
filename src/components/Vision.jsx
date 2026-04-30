@@ -6,12 +6,13 @@ import { HashLink } from "react-router-hash-link";
 // IMAGES
 import studioA from "../assets/gallery1.jpeg";
 import studioB from "../assets/gallery7.jpeg";
-import studioC from "../assets/vision.webp";
-import studioD from "../assets/vision2.webp";
+import studioC from "../assets/vision6.jpg";
+import studioD from "../assets/vision.webp";
 import studioE from "../assets/vision3.webp";
-import studioF from "../assets/vision4.webp";
-
-const images = [studioA, studioB, studioC, studioD, studioE, studioF];
+import studioF from "../assets/vision2.webp";
+import studioG from "../assets/vision5.jpeg";
+import studioH from "../assets/vision4.webp";
+const images = [studioA, studioB, studioC, studioD, studioE, studioF,studioG,studioH];
 
 const container = {
   hidden: {},
@@ -40,7 +41,7 @@ export default function Vision() {
   const [active, setActive] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  // ✅ Detect when section is visible (NO UI change)
+  //  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -53,18 +54,18 @@ export default function Vision() {
     return () => observer.disconnect();
   }, []);
 
-  // ✅ Auto slider ONLY when visible
+  //  Auto slider ONLY when visible
   useEffect(() => {
     if (!isVisible) return;
 
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
-    }, 3500);
+    }, 5500);
 
     return () => clearInterval(interval);
   }, [isVisible]);
 
-  // ✅ Stable functions (prevents re-renders)
+  //  Stable functions (prevents re-renders)
   const nextSlide = useCallback(() => {
     setActive((prev) => (prev + 1) % images.length);
   }, []);

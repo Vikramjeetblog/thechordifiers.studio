@@ -22,7 +22,7 @@ const StudioGrid = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="pt-12 pb-20 px-6 bg-black text-white">
+    <section className="pt-4 pb-20 px-6 bg-black text-white">
 
       <div className="max-w-6xl mx-auto">
 

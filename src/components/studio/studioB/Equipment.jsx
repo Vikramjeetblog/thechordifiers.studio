@@ -10,78 +10,80 @@ const tabs = [
 
 const content = {
   "Control Room": {
-    title: "Recording Setup",
-    desc: "A flexible setup designed for both recording sessions and live jams.",
+    title: "Control Room — Recording Integration ",
+    desc: "Integrated with Studio A for live session control and recording support.",
     sections: [
       {
-        heading: "Recording System",
+        heading: "RECORDING SYSTEM ",
         items: [
-          "Multi-channel audio interface",
-          "Headphone monitoring for multiple artists",
-          "Live session recording capability"
+          "Multi-channel routing from jam space to control room",
+          "Live session recording capability",
+          "Headphone monitoring for band members"
         ]
       },
       {
         heading: "Workflow",
         items: [
-          "Quick setup for jam and recording sessions",
-          "Real-time tracking of vocals and instruments"
+          "Seamless integration with Studio A",
+          "Real-time tracking of instruments",
+          "Efficient setup for rehearsals and recordings"
         ]
       }
     ]
   },
 
   "Microphones": {
-    title: "Microphones",
-    desc: "Versatile microphones suited for vocals, instruments, and live sessions.",
-    sections: [
-      {
-        heading: "Available",
-        items: [
-          "Vocal condenser microphones",
-          "Dynamic microphones for instruments & amps",
-          "Multi-use microphones for band setups"
-        ]
-      }
-    ]
-  },
+  title: "Microphones",
+  desc: "Reliable microphones optimized for rehearsal environments and live session capture.",
+  sections: [
+    {
+      heading: "Available",
+      items: [
+        "Dynamic microphones for vocals, amplifiers, and stage-style use",
+        "Dedicated drum mic setup for full band sessions",
+        "Multi-purpose microphones adaptable to different band configurations"
+      ]
+    }
+  ]
+},
 
   "Instruments": {
-    title: "Instruments & Backline",
-    desc: "Ready-to-use instruments for rehearsals, jams, and recordings.",
-    sections: [
-      {
-        heading: "Available",
-        items: [
-          "Drum kit (for band sessions)",
-          "Electric & acoustic guitars",
-          "Keyboard / MIDI setup"
-        ]
-      }
-    ]
-  },
+  title: "Instruments & Backline",
+  desc: "Complete band-ready setup designed for rehearsals, jams, and live tracking sessions.",
+  sections: [
+    {
+      heading: "Available",
+      items: [
+        "Full drum kit for complete band performances",
+        "Electric and acoustic guitars with amplifier support",
+        "Bass guitar with dedicated amplification",
+        "Keyboard setup for melodic and harmonic production"
+      ]
+    }
+  ]
+},
 
   "Floating Equipment": {
-    title: "Jam & Session Gear",
-    desc: "Essential gear to support collaborative and live music sessions.",
-    sections: [
-      {
-        heading: "Session Tools",
-        items: [
-          "Instrument amplifiers",
-          "DI boxes and routing gear",
-          "Basic EQ and compression tools"
-        ]
-      },
-      {
-        heading: "Flexibility",
-        items: [
-          "Adaptable setup for bands and solo artists",
-          "Quick reconfiguration for different session types"
-        ]
-      }
-    ]
-  }
+  title: "Floating Equipment — Jam & Session Gear",
+  desc: "Essential support equipment enabling smooth rehearsal workflows and live session flexibility.",
+  sections: [
+    {
+      heading: "Session Tools",
+      items: [
+        "Instrument amplifiers and speaker systems for live sound output",
+        "DI boxes and signal routing equipment for clean audio flow",
+        "Basic EQ and mixer support for quick sound adjustments"
+      ]
+    },
+    {
+      heading: "Flexibility",
+      items: [
+        "Adaptable setup for bands of varying sizes and configurations",
+        "Fast reconfiguration for rehearsals, jam sessions, and live recordings"
+      ]
+    }
+  ]
+},
 };
 
 export default function Equipment() {

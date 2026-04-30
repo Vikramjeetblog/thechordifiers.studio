@@ -10,81 +10,78 @@ const tabs = [
 
 const content = {
   "Control Room": {
-    title: "Advanced Recording Setup",
-    desc: "A professional hybrid setup designed for high-quality recording and full-band jam sessions.",
+    title: "Control Room — Advanced Session Control",
+    desc: "Controlled via Studio D for high-end recording and monitoring precision.",
     sections: [
       {
         heading: "Recording System",
         items: [
-          "Multi-channel recording interface (band-ready)",
-          "Independent headphone monitoring for multiple artists",
-          "Live multi-track recording capability"
+          "Multi-channel live recording integration",
+          "High-quality signal routing to control room",
+          "Real-time monitoring for sessions"
         ]
       },
       {
         heading: "Workflow",
         items: [
-          "Seamless recording during jam sessions",
-          "Low-latency monitoring for performers",
-          "Optimized setup for bands and group sessions"
+          "Seamless control from Studio D",
+          "Optimized for live sessions and recordings" ,
+           "Stable workflow for extended sessions" 
         ]
       }
     ]
   },
 
   "Microphones": {
-    title: "Microphone Collection",
-    desc: "Professional microphones suited for vocals, instruments, and full-band setups.",
-    sections: [
-      {
-        heading: "Studio Mics",
-        items: [
-          "Large diaphragm condenser microphones (vocals)",
-          "Dynamic microphones for drums & amps",
-          "Multi-mic setup for live band recording"
-        ]
-      }
-    ]
-  },
-
-  "Instruments": {
-    title: "Instruments & Backline",
-    desc: "Studio-ready instruments and gear for rehearsals, jams, and recording.",
-    sections: [
-      {
-        heading: "Available",
-        items: [
-          "Full drum kit (band sessions)",
-          "Electric & acoustic guitars",
-          "Bass guitar setup",
-          "Keyboard / MIDI workstation"
-        ]
-      }
-    ]
-  },
-
-  "Floating Equipment": {
-    title: "Advanced Session Gear",
-    desc: "Enhanced tools for professional jam sessions and recording workflows.",
-    sections: [
-      {
-        heading: "Processing & Routing",
-        items: [
-          "High-quality audio preamps",
-          "EQ and compression tools",
-          "Signal routing & DI systems"
-        ]
-      },
-      {
-        heading: "Session Support",
-        items: [
-          "Amplifiers for guitars and bass",
-          "Flexible stage-style setup for bands",
-          "Quick reconfiguration for different session formats"
-        ]
-      }
-    ]
-  }
+  title: "Microphone Collection",
+  desc: "Premium microphones for professional recordings and live sessions. ",
+  sections: [
+    {
+      heading: "Available",
+      items: [
+        "High-quality condenser microphones for vocals",
+        "Instrument microphones for detailed capture",
+        "Multi-mic setup for band recordings"
+      ]
+    }
+  ]
+},
+"Instruments": {
+  title: "Instruments & Backline (Premium Setup)",
+  desc: "High-end instruments for professional jam and recording sessions.",
+  sections: [
+    {
+      heading: "Available",
+      items: [
+        "Premium drum kit",
+        "Bass rigs and amplifiers",
+        "Professional keyboard setup"
+        
+      ]
+    }
+  ]
+},
+"Floating Equipment": {
+  title: "Floating Equipment — Session Tools",
+  desc: "Professional-grade gear supporting dynamic session environments.",
+  sections: [
+    {
+      heading: "Session Tools",
+      items: [
+        "DI boxes and advanced routing gear",
+        "Amplifiers and monitoring systems",
+        "Studio accessories for live performance setups"
+      ]
+    },
+    {
+      heading: "Flexibility",
+      items: [
+        "Designed for extended jam sessions and recordings",
+        "Quick reconfiguration for different session formats"
+      ]
+    }
+  ]
+},
 };
 
 export default function Equipment() {

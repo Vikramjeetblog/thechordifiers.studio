@@ -11,51 +11,28 @@ export default function StudioCIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Recording & Jam Sessions. Designed for Energy.
+          Built for Premium Jam Sessions, Recording & Visual Experiences. Designed for Impact. 
         </h2>
 
         {/* HIGHLIGHT LINE */}
         <p className="text-xl md:text-2xl font-semibold mb-10">
-          Built for loud ideas, live sessions, and real performance.
+          Where sound meets space, and sessions become moments. 
         </p>
 
         {/* DESCRIPTION */}
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          Studio C is designed for artists who create through performance. 
-          Whether you're jamming with a full band, rehearsing, or recording 
-          high-energy sessions, the space is built to handle movement, volume, 
-          and collaboration.
+          Studio C is a premium multi-purpose studio designed for high-end jam sessions, live recordings, and visual content creation. Built with glass architecture and an open, immersive environment, it offers a unique blend of acoustics and aesthetics. 
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed mb-6">
-          With a more open layout and flexible setup, Studio C allows artists 
-          to perform naturally while still capturing clean, usable recordings. 
-          It’s ideal for group sessions, live takes, and content-driven workflows.
+          Equipped with high-end instruments and a spacious layout, the studio supports everything from band rehearsals to professional recordings and extended creative sessions. Whether artists are jamming, recording, or creating visual content, the space enhances both performance and presence. 
         </p>
 
         <p className="text-white/70 text-lg leading-relaxed">
-          This is where performances happen — and music feels alive.
+        It’s not just a studio—it’s an experience designed to elevate how music is created and presented.   
         </p>
 
-        {/* FEATURES */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6 text-sm text-gray-300">
-
-          <div>
-            <p className="text-[#f0e81b] mb-2">Band Jam Sessions</p>
-            <p>Spacious setup for full-band rehearsals and live play.</p>
-          </div>
-
-          <div>
-            <p className="text-[#f0e81b] mb-2">Live Recording</p>
-            <p>Capture raw, energetic performances in real time.</p>
-          </div>
-
-          <div>
-            <p className="text-[#f0e81b] mb-2">Open Performance Space</p>
-            <p>Designed for movement, collaboration, and creative flow.</p>
-          </div>
-
-        </div>
+        
 
       </div>
     </section>

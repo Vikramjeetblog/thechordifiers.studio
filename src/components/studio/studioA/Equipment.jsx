@@ -10,22 +10,23 @@ const tabs = [
 
 const content = {
   "Control Room": {
-    title: "Control Room",
-    desc: "A hybrid control room designed for both recording and mixing workflows.",
+    title: "Control Room — Recording Setup",
+    desc: "A hybrid setup designed for recording, production, and basic mixing workflows.",
     sections: [
       {
-        heading: "Console & Monitoring",
+        heading: "Recording System",
         items: [
-          "Professional mixing console / control surface",
-          "Nearfield studio monitors for accurate mixing",
-          "Headphone monitoring system for recording sessions"
+          "Multi-channel audio interface for precise tracking",
+          "Studio monitors for accurate playback and balance",
+          "Headphone monitoring system for artists during sessions"
         ]
       },
       {
         heading: "Workflow",
         items: [
-          "Seamless transition from tracking to mixing",
-          "Low-latency monitoring for performers"
+          "Smooth transition from recording to basic mixing",
+          "Real-time monitoring for vocals and instruments",
+          "Optimized setup for fast and efficient production"
         ]
       }
     ]
@@ -33,14 +34,14 @@ const content = {
 
   "Microphones": {
     title: "Microphones",
-    desc: "Versatile microphone collection for vocals and instruments.",
+    desc: "Versatile microphones suited for vocals, voiceovers, and instruments.",
     sections: [
       {
-        heading: "Studio Mics",
+        heading: "Available",
         items: [
-          "Large diaphragm condenser microphones (vocal recording)",
-          "Dynamic microphones (instruments & amps)",
-          "Multi-pattern microphones for flexible setups"
+          "Vocal condenser microphones for clean recordings",
+          "Dynamic microphones for instruments and amps",
+          "Dedicated setup for dry room vocal capture"
         ]
       }
     ]
@@ -48,36 +49,36 @@ const content = {
 
   "Instruments": {
     title: "Instruments",
-    desc: "Essential instruments for songwriting, tracking, and production.",
+    desc: "Production-ready instruments for composition and arrangement.",
     sections: [
       {
         heading: "Available",
         items: [
-          "Digital piano / MIDI keyboard",
-          "Electric & acoustic guitars",
-          "Studio-ready instrument inputs"
+          "MIDI keyboards and controllers",
+          "Virtual instrument integration (DAW-based)",
+          "Basic instruments for idea development"
         ]
       }
     ]
   },
 
   "Floating Equipment": {
-    title: "Production & Processing",
-    desc: "Tools for shaping and refining your sound during recording and mixing.",
+    title: "Floating Equipment — Session Support",
+    desc: "Essential tools supporting recording and production workflow.",
     sections: [
       {
-        heading: "Processing",
+        heading: "Session Tools",
         items: [
-          "Audio interface with clean preamps",
-          "EQ and compression (digital / hybrid)",
-          "Studio monitoring & routing tools"
+          "Studio headphones for monitoring",
+          "Mic stands, pop filters, and accessories",
+          "Audio routing cables and connectors"
         ]
       },
       {
-        heading: "Mixing Tools",
+        heading: "Flexibility",
         items: [
-          "Basic mixing chain setup",
-          "Balance, EQ, and dynamics control"
+          "Adaptable setup for solo artists and producers",
+          "Quick adjustments for different recording needs"
         ]
       }
     ]

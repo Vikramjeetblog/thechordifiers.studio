@@ -10,88 +10,75 @@ const tabs = [
 
 const content = {
   "Monitoring": {
-    title: "Monitoring System",
-    desc: "Ultra-accurate monitoring environment for critical mixing and mastering decisions.",
+    title: "Control Room — Mixing & Mastering Environment",
+    desc: "A precision-engineered space for high-end mixing, mastering, and critical listening.",
     sections: [
       {
-        heading: "Speakers",
+        heading: "Processing System",
         items: [
-          "High-resolution nearfield monitors",
-          "Midfield reference monitoring system",
-          "Subwoofer for low-frequency accuracy"
+          "Advanced DAW control and workflow system",
+          "Integration with outboard hardware",
+          "High-resolution audio processing chain"
         ]
       },
       {
-        heading: "Reference",
+        heading: "Workflow",
         items: [
-          "Multiple playback references (studio, consumer, headphones)",
-          "Calibrated listening levels"
+          "Detailed mixing and mastering pipeline",
+          "Accurate referencing across multiple systems",
+          "Seamless control of Studio C sessions"
         ]
       }
     ]
   },
 
   "DAW & Plugins": {
-    title: "DAW & Processing Suite",
-    desc: "Industry-standard digital environment for mixing and mastering workflows.",
+    title: "Monitoring System",
+    desc: "Multi-level monitoring for accurate sound translation. ",
     sections: [
       {
-        heading: "DAW",
+        heading: "Available",
         items: [
-          "Professional DAW setup (Pro Tools / Logic / Ableton)",
-          "Low-latency high-performance system"
-        ]
-      },
-      {
-        heading: "Plugins",
-        items: [
-          "Advanced EQ, compression, and limiting tools",
-          "Stereo imaging & spatial processing",
-          "Mastering-grade plugin suite"
+          "Near-field monitors for detailed mixing",
+          "Mid-field monitors for balance and depth",
+          "Far-field monitoring for full-range evaluation"
         ]
       }
     ]
   },
 
   "Outboard Gear": {
-    title: "Analog Outboard",
-    desc: "Premium analog processing for warmth, depth, and character.",
+    title: "Hardware & Processing",
+    desc: "Professional-grade tools for shaping and refining sound. ",
     sections: [
       {
-        heading: "Processing",
+        heading: "Available",
         items: [
-          "Analog compressors (bus & mastering grade)",
-          "High-end EQ units",
-          "Saturation & harmonic processors"
-        ]
-      },
-      {
-        heading: "Signal Chain",
-        items: [
-          "Clean signal routing & gain staging",
-          "Hybrid analog-digital workflow"
+          "Analog processing units (EQ, compression)",
+          "Digital mastering tools and processors",
+          "Signal control and routing systems"
         ]
       }
     ]
   },
 
   "Acoustic Design": {
-    title: "Acoustic Environment",
-    desc: "Precision-tuned room designed for accurate sound translation.",
+    title: "Floating Equipment — Professional Workflow Tools",
+    desc: "Essential tools supporting high-end production, monitoring, and session workflows.",
     sections: [
       {
-        heading: "Treatment",
+        heading: "Session Tools",
         items: [
-          "Full-range acoustic treatment",
-          "Bass trapping for low-end control",
-          "Reflection and diffusion balance"
+          "High-end headphones for critical listening",
+          "Studio communication and routing systems",
+          "Backup and auxiliary monitoring gear"
         ]
       },
       {
-        heading: "Calibration",
+        heading: "Flexibility",
         items: [
-          "Room tuning for flat frequency response",
-          "Optimized listening position"
+          "Designed for professional engineers and producers",
+          "Supports both production and educational workflows"
         ]
       }
     ]

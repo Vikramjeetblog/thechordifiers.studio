@@ -36,29 +36,7 @@ export default function Courses() {
 
   const categories = [
 
-    {
-      title:"Signature Program",
-      courses:[
-        {
-          name:"Artist Mentorship Program",
-          slug:"artist-mentorship",
-          image:mentor,
-          desc:"A focused mentorship designed to guide emerging artists in developing their sound and artistic identity."
-        },
-        {
-          name:"Unbreakable Artist Mindset Program",
-          slug:"artist-mindset",
-          image:mindset,
-          desc:"Build the mindset required to succeed in the music industry."
-        },
-        {
-          name:"Music Business Awareness Program (for Parents)",
-          slug:"music-business-awareness",
-          image:parents,
-          desc:"Help parents understand and support music careers."
-        }
-      ]
-    },
+    
 
     {
       title:"Certification Courses",
@@ -105,7 +83,30 @@ export default function Courses() {
           desc:"Complete professional audio + business training."
         }
       ]
-    }
+    },
+    {
+      title:"Signature Programs",
+      courses:[
+        {
+          name:"Artist Mentorship Program",
+          slug:"artist-mentorship",
+          image:mentor,
+          desc:"A focused mentorship designed to guide emerging artists in developing their sound and artistic identity."
+        },
+        {
+          name:"Unbreakable Artist Mindset Program",
+          slug:"artist-mindset",
+          image:mindset,
+          desc:"Build the mindset required to succeed in the music industry."
+        },
+        {
+          name:"Music Business Awareness Program (for Parents)",
+          slug:"music-business-awareness",
+          image:parents,
+          desc:"Help parents understand and support music careers."
+        }
+      ]
+    },
 
   ]
 

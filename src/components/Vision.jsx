@@ -4,14 +4,14 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { HashLink } from "react-router-hash-link";
 
 // IMAGES
-import studioA from "../assets/gallery1.jpeg";
-import studioB from "../assets/vision7.jpeg";
-import studioC from "../assets/vision6.jpg";
-import studioD from "../assets/vision8.jpeg";
-import studioE from "../assets/vision3.webp";
-import studioF from "../assets/vision9.jpg";
-import studioG from "../assets/vision5.jpeg";
-import studioH from "../assets/vision4.webp";
+import studioA from "../assets/vision20.webp";
+import studioB from "../assets/vision26.webp";
+import studioC from "../assets/vision24.webp";
+import studioD from "../assets/vision21.webp";
+import studioE from "../assets/vision23.webp";
+import studioF from "../assets/vision22.webp";
+import studioG from "../assets/vision27.webp";
+import studioH from "../assets/vision23.webp";
 const images = [studioA, studioB, studioC, studioD, studioE, studioF,studioG,studioH];
 
 const container = {
@@ -124,7 +124,7 @@ export default function Vision() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </AnimatePresence>
 

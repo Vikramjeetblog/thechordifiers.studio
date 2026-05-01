@@ -6,9 +6,9 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
-import hero1 from "../../assets/institute.webp";
-import hero2 from "../../assets/institute2.webp";
-import hero3 from "../../assets/institute3.png";
+import hero1 from "../../assets/institute40.webp";
+import hero2 from "../../assets/institute41.webp";
+import hero3 from "../../assets/institute42.webp";
 
 export default function InstituteHero() {
   return (

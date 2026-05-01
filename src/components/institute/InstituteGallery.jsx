@@ -6,17 +6,21 @@ import { FiX } from "react-icons/fi";
 import img1 from "../../assets/institute7.png";
 import img2 from "../../assets/institute8.jpeg";
 import img3 from "../../assets/institute9.png";
-import img4 from "../../assets/vision5.jpeg"
-import img5 from "../../assets/institute11.jpeg"
-import img6 from "../../assets/institute12.jpeg"
-import img7 from "../../assets/institute22.webp"
-import img8 from "../../assets/institute14.jpeg"
-import img9 from "../../assets/institute16.jpeg"
-import img10 from "../../assets/institute17.jpeg"
-import img11 from "../../assets/institute18.webp"
-import img12 from "../../assets/institute19.webp"
-import img13 from "../../assets/institute20.jpg"
-import img14 from "../../assets/institute21.jpg"
+import img4 from "../../assets/vision5.jpeg";
+import img5 from "../../assets/institute11.jpeg";
+import img6 from "../../assets/institute12.jpeg";
+import img7 from "../../assets/institute22.webp";
+import img8 from "../../assets/institute14.jpeg";
+import img9 from "../../assets/institute16.jpeg";
+import img10 from "../../assets/institute17.jpeg";
+import img11 from "../../assets/institute18.webp";
+import img12 from "../../assets/institute19.webp";
+import img13 from "../../assets/institute20.jpg";
+import img14 from "../../assets/institute21.jpg";
+import img15 from "../../assets/institute31.jpeg";
+import img16 from "../../assets/institute32.webp";
+import img17 from "../../assets/institute33.jpg";
+import img18 from "../../assets/vision4.jpg";
 
 import video1 from "../../assets/institute1.mp4";
 import video2 from "../../assets/institute2.mp4";
@@ -25,8 +29,13 @@ import video4 from "../../assets/institute4.mp4";
 import video5 from "../../assets/video1.mp4";
 import video6 from "../../assets/studiovideo3.mp4";
 import video7 from "../../assets/institute11.mp4";
+import video8 from "../../assets/institute30.mp4";
+import video9 from "../../assets/institute35.mp4";
+import video10 from "../../assets/institute32.mp4";
+import video11 from "../../assets/institute34.mp4";
+import video12 from "../../assets/institute37.mp4";
 
-//  GALLERY DATA 
+// GALLERY DATA
 const galleryItems = [
   { type: "image", src: img1 },
   { type: "image", src: img2 },
@@ -36,24 +45,30 @@ const galleryItems = [
   { type: "image", src: img4 },
   { type: "video", src: video7 },
   { type: "image", src: img6 },
-  
+  { type: "image", src: img15 },
+  { type: "video", src: video9 },
   { type: "video", src: video3 },
   { type: "image", src: img5 },
   { type: "image", src: img7 },
   { type: "video", src: video4 },
   { type: "image", src: img8 },
 
-  
   { type: "video", src: video5 },
   { type: "image", src: img9 },
   { type: "image", src: img10 },
-  { type: "image", src: img11},
-  { type: "image", src: img12},
+  { type: "image", src: img11 },
+  { type: "video", src: video12 },
+  { type: "image", src: img12 },
   { type: "image", src: img13 },
-  
-  { type: "video", src: video6 },
-  { type: "image", src: img14 },
 
+  { type: "video", src: video6 },
+  { type: "image", src: img18 },
+  { type: "video", src: video8 },
+  { type: "image", src: img14 },
+  { type: "image", src: img16 },
+  { type: "video", src: video11 },
+  { type: "image", src: img17 },
+  { type: "video", src: video10 }
 ];
 
 const InstituteGallery = () => {
@@ -70,13 +85,14 @@ const InstituteGallery = () => {
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
             OUR <span className="text-[#f0e81b]">GALLERY</span>
           </h2>
+
           <p className="text-gray-400 mt-4 text-sm md:text-base max-w-xl mx-auto">
             A glimpse into our sessions, spaces, and creative energy.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {galleryItems.map((item, index) => (
             <motion.div
               key={index}
@@ -85,10 +101,7 @@ const InstituteGallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className={`relative group overflow-hidden rounded-xl border border-white/10 cursor-pointer
-                ${index === 0 ? "md:col-span-2 md:row-span-2" : ""}
-                ${index === 4 ? "md:col-span-2" : ""}
-              `}
+              className="relative group overflow-hidden rounded-xl border border-white/10 cursor-pointer aspect-video bg-black"
             >
               {/* IMAGE */}
               {item.type === "image" && (
@@ -96,7 +109,7 @@ const InstituteGallery = () => {
                   src={item.src}
                   alt="gallery"
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  className="w-full h-full object-contain transition duration-500"
                 />
               )}
 
@@ -108,7 +121,7 @@ const InstituteGallery = () => {
                   loop
                   playsInline
                   preload="metadata"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-black"
                 />
               )}
 
@@ -133,7 +146,8 @@ const InstituteGallery = () => {
         <div className="fixed inset-0 bg-black/95 z-[999] flex items-center justify-center px-4">
           <button
             onClick={() => setActiveItem(null)}
-            className="absolute top-6 right-6 text-white text-2xl"
+            className="absolute top-6 right-6 text-white text-2xl z-10"
+            aria-label="Close gallery preview"
           >
             <FiX />
           </button>
@@ -141,7 +155,7 @@ const InstituteGallery = () => {
           {activeItem.type === "image" ? (
             <img
               src={activeItem.src}
-              className="max-h-[90vh] rounded-lg"
+              className="max-w-[95vw] max-h-[90vh] object-contain rounded-lg"
               alt="preview"
             />
           ) : (
@@ -149,7 +163,7 @@ const InstituteGallery = () => {
               src={activeItem.src}
               controls
               autoPlay
-              className="max-h-[90vh] rounded-lg"
+              className="max-w-[95vw] max-h-[90vh] object-contain rounded-lg"
             />
           )}
         </div>

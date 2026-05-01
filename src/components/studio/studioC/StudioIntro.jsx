@@ -16,7 +16,7 @@ export default function StudioCIntro() {
 
         {/* HIGHLIGHT LINE */}
         <p className="text-xl md:text-2xl font-semibold mb-10">
-          Where sound meets space, and sessions become moments. 
+  It’s not just a studio it’s an experience where sound meets space and sessions become moments.
         </p>
 
         {/* DESCRIPTION */}

@@ -17,8 +17,7 @@ import video1 from "../assets/studiovideo1.mp4";
 import video3 from "../assets/studiovideo3.mp4";
 
 const media = [
-  { type: "image", src: bts1 },
-  { type: "image", src: bts2 },
+
   { type: "image", src: bts4 },
   { type: "image", src: bts5 },
   { type: "image", src: bts6 },

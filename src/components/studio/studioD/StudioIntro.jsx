@@ -11,7 +11,7 @@ export default function StudioDIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for High-End Mixing, Mastering & Sound Design. Designed for Precision.
+          Built for High-End Mixing, Mastering & Sound Designing. Designed for Precision.
         </h2>
 
         {/* HIGHLIGHT */}

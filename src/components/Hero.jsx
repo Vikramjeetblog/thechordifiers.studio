@@ -72,7 +72,7 @@ export default function Hero() {
 </p>
 
         <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base mt-6">
-          We are currently under renovations, crafting a next-generation
+          We are currently under renovations, bulding the next-generation
           creative environment for artists, producers, and visionaries.
         </p>
 

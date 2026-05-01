@@ -175,9 +175,38 @@ export const programs = [
       about: { image: d4, title: "About the Diploma" },
       careers: { image: d4, title: "Career Opportunities" },
     },
-    overview: "Dual skills in sound + production.",
-    about: "Complete creative audio workflow training.",
-    careers: ["Producer", "Sound Designer"],
+    overview: (
+    <>
+     <p>A complete creative program that combines sound design with music production, helping you build a unique sonic identity and professional-level tracks. </p> 
+    </>
+      ),
+    about: (
+      <>
+      <ul className="list-disc pl-5 space-y-2">
+       <li>DAW workflow + production techniques</li>
+       <li>Advanced sound design </li>
+       <li> Synthesis + sampling + FX </li>
+       <li> Creative audio layering </li>
+       <li> Mixing for sound clarity</li>
+       <li>Genre-based sound design</li>
+       <li>Sound identity development </li> 
+      </ul>
+      <p>Led by<strong> Mr. Raull Das, Founder and CEO of The Chordifiers Studio (TCS) & The Chordifiers Music Institute (TCMI) (10+ years industry experience, certified by Berklee College of Music - USA, University of Edinburgh - Scotland & House of EDM - Bangalore) </strong>this program reflects real-world experience and Designed & Built inside an <strong>award-winning studio & record Label environment,</strong> this level prepares you for real progression and guided by experienced professionals. </p>
+    <p> This is your <strong>complete artist blueprint.</strong></p> 
+      </>
+      ),
+    careers:(
+      <>
+      <ul className="list-disc pl-5 space-y-2">
+      <li>Music Producer</li>
+    <li>Sound Designer</li> 
+    <li>Audio Engineer </li>
+    <li>Film/Media Sound Creator</li>
+    <li>Independent Artist</li>
+    
+        </ul>
+      </>
+      ),
   },
 
   {
@@ -188,9 +217,38 @@ export const programs = [
       about: { image: d5, title: "About the Diploma" },
       careers: { image: d5, title: "Career Opportunities" },
     },
-    overview: "Complete industry-ready diploma.",
-    about: "Covers production, sound design & business.",
-    careers: ["Producer", "Entrepreneur"],
+    overview:(
+      <>
+        <p>The most complete program we offer. From creating music to building a brand and earning from it — this program covers everything.</p>
+      </>
+      ),
+    about:(
+     <>
+       <ul className="list-disc pl-5 space-y-2">
+        <li>Complete music production training</li>
+        <li>Advanced sound design mastery</li>
+        <li>Spotify + YouTube growth system</li>
+        <li>Distribution + monetization</li>
+        <li>Artist brand development</li>
+        <li>Release & career strategy</li>
+        <li>Mentorship + industry guidance</li>
+       </ul>
+       <p>Led by<strong> Mr. Raull Das, Founder and CEO of The Chordifiers Studio (TCS) & The Chordifiers Music Institute (TCMI) (10+ years industry experience, certified by Berklee College of Music - USA, University of Edinburgh - Scotland & House of EDM - Bangalore)</strong> this program reflects real-world experience and Designed & Built inside an <strong> award-winning studio & record Label environment,</strong> this level prepares you for real progression and guided by experienced professionals.</p>
+       <p> This is the <strong> ultimate artist blueprint.</strong></p> 
+     </>
+      ),
+    careers:(
+      <>
+       <ul className="list-disc pl-5 space-y-2">
+      <li>Professional Music Producer </li>
+    <li>Independent Artist </li> 
+    <li>Sound Designer</li>
+    <li>Music Entrepreneur</li>
+    <li>Label Owner / Creative Director</li>
+    
+        </ul> 
+      </>
+      ),
   },
 
   /* ================= CERTIFICATION ================= */
@@ -387,7 +445,7 @@ export const programs = [
       <>
     
       
-      <p>Fast-track your journey from confusion to clarity with direct 1:1 mentorship inside an award-winning studio & record label ecosystem. </p>
+      <p>Fast-track your journey from confusion to clarity with direct 1:1 mentorship inside <strong> an award-winning studio & record label ecosystem.</strong> </p>
       <p>This is not a course — this is structured guidance designed to shape your identity, direction, and long-term career in music.</p>
       </>
       ),

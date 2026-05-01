@@ -11,7 +11,7 @@ import studioD from "../assets/vision21.webp";
 import studioE from "../assets/vision23.webp";
 import studioF from "../assets/vision22.webp";
 import studioG from "../assets/vision27.webp";
-import studioH from "../assets/vision23.webp";
+import studioH from "../assets/vision25.webp";
 const images = [studioA, studioB, studioC, studioD, studioE, studioF,studioG,studioH];
 
 const container = {

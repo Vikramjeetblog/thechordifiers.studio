@@ -11,7 +11,7 @@ export default function StudioCIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Recording, Basic Mixing & Production. Designed for Control. 
+          Built for Recording & Pre-Production.Designed for Control.
         </h2>
 
         {/* HIGHLIGHT LINE */}

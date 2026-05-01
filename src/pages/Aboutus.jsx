@@ -29,7 +29,7 @@ const media = [
 
 const timeline = [
   { date: "Aug 2021", title: "Founded & Established" },
-  { date: "Mar 2023", title: "Among the Top 10 Rank Holder Studios in North Bengal" },
+  { date: "Mar 2023", title: "Rank to Top 10 Studios in North Bengal" },
   { date: "Jun 2024", title: "Renovation Started" },
   { date: "Dec 2025", title: "Awarded at WBIFF" },
   {date: "2026", title: "Relaunching soon"}

@@ -20,29 +20,12 @@ const InstituteAbout = () => {
           <div className="w-24 h-[3px] bg-[#f0e81b] mt-6 mb-10"></div>
 
           <p className="text-[#f2f2f2]/80 text-lg leading-relaxed font-['Inter']">
-            We believe learning music should be an exciting experience.
-            That's why we offer thoughtfully designed courses in a creative
-            and inspiring environment.
+            "TCMI – The Chordifiers Music Institute (Est. 2021) is Siliguri’s First Professional Institute for Music Production, Sound Design & Artist Development.
+            We help artists build careers with expert mentorship, practical industry training, and performance-based learning. Offline + Online Courses Available. Courses include: Music Production, Sound Design, Music Business, 
+            FL Studio, Ableton Live, Logic Pro, Mixing & Mastering, DJing, and Artist Career Development. Offline + Online Learning | Career-Focused Training | Portfolio + Placement Support Part of Creatous Collective Group | Powered by IADA – 
+            International Artist Development 
+            Academy (Globally Launching Soon)"
           </p>
-
-          <p className="text-[#f2f2f2]/80 text-lg leading-relaxed mt-6 font-['Inter']">
-            With access to modern facilities, up-to-date equipment,
-            and experienced mentors, our students learn in a setting
-            that mirrors the real music industry.
-          </p>
-
-          <p className="text-[#f2f2f2]/80 text-lg leading-relaxed mt-6 font-['Inter']">
-            Whether you're just starting out or looking to level up
-            your skills, we offer a wide range of diploma and certification
-            programs.
-          </p>
-
-          <p className="text-[#f2f2f2]/80 text-lg leading-relaxed mt-6 font-['Inter']">
-            From live classes to flexible online options, our courses are
-            designed to fit your goals, your schedule, and your unique
-            learning style.
-          </p>
-
         </div>
 
 

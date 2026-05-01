@@ -67,6 +67,10 @@ export default function Hero() {
           THE <br /> CHORDIFIERS <br /> STUDIO
         </h1>
 
+        <p className="mt-3 text-sm md:text-base text-gray-300 tracking-wide">
+  An award-winning music production house & record label
+</p>
+
         <p className="text-gray-300 max-w-xl mx-auto text-sm md:text-base mt-6">
           We are currently under renovations, crafting a next-generation
           creative environment for artists, producers, and visionaries.

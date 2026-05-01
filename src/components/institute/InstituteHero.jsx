@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
-import hero1 from "../../assets/institute40.webp";
+import hero1 from "../../assets/institute50.webp";
 import hero2 from "../../assets/institute41.webp";
 import hero3 from "../../assets/institute42.webp";
 
@@ -30,7 +30,7 @@ export default function InstituteHero() {
 
             <div
               className="absolute inset-0 bg-cover bg-top hero-zoom"
-              style={{ backgroundImage: `url(${hero2})` }}
+              style={{ backgroundImage: `url(${hero1})` }}
             />
 
             <div className="absolute inset-0 bg-black/70"></div>
@@ -88,7 +88,7 @@ export default function InstituteHero() {
 
             <div
               className="absolute inset-0 bg-cover bg-top hero-zoom"
-              style={{ backgroundImage: `url(${hero3})` }}
+              style={{ backgroundImage: `url(${hero2})` }}
             />
 
             <div className="absolute inset-0 bg-black/70"></div>
@@ -129,7 +129,7 @@ export default function InstituteHero() {
 
             <div
               className="absolute inset-0 bg-cover bg-top hero-zoom"
-              style={{ backgroundImage: `url(${hero1})` }}
+              style={{ backgroundImage: `url(${hero3})` }}
             />
 
             <div className="absolute inset-0 bg-black/70"></div>

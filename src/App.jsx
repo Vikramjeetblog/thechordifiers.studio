@@ -73,7 +73,7 @@ function App() {
 
             <Route path="/" element={<Home />} />
             <Route path="/record" element={<Record />} />
-           <Route path="/program/:slug" element={<ProgramDetails />} />
+           
            <Route path="/book" element={<Book />} />
             <Route path="/register/mentorship" element={<MentorshipRegister />} />
               <Route path="/register/certification" element={<Certification />} />
@@ -97,7 +97,7 @@ function App() {
 
           {/* INSTITUTE WEBSITE */}
           <Route element={<InstituteLayout />}>
-
+             <Route path="/program/:slug" element={<ProgramDetails />} />
             <Route path="/institute" element={<Institute />} />
             <Route path="/institute/location" element={<Location />} />
             <Route path="/institute/courses" element={<Courses />} />

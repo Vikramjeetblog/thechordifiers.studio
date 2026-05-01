@@ -53,7 +53,9 @@ export default function ProgramDetails() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-[11px] sm:text-xs md:text-sm text-gray-400 overflow-x-auto whitespace-nowrap">
           Home <span className="mx-2">›</span>
           Courses <span className="mx-2">›</span>
-          <span className="text-white">{program.title}</span>
+           <span className="text-white">
+  {program.hero?.overview?.title}
+</span>
           <span className="mx-2">›</span>
           <span className="text-[#f0e81b] capitalize">
             {tab === "about" ? "About" : tab}
@@ -98,32 +100,25 @@ export default function ProgramDetails() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="bg-[#f5f5f5] text-black p-5 sm:p-6 md:p-10 rounded-sm shadow-lg">
 
-            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 sm:mb-6">
-              FAST-TRACK YOUR CAREER IN MUSIC PRODUCTION AND SOUND ENGINEERING
-            </h2>
-
+            
             {tab === "overview" && (
-              <p className="text-sm sm:text-base text-gray-700 mb-6">
+              <div className="text-sm sm:text-base text-gray-700 mb-6">
                 {program.overview}
-              </p>
+              </div>
             )}
 
             {tab === "about" && (
-              <p className="text-sm sm:text-base text-gray-700 mb-6">
+              <div className="text-sm sm:text-base text-gray-700 mb-6">
                 {program.about}
-              </p>
+              </div>
+            )}
+            {tab === "careers" && (
+              <div className="text-sm sm:text-base text-gray-700 mb-6">
+                {program.careers}
+              </div>
             )}
 
-            {tab === "careers" && (
-              <ul className="space-y-3 text-sm sm:text-base text-gray-700">
-                {program.careers.map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <span className="text-yellow-500">•</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
+            
 
           </div>
         </div>
@@ -141,7 +136,7 @@ export default function ProgramDetails() {
         Speak with our team
       </h3>
       <p className="text-sm text-gray-400 mt-1">
-        Get guidance, career clarity & course recommendations
+         Get personalized guidance, career clarity & course recommendations based on your goals.
       </p>
     </div>
 

@@ -8,14 +8,14 @@ import StudioPreviewModal from "../components/StudioPreviewModal";
 import studioA from "../assets/studioA-7.jpeg";
 import studioB from "../assets/studioB-1.webp";
 import studioC from "../assets/studioC-10.webp";
-import studioD from "../assets/studioD-7.webp";
+import studioD from "../assets/studioD-11.webp";
 
 export default function Hero() {
   const navigate = useNavigate();
   const [hoveredBtn, setHoveredBtn] = useState(null);
 
   //  memoize images
-  const images = useMemo(() => [studioA, studioB, studioC, studioD], []);
+  const images = useMemo(() => [ studioB, studioC, studioD,studioA], []);
 
   const [index, setIndex] = useState(0);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -44,8 +44,8 @@ export default function Hero() {
       <img
         src={images[index]}
         alt="studio"
-        fetchPriority="high"     // ✅ faster first load
-        decoding="async"        // ✅ better rendering
+        fetchPriority="high"    
+        decoding="async"       
         className="absolute inset-0 w-full h-full object-cover"
       />
 

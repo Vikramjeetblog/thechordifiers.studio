@@ -29,9 +29,9 @@ export default function Courses() {
 
   const filters = [
     "All",
-    "Signature Program",
     "Certification Courses",
-    "Professional Diploma Courses"
+    "Professional Diploma Courses",
+    "Signature Programs",
   ]
 
   const categories = [

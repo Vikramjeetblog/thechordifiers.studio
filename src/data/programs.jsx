@@ -131,7 +131,7 @@ export const programs = [
 
   about: (
     <>
-      <p><strong>ABOUT THE DIPLOMA</strong></p>
+   
 
       <p>You will learn:</p>
 
@@ -144,9 +144,9 @@ export const programs = [
       </ul>
 
       <p>
-        Led by <strong>Mr. Raull Das, Founder and CEO</strong> of The Chordifiers Studio (TCS) 
+        Led by <strong>Mr. Raull Das, Founder and CEO of The Chordifiers Studio (TCS) 
         & The Chordifiers Music Institute (TCMI) (10+ years industry experience, certified by 
-        Berklee College of Music - USA, University of Edinburgh - Scotland & House of EDM - Bangalore), 
+        Berklee College of Music - USA, University of Edinburgh - Scotland & House of EDM - Bangalore), </strong>
         this program reflects real-world experience and is designed & built inside an 
         <strong> award-winning studio & record label environment</strong>.
       </p>

@@ -11,7 +11,7 @@ export default function StudioBIntro() {
 
         {/* HEADING */}
         <h2 className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight">
-          Built for Jam Sessions & Rehearsals. Designed for Real Performance. 
+       Built for Jam Sessions & Recording Your Instruments. Designed for Real Performance.
         </h2>
 
         {/* HIGHLIGHT LINE */}
